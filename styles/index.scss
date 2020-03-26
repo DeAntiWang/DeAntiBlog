@@ -6,6 +6,8 @@ $left-side-width: 250px;
 $information-index: 1000;
 $bar-index: 700;
 $content-index: 350;
+$background-index: 1;
+$bottom-index: 0;
 
 
 // mixin
@@ -42,6 +44,7 @@ html, body, #__next {
 
 #right-content {
     @include fullSize;
-    overflow-y: scroll;
+    background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
     padding-left: $left-side-width;
+    overflow-y: scroll;
 }

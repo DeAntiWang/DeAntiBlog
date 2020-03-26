@@ -34,7 +34,6 @@ export default class App extends React.Component<Prop, State> {
     return (
       <ZEITUIProvider>
         <CSSBaseline />
-        {/*<div className={Router.route==='/'?'whole-screen':'left-side'} id={"menu-bar"}>*/}
         <div className={this.props.type} id={"menu-bar"}>
           <div className={"content"}>
             <Avatar src={'https://zeit.co/api/www/avatar/?u=evilrabbit&s=160'} size={"large"} />
@@ -42,7 +41,7 @@ export default class App extends React.Component<Prop, State> {
             <div id={"desc"} >{this.state.desc}</div>
             <div className={"nav-bar"}>
               <Link href="/Index"><a>Home</a></Link>
-              <Link href="/Article"><a>Article</a></Link>
+              <Link href="/ArticleList"><a>Article</a></Link>
               <a href="/Admin">Admin</a>
               <Link href="/Article"><a>About</a></Link>
             </div>

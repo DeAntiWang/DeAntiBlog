@@ -1,1 +1,10 @@
-@import './index.scss';
+@import './index';
+
+.article-card {
+    width: 90%;
+    height: 180px;
+    min-width: 600px;
+    max-width: 900px;
+    margin: 15px 0;
+    backdrop-filter: blur(7px);
+}
