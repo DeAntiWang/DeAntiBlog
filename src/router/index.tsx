@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
+import '../common/css/index.scss';
 // import Components
 import MenuBar from '../components/MenuBar/MenuBar';
 // import Pages
@@ -12,14 +13,16 @@ export default class Router extends React.Component<{}, {}> {
   public render() {
     return (
       <HashRouter>
-        <MenuBar/>
-        <Switch>
-          <Route path="/" exact/>
-          <Route path="/article" exact component={ArticleList} />
-          <Route path="/article/:id" exact component={Article} />
-          <Route path="/about" exact component={About} />
-          <Route component={Page404} />
-        </Switch>
+        <Route component={MenuBar}/>
+        <div className={"right-content"}>
+          <Switch>
+            <Route path="/" exact/>
+            <Route path="/article" exact component={ArticleList} />
+            <Route path="/article/:id" exact component={Article} />
+            <Route path="/about" exact component={About} />
+            <Route component={Page404} />
+          </Switch>
+        </div>
       </HashRouter>
     );
   }

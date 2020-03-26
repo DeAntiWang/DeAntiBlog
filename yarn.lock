@@ -1071,6 +1071,11 @@
   resolved "https://registry.npm.taobao.org/@zeit-ui/react/download/@zeit-ui/react-0.0.1-alpha.36.tgz#4661f01f1d6a8f0519c87e8911ae1c4cc49e08db"
   integrity sha1-RmHwHx1qjwUZyH6JEa4cTMSeCNs=
 
+"@zeit-ui/style@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.npm.taobao.org/@zeit-ui/style/download/@zeit-ui/style-0.9.4.tgz#b5e77216ec6cb4e31fbb581210d20a9daee23728"
+  integrity sha1-tedyFuxstOMfu1gSENIKna7iNyg=
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/abbrev/download/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

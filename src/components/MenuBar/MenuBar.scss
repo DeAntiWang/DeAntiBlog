@@ -1,1 +1,108 @@
 @import "../../common/css/index";
+
+.whole-screen {
+    @include fullSize;
+    @include allCenter;
+
+    > .content {
+        @include allCenter;
+        flex-direction: column;
+
+        > .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            width: 400px;
+            margin-top: 28px;
+
+            > a {
+                color: #FAFAFA;
+                text-align: center;
+
+                &:hover {
+                    color: #FFF;
+                    text-decoration: underline;
+                }
+
+                &:active {
+                    color: #FAFAFA;
+                }
+            }
+        }
+    }
+}
+
+.left-side {
+    width: $left-side-width;
+    height: 100%;
+    box-shadow: 5px 0 8px rgba(102,102,102,0.2);
+
+    @include allCenter;
+    flex-direction: column;
+
+    > .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 85%;
+
+        > .nav-bar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            //height: calc(100% - 122px - 15px - 27px - 40px * 2);
+            margin-top: 40px;
+
+            > a {
+                margin: 20px 0;
+            }
+        }
+    }
+}
+
+#menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #FAFAFA;
+    background-color: #111;
+    transition: all ease-in-out 0.7s;
+    z-index: $bar-index;
+
+    * {
+       transition: all ease-in-out 0.8s;
+    }
+
+    > .content {
+
+        > #title {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        > #desc {
+            margin-top: 10px;
+            text-align: center;
+            font-style: italic;
+            font-weight: lighter;
+        }
+
+        > .nav-bar {
+            > a {
+                color: #FAFAFA;
+                text-align: center;
+
+                &:hover {
+                    color: #FFF;
+                    text-decoration: underline;
+                }
+
+                &:active {
+                    color: #FAFAFA;
+                }
+            }
+        }
+    }
+}

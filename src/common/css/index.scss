@@ -1,10 +1,47 @@
+// var
+
+// UI
+$left-side-width: 250px;
+// z-index
+$information-index: 1000;
+$bar-index: 700;
+$content-index: 350;
+
+
+// mixin
+
+@mixin allCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin fullSize {
+    width: 100%;
+    height: 100%;
+}
+
+
+// normal
+
 * {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
+    @include fullSize;
     padding: 0;
     margin: 0;
+}
+
+#root {
+    @include fullSize;
+}
+
+.right-content {
+    @include fullSize;
+    overflow-y: scroll;
+    padding: 10px 0 10px $left-side-width;
 }
