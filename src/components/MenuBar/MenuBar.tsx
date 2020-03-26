@@ -33,6 +33,7 @@ export default class App extends React.Component<any, State> {
             <div className={"nav-bar"}>
               <Link to="/">Home</Link>
               <Link to="/article">Article</Link>
+              <a href="#admin">Admin</a>
               <Link to="/about">About</Link>
             </div>
           </div>
