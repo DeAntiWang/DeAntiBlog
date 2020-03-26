@@ -30,7 +30,7 @@ $content-index: 350;
     -webkit-user-drag: none;
 }
 
-html, body {
+html, body, #__next {
     @include fullSize;
     padding: 0;
     margin: 0;
@@ -40,8 +40,8 @@ html, body {
     @include fullSize;
 }
 
-.right-content {
+#right-content {
     @include fullSize;
     overflow-y: scroll;
-    padding: 10px 0 10px $left-side-width;
+    padding-left: $left-side-width;
 }

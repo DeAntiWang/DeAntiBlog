@@ -2,11 +2,28 @@
   "compilerOptions": {
     "outDir": "dist/",
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es2015",
-    "jsx": "react"
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": [
     "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

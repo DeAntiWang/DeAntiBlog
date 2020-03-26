@@ -1,0 +1,38 @@
+@import "index";
+
+#page-404 {
+    @include fullSize;
+    @include allCenter;
+
+
+    > #right-content {
+        @include fullSize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > #content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 33px 0 70px 0;
+            background-color: #EAEAEA;
+
+            > h1 {
+                margin: 0 8px;
+                text-align: center;
+                letter-spacing: 18px;
+                font-size: 10em;
+            }
+
+            > p {
+                margin: -15px 8px 0 8px;
+                text-align: center;
+                font-style: italic;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+}
