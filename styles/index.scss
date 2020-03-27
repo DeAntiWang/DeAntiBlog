@@ -28,7 +28,10 @@ $bottom-index: 0;
 
 * {
     box-sizing: border-box !important;
-    user-select: none;
+    -webkit-user-select: unset;
+    -moz-user-select: unset;
+    -ms-user-select: unset;
+    user-select: unset;
     -webkit-user-drag: none;
 }
 
@@ -44,7 +47,7 @@ html, body, #__next {
 
 #right-content {
     @include fullSize;
-    background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
+    //background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
     padding-left: $left-side-width;
     overflow-y: scroll;
 }

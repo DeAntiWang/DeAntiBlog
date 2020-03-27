@@ -1,0 +1,25 @@
+@import './index';
+
+#article-page {
+    @include fullSize;
+}
+
+#content {
+    width: 85%;
+    max-width: 900px;
+    min-width: 600px;
+    padding: 25px;
+    margin: 0 auto;
+
+    > * {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+        
+        ::selection {
+            background-color: #79FFE1;
+        }
+    }
+}
+

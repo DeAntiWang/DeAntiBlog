@@ -8,7 +8,7 @@ export default class Page404 extends React.Component {
       <div id={"page-404"}>
         <MenuBar type={"left-side"} />
         <div id={"right-content"}>
-          <div id={"content"}>
+          <div id={"content"} style={{width: "100%", maxWidth: "100%"}}>
             <h1>404</h1>
             <p>Pages not found. Please check the URL you input</p>
           </div>
