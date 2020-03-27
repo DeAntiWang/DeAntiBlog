@@ -23,6 +23,7 @@ export default class ArticleCard extends React.Component<Prop, any> {
   public render() {
     return (
         <Card
+          id={"Article"+this.props.id}
           className={"article-card"}
           style={{margin: '15px 0', background: 'rgba(255,255,255,0.3)'}}
           hoverable

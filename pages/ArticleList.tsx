@@ -1,7 +1,6 @@
 import * as React from 'react';
 import MenuBar from '../components/MenuBar';
 import ArticleCard from '../components/ArticleCard';
-import Link from 'next/link';
 import Router from 'next/router';
 import '../styles/ArticleList.scss';
 
@@ -54,10 +53,18 @@ export default class ArticleList extends React.Component<any, any> {
   private onClickList(event: MouseEvent) {
     event.preventDefault();
     let ev = event || window.event;
-    let target = ev.target || ev.srcElement;
-    // if(target.nodeName.toLocalLowerCase() === 'div') {
-
-    // }
+    let target: any = ev.target || ev.srcElement;
+    let targetDom = target;
+    if(target.className.indexOf('card')==-1) {
+      targetDom = target.parentElement;
+    }
+    const articleId: number = parseInt(targetDom.id.substr(7));
+    Router.push({
+      pathname: '/Article',
+      query: {
+        id: articleId
+      }
+    })
   }
 
   public render() {

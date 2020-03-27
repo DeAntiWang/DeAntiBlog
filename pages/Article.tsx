@@ -35,7 +35,9 @@ export default class Article extends React.Component<any, State> {
         '公司   | 工作地点  | 内推联系人 |  实习类型 | 招聘日期  |  后文\n' +
         ':-----:|:--------:|:--------:|:--------:|:-------:|:------:\n' +
         ' yitu  | 上海      |  xxx   | 日常/暑期 |   xxx   | 缩招,不收技术\n' +
-        ' 腾讯wxg| 广州     |  xxx    |  暑期    |    xxx  | 签了offer\n',
+        ' 腾讯wxg| 广州     |  xxx    |  暑期    |    xxx  | 签了offer\n\n' +
+        '![Image Title](https://assets.zeit.co/image/upload/q_auto/front/assets/design/white-triangle.png)\n\n' +
+        '[Link Title](https://assets.zeit.co/image/upload/q_auto/front/assets/design/white-triangle.png)\n',
     };
   }
 

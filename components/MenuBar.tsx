@@ -41,7 +41,7 @@ export default class App extends React.Component<Prop, State> {
               <Link href="/Index"><a>Home</a></Link>
               <Link href="/ArticleList"><a>Article</a></Link>
               <a href="/Admin">Admin</a>
-              <Link href="/Article"><a>About</a></Link>
+              <Link href={{pathname: "/Article", query: {id: 0}}}><a>About</a></Link>
             </div>
           </div>
         </div>
