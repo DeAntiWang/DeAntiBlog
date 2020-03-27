@@ -15,8 +15,6 @@ export default class ArticleList extends React.Component<any, any> {
 
   public render() {
     return (
-      <ZEITUIProvider>
-        <CSSBaseline />
         <div id={"article-list-page"}>
           <MenuBar type={"left-side"} />
           <div id={"right-content"}>
@@ -25,7 +23,6 @@ export default class ArticleList extends React.Component<any, any> {
             </div>
           </div>
         </div>
-      </ZEITUIProvider>
     );
   }
 }

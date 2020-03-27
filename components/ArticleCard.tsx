@@ -20,8 +20,6 @@ export default class ArticleCard extends React.Component<any, any> {
 
   public render() {
     return (
-      <ZEITUIProvider>
-        <CSSBaseline />
         <Card
           className={"article-card"}
           style={{margin: '15px 0', background: 'rgba(255,255,255,0.3)'}}
@@ -32,7 +30,6 @@ export default class ArticleCard extends React.Component<any, any> {
           <div style={{fontWeight: "lighter", fontSize: '13px'}}>{this.state.time}</div>
           <p>{this.state.desc}</p>
         </Card>
-      </ZEITUIProvider>
     );
   }
 }

@@ -32,8 +32,6 @@ export default class App extends React.Component<Prop, State> {
 
   public render() {
     return (
-      <ZEITUIProvider>
-        <CSSBaseline />
         <div className={this.props.type} id={"menu-bar"}>
           <div className={"content"}>
             <Avatar src={'https://zeit.co/api/www/avatar/?u=evilrabbit&s=160'} size={"large"} />
@@ -47,7 +45,6 @@ export default class App extends React.Component<Prop, State> {
             </div>
           </div>
         </div>
-      </ZEITUIProvider>
     );
   }
 }

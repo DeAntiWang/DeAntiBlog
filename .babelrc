@@ -11,6 +11,21 @@
           "ie": "11"
         }
       }
+    ],
+    [
+      "next/babel",
+      {
+        "preset-env": false,
+        "transform-runtime": {
+          "helpers": false,
+          "regenerator": true
+        },
+        "styled-jsx": {},
+        "class-properties": {}
+      }
     ]
   ],
+  "plugins": [
+    "@babel/plugin-transform-runtime"
+  ]
 }
