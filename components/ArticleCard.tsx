@@ -21,6 +21,8 @@ export default class ArticleCard extends React.Component<Prop, any> {
   }
 
   public render() {
+    const desc = this.props.desc + '<span class="-in-desc go-link"> ... Read more</span>';
+
     return (
         <Card
           id={"Article"+this.props.id}
@@ -29,9 +31,9 @@ export default class ArticleCard extends React.Component<Prop, any> {
           hoverable
           shadow
         >
-          <h4>{this.props.title}</h4>
+          <h4 className="go-link">{this.props.title}</h4>
           <div style={{fontWeight: "lighter", fontSize: '13px'}}>{this.props.time}</div>
-          <p>{this.props.desc}</p>
+          <p className="desc" dangerouslySetInnerHTML={{__html:desc}} />
         </Card>
     );
   }

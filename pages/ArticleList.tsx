@@ -2,84 +2,95 @@ import * as React from 'react';
 import MenuBar from '../components/MenuBar';
 import ArticleCard from '../components/ArticleCard';
 import Router from 'next/router';
+import fetch from '../common/fetch';
 import '../styles/ArticleList.scss';
 
 
 export default class ArticleList extends React.Component<any, any> {
   public constructor(props: any) {
     super(props);
-
-    const DESC:string =  'pages目录是nextjs中最终要的一个目录，这个目录的每一个文件都会对应到每一个页面，' +
-      '可以根据地址栏的路由进行跳转。若pages下的js文件在一个目录下，那么nextjs默认会将这个目录也当作路由的路径。' +
-      '个文件都会对应到每一个页面，可以根据地址栏的路由';
-
     this.state = {
-      res: [
-        {
-          id: 1,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }, {
-          id: 2,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }, {
-          id: 3,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }, {
-          id: 4,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }, {
-          id: 5,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }, {
-          id: 6,
-          title: 'The Evil Rabbit',
-          time: '2020-02-23',
-          desc: DESC
-        }
-      ]
     }
   }
 
-  private onClickList(event: MouseEvent) {
+  private static dataFormater(timeStr: string): string {
+    const time: Date = new Date(timeStr);
+    const year = time.getFullYear(),
+          month = time.getMonth()+1,
+          day = time.getDate();
+    return `${year}-${month}-${day}`;
+  }
+
+  private static stringFilter(str: string): string {
+    // 链式工作，顺序不可替换
+    return str.replace(/\r\n/g, "\n")  // 预处理
+      .replace(/^(#+)(.*)/g, "$2。") // 标题
+      .replace(/\[([\s\S]*?)\]\([\s\S]*?\)/g, "$1") // 链接
+      .replace(/\n(&gt;|\\>)\s?(.*)/g, "$2")  // 引用（有问题）
+      .replace(/(\\*\\*\\*|___)(.*?)\\1/g, "$2") // 斜体粗体混合
+      .replace(/(\\*\\*|__)(.*?)\\1/g, "$2") // 粗体
+      .replace(/(\\*|_)(.*?)\\1/g, "$2") // 斜体
+      .replace(/!\\[[^\\]]+\\]\\([^\\)]+\\)/g, "") // TODO 图片
+      .replace(/\\~\\~(.*?)\\~\\~/g, "$1") // 删除线
+      .replace(/```([\\s\\S]*?)```[\\s]?/g, '<span class="-in-desc-code">请文中查看代码</span>')  // 代码块
+      .replace(/^-+$/g, "") // 分割线
+      .replace(/^[\\s]*[-\\*\\+] +(.*)/g, "$1"); // 无序列表
+  }
+
+  private static onClickList(event: MouseEvent) {
     event.preventDefault();
     let ev = event || window.event;
     let target: any = ev.target || ev.srcElement;
-    let targetDom = target;
-    if(target.className.indexOf('card')==-1) {
-      targetDom = target.parentElement;
-    }
-    const articleId: number = parseInt(targetDom.id.substr(7));
-    Router.push({
-      pathname: '/Article',
-      query: {
-        id: articleId
+
+    if(target.className.indexOf('go-link')!==-1) {
+      let targetDom = target;
+      while(targetDom.className.indexOf('card')===-1) {
+        targetDom = targetDom.parentElement;
       }
-    })
+      const articleId: number = parseInt(targetDom.id.substr(7));
+
+      Router.push({
+        pathname: '/Article',
+        query: {
+          id: articleId
+        }
+      })
+    }
+  }
+
+  static async getInitialProps() {
+    const result = await fetch('/Article/findAll');
+    let data: any = {};
+    if(result.statusCode===200) {
+      data = result.data.map( (val: any) => {
+        return {
+          id: val.id,
+          title: val.title,
+          time: ArticleList.dataFormater(val.time),
+          desc: ArticleList.stringFilter(val.content).substr(0,160)
+        }
+      });
+      data.shift();
+    }
+    return { list: data };
   }
 
   public render() {
+
+    // TODO 点击跳转替换到Title上，内容允许select，注意background
+
     return (
         <div id={"article-list-page"}>
           <MenuBar type={"left-side"} />
           <div id={"right-content"}>
-            <div className={"list"} onClick={this.onClickList.bind(this)}>
+            <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
               {
-                this.state.res.map((val: any) => {
+                this.props.list.map((val: any) => {
                   return (
                     <ArticleCard
                       key={val.id}
                       id={val.id}
-                      title={val.title + val.id}
+                      title={val.title}
                       time={val.time}
                       desc={val.desc}
                     />
