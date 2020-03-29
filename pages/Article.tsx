@@ -17,7 +17,6 @@ export default class Article extends React.Component<any, any> {
   }
 
   static async getInitialProps({res, query}: any) {
-
     const id = query.id===undefined?0:query.id;
     const result = await fetch('/Article/findById', 'GET', {id});
     let data: any = {};

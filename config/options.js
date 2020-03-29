@@ -15,11 +15,21 @@ const md2jsxOptions = {
 };
 
 /**
+ * xss options
+ */
+const xssOptions = {
+  whiteList: {
+    span: ["class"]
+  }
+};
+
+/**
  * fetch BaseUrl
  */
 const baseUrl = "http://localhost:3001/";
 
 export {
   md2jsxOptions,
+  xssOptions,
   baseUrl
 }

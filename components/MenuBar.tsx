@@ -2,11 +2,7 @@ import * as React from 'react';
 // next.js
 import Link from 'next/link';
 // zeit-ui
-import {
-  ZEITUIProvider,
-  CSSBaseline,
-  Avatar
-} from '@zeit-ui/react'
+import { Avatar } from '@zeit-ui/react'
 // css
 import '../styles/MenuBar.scss';
 

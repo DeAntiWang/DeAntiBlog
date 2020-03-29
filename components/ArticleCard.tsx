@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Card } from '@zeit-ui/react';
-import {ZEITUIProvider, CSSBaseline} from "@zeit-ui/react";
 import '../styles/ArticleCard.scss';
 
 interface Prop {

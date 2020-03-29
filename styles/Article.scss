@@ -11,14 +11,21 @@
     padding: 25px;
     margin: 0 auto;
 
-    > * {
-        -webkit-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-        
-        ::selection {
-            background-color: #79FFE1;
+    > #need-latex-render {
+        * {
+            @include user-select-text;
+
+            &::selection {
+                background-color: #79FFE1;
+            }
+        }
+
+        img {
+            @include user-select-none;
+        }
+
+        code {
+            cursor: text;
         }
     }
 

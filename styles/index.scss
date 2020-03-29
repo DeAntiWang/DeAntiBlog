@@ -23,15 +23,26 @@ $bottom-index: 0;
     height: 100%;
 }
 
+@mixin user-select-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+@mixin user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 
 // normal
 
 * {
     box-sizing: border-box !important;
-    -webkit-user-select: unset;
-    -moz-user-select: unset;
-    -ms-user-select: unset;
-    user-select: unset;
+    @include user-select-none;
     -webkit-user-drag: none;
 }
 

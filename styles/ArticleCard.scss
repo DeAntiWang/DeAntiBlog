@@ -18,10 +18,7 @@
 }
 
 .desc {
-    -webkit-user-select: unset;
-    -moz-user-select: unset;
-    -ms-user-select: unset;
-    user-select: unset;
+    @include user-select-text;
 }
 
 .desc::selection {
@@ -30,14 +27,17 @@
 
 .-in-desc {
     color: #3291FF;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    @include user-select-none;
 }
 
-.in-desc-code {
-    color: #F7B955;
+.-in-desc-code {
+    color: #F5A623;
+    @include user-select-text;
+
+    &::selection {
+        color: #F49B0B;
+        background-color: #79FFE1;
+    }
 }
 
 .go-link {
