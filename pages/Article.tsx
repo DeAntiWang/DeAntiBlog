@@ -9,7 +9,7 @@ import { md2jsxOptions } from '../config/options';
 // import Css
 import '../styles/Article.scss';
 
-export default class Article extends React.Component<any, any> {
+export default class Article extends React.Component<any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -36,7 +36,7 @@ export default class Article extends React.Component<any, any> {
     return { data };
   }
 
-  private renderLatex() {
+  private static renderLatex() {
     const scriptConfig = document.createElement('script');
     scriptConfig.type = "text/x-mathjax-config";
     scriptConfig.innerHTML = "MathJax.Hub.Config({\n" +
@@ -68,7 +68,7 @@ export default class Article extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    this.renderLatex();
+    Article.renderLatex();
   }
 
   public render() {
