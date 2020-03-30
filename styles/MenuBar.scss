@@ -34,7 +34,7 @@
 .left-side {
     width: $left-side-width;
     height: 100%;
-    box-shadow: 5px 0 8px rgba(102,102,102,0.2);
+    box-shadow: 3px 0 20px rgba(82,82,82,0.3);
 
     @include allCenter;
     flex-direction: column;

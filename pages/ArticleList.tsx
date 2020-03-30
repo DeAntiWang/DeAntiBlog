@@ -26,7 +26,6 @@ export default class ArticleList extends React.Component<any, State> {
   // Attribute
 
   private _window: any = null;
-  private inputLock: boolean = false;
 
   // Function
 
@@ -96,6 +95,12 @@ export default class ArticleList extends React.Component<any, State> {
 
   // Event Handler
 
+  private onChange(ev: any) {
+    this.setState({inputContent: ev.target.value});
+    // search content
+    this.debounceSearch(ev.target.value);
+  }
+
   private static onClickList(event: MouseEvent) {
     event.preventDefault();
     let ev = event || window.event;
@@ -115,12 +120,6 @@ export default class ArticleList extends React.Component<any, State> {
         }
       })
     }
-  }
-
-  private onChange(ev: any) {
-    this.setState({inputContent: ev.target.value});
-    // search content
-    this.debounceSearch(ev.target.value);
   }
 
   private static keyDownToFocus(ev: any) {

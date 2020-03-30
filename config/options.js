@@ -11,7 +11,7 @@ import { Link } from '@zeit-ui/react';
  * - menu:          博客菜单
  *    - title:        菜单标题
  *    - router:       菜单router(请参考next.js文档)
- * - recordNumber:  备案号 (可选项)
+ * - recordNumber:  备案号 (如果不需要，请将值设置为null)
  */
 const BlogConfig = {
   title: "DeAnti",
