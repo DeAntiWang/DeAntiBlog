@@ -1474,9 +1474,9 @@
   integrity sha1-ViNzYEDBytAvbMlt4EHQytwK4zg=
 
 "@zeit-ui/react@^0.0.1-alpha.36":
-  version "0.0.1-alpha.36"
-  resolved "https://registry.npm.taobao.org/@zeit-ui/react/download/@zeit-ui/react-0.0.1-alpha.36.tgz#4661f01f1d6a8f0519c87e8911ae1c4cc49e08db"
-  integrity sha1-RmHwHx1qjwUZyH6JEa4cTMSeCNs=
+  version "0.0.1-beta.1"
+  resolved "https://registry.npm.taobao.org/@zeit-ui/react/download/@zeit-ui/react-0.0.1-beta.1.tgz#ab96d3cd03d3c88a7d7ea276f641ea0159b6c221"
+  integrity sha1-q5bTzQPTyIp9fqJ29kHqAVm2wiE=
 
 "@zeit-ui/style@^0.9.4":
   version "0.9.4"

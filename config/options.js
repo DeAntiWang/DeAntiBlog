@@ -28,7 +28,13 @@ const xssOptions = {
  */
 const baseUrl = "http://localhost:3001/";
 
+/**
+ * debounce wait time (ms)
+ */
+const debounceWait = 450;
+
 export {
+  debounceWait,
   md2jsxOptions,
   xssOptions,
   baseUrl

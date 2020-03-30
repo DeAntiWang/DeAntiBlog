@@ -5,20 +5,28 @@ import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
 import Router from 'next/router';
 import fetch from '../common/fetch';
+import debounce from '../common/debounce';
 import { xssOptions } from '../config/options';
 import '../styles/ArticleList.scss';
 
 interface State {
   inputContent: string,
+  list: Array<any>
 }
 
 export default class ArticleList extends React.Component<any, State> {
   public constructor(props: any) {
     super(props);
     this.state = {
-      inputContent: ''
+      inputContent: '',
+      list: null
     };
   }
+
+  // Attribute
+
+  private _window: any = null;
+  private inputLock: boolean = false;
 
   // Function
 
@@ -63,6 +71,29 @@ export default class ArticleList extends React.Component<any, State> {
     return xss(ret, xssOptions);
   }
 
+  private search(str: string) {
+    if(str==="" || str===null) {
+      this.setState({
+        list: this.props.list
+      });
+      return;
+    }
+
+    let ans: any = [];
+    const obj: Array<any>= this.props.list;
+    obj.forEach((val: any) => {
+      const objStr = val.title.toLowerCase() + val.content.toLowerCase() + val.time.toLowerCase();
+      if(objStr.indexOf(str.toLowerCase()) !== -1) {
+        ans.push(val);
+      }
+    });
+    this.setState({
+      list: ans
+    });
+  }
+
+  private debounceSearch = debounce(this.search.bind(this));
+
   // Event Handler
 
   private static onClickList(event: MouseEvent) {
@@ -86,15 +117,17 @@ export default class ArticleList extends React.Component<any, State> {
     }
   }
 
-  private onInputChange(ev: any) {
+  private onChange(ev: any) {
     this.setState({inputContent: ev.target.value});
+    // search content
+    this.debounceSearch(ev.target.value);
   }
 
-  private keyDownToFocus(ev: any) {
+  private static keyDownToFocus(ev: any) {
     if(ev.keyCode === 191) {
       ev.preventDefault();
       const input = document.querySelector("input[type=\"text\"]") as HTMLElement;
-      input.focus()
+      input.focus();
     }
   }
 
@@ -109,6 +142,7 @@ export default class ArticleList extends React.Component<any, State> {
           id: val.id,
           title: val.title,
           time: ArticleList.dateFormat(val.time),
+          content: val.content,   // for search func
           desc: ArticleList.stringFilter(val.content).substr(0,165)
         }
       });
@@ -117,31 +151,40 @@ export default class ArticleList extends React.Component<any, State> {
     return { list: data };
   }
 
+  public componentWillMount() {
+    this.setState({
+      list: this.props.list
+    })
+  }
+
   public componentDidMount() {
-    window.onkeydown = this.keyDownToFocus;
+    this._window = window;
+    window.onkeydown = ArticleList.keyDownToFocus;
   }
 
   public render() {
-    const SearchIcon = () => (
-      <Container>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#999"
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="feather feather-search"
-          style={{width: "14px", height: "14px"}}
-        >
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-      </Container>
-    );
+    const SearchIcon = () => {
+      return (
+        <Container>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#999"
+            strokeWidth="1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="feather feather-search"
+            style={{width: "14px", height: "14px"}}
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </Container>
+      );
+    };
 
     const MyKeyBoard = () => {
       return (
@@ -149,6 +192,18 @@ export default class ArticleList extends React.Component<any, State> {
           id={"keyboard"}
           small
         >/</Keyboard>
+      );
+    };
+
+    const listElement = (val: any) => {
+      return (
+        <ArticleCard
+          key={val.id}
+          id={val.id}
+          title={val.title}
+          time={val.time}
+          desc={val.desc}
+        />
       );
     };
 
@@ -163,22 +218,14 @@ export default class ArticleList extends React.Component<any, State> {
                 iconRight={<MyKeyBoard />}
                 placeholder={"Search..."}
                 value={this.state.inputContent}
-                onChange={this.onInputChange.bind(this)}
+                onChange={this.onChange.bind(this)}
               />
             </div>
             <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
               {
-                this.props.list.map((val: any) => {
-                  return (
-                    <ArticleCard
-                      key={val.id}
-                      id={val.id}
-                      title={val.title}
-                      time={val.time}
-                      desc={val.desc}
-                    />
-                  );
-                })
+                this.state.list===null?
+                  this.props.list.map(listElement)
+                  :this.state.list.map(listElement)
               }
             </div>
           </div>
