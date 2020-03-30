@@ -1468,6 +1468,11 @@
   dependencies:
     "@zeit-ui/themes" "^0.1.0"
 
+"@zeit-ui/react-icons@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.npm.taobao.org/@zeit-ui/react-icons/download/@zeit-ui/react-icons-0.0.1.tgz#5623736040c1cad02f6cc96de041d0cadc0ae338"
+  integrity sha1-ViNzYEDBytAvbMlt4EHQytwK4zg=
+
 "@zeit-ui/react@^0.0.1-alpha.36":
   version "0.0.1-alpha.36"
   resolved "https://registry.npm.taobao.org/@zeit-ui/react/download/@zeit-ui/react-0.0.1-alpha.36.tgz#4661f01f1d6a8f0519c87e8911ae1c4cc49e08db"

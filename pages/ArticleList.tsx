@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Input, Keyboard, Container } from '@zeit-ui/react';
 import MenuBar from '../components/MenuBar';
 import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
@@ -7,13 +8,19 @@ import fetch from '../common/fetch';
 import { xssOptions } from '../config/options';
 import '../styles/ArticleList.scss';
 
+interface State {
+  inputContent: string,
+}
 
-export default class ArticleList extends React.Component<any, any> {
+export default class ArticleList extends React.Component<any, State> {
   public constructor(props: any) {
     super(props);
     this.state = {
-    }
+      inputContent: ''
+    };
   }
+
+  // Function
 
   private static dateFormat(timeStr: string): string {
     const time: Date = new Date(timeStr);
@@ -56,6 +63,8 @@ export default class ArticleList extends React.Component<any, any> {
     return xss(ret, xssOptions);
   }
 
+  // Event Handler
+
   private static onClickList(event: MouseEvent) {
     event.preventDefault();
     let ev = event || window.event;
@@ -77,6 +86,20 @@ export default class ArticleList extends React.Component<any, any> {
     }
   }
 
+  private onInputChange(ev: any) {
+    this.setState({inputContent: ev.target.value});
+  }
+
+  private keyDownToFocus(ev: any) {
+    if(ev.keyCode === 191) {
+      ev.preventDefault();
+      const input = document.querySelector("input[type=\"text\"]") as HTMLElement;
+      input.focus()
+    }
+  }
+
+  // Life Circle
+
   static async getInitialProps() {
     const result = await fetch('/Article/findAll');
     let data: any = {};
@@ -94,11 +117,55 @@ export default class ArticleList extends React.Component<any, any> {
     return { list: data };
   }
 
+  public componentDidMount() {
+    window.onkeydown = this.keyDownToFocus;
+  }
+
   public render() {
+    const SearchIcon = () => (
+      <Container>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#999"
+          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="feather feather-search"
+          style={{width: "14px", height: "14px"}}
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </Container>
+    );
+
+    const MyKeyBoard = () => {
+      return (
+        <Keyboard
+          id={"keyboard"}
+          small
+        >/</Keyboard>
+      );
+    };
+
     return (
         <div id={"article-list-page"}>
           <MenuBar type={"left-side"} />
           <div id={"right-content"}>
+            <div id={"input-bar"}>
+              <Input
+                size={"medium"}
+                icon={<SearchIcon />}
+                iconRight={<MyKeyBoard />}
+                placeholder={"Search..."}
+                value={this.state.inputContent}
+                onChange={this.onInputChange.bind(this)}
+              />
+            </div>
             <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
               {
                 this.props.list.map((val: any) => {
