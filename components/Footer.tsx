@@ -16,8 +16,7 @@ export default class Footer extends React.Component<Prop> {
     const nowYear = new Date().getFullYear();
 
     return (
-      <Container id={"footer-container"} className={this.props.type}>
-        <div id={"footer"}>
+        <div id={"footer"} className={this.props.type + "-footer"}>
           <span className={"footer-row"}>
             Copyright&nbsp;{nowYear}&nbsp;<span dangerouslySetInnerHTML={{__html: "&#169"}}/>&nbsp;Developed by DeAnti-
           </span>
@@ -27,7 +26,6 @@ export default class Footer extends React.Component<Prop> {
               :(<></>)
           }
         </div>
-      </Container>
     )
   }
 }

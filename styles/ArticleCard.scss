@@ -27,11 +27,13 @@
 
 .-in-desc {
     color: #3291FF;
+    //color: #F81CE5;
     @include user-select-none;
 }
 
 .-in-desc-code {
     color: #F5A623;
+    //color: #F81CE5;
     @include user-select-text;
 
     &::selection {

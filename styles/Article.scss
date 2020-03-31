@@ -1,10 +1,6 @@
 @import './index';
 
-#article-page {
-    @include fullSize;
-}
-
-#content {
+.article {
     width: 85%;
     max-width: 900px;
     min-width: 600px;

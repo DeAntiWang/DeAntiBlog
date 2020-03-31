@@ -1,6 +1,12 @@
 import * as React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
+// import Pages
+import Index from './index';
+// import Components
+import MenuBar from '../components/MenuBar';
+import Footer from '../components/Footer';
+// import Css
 import '../styles/index.scss';
 
 export default class MyApp extends App {
@@ -16,12 +22,20 @@ export default class MyApp extends App {
 
   render () {
     const {Component, pageProps} = this.props;
+    const screenType = (Component.constructor.name+Component.name).indexOf('Index')===-1?"left-side":"whole-screen";
+
     return (
       <React.Fragment>
         <Head>
           <title>DeAnti- Blog</title>
         </Head>
-        <Component {...pageProps} />
+        <div id={"root"}>
+          <MenuBar type={screenType}/>
+          <div id={"right-content"}>
+            <Component {...pageProps} />
+          </div>
+        </div>
+        <Footer type={screenType}/>
       </React.Fragment>
     )
   }

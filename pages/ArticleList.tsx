@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Input, Keyboard, Container } from '@zeit-ui/react';
-import MenuBar from '../components/MenuBar';
 import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
 import Router from 'next/router';
@@ -207,28 +206,25 @@ export default class ArticleList extends React.Component<any, State> {
     };
 
     return (
-        <div id={"article-list-page"}>
-          <MenuBar type={"left-side"} />
-          <div id={"right-content"}>
-            <div id={"input-bar"}>
-              <Input
-                size={"medium"}
-                icon={<SearchIcon />}
-                iconRight={<MyKeyBoard />}
-                placeholder={"Search..."}
-                value={this.state.inputContent}
-                onChange={this.onChange.bind(this)}
-              />
-            </div>
-            <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
-              {
-                this.state.list===null?
-                  this.props.list.map(listElement)
-                  :this.state.list.map(listElement)
-              }
-            </div>
-          </div>
+      <>
+        <div id={"input-bar"}>
+          <Input
+            size={"medium"}
+            icon={<SearchIcon />}
+            iconRight={<MyKeyBoard />}
+            placeholder={"Search..."}
+            value={this.state.inputContent}
+            onChange={this.onChange.bind(this)}
+          />
         </div>
+        <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
+          {
+            this.state.list===null?
+              this.props.list.map(listElement)
+              :this.state.list.map(listElement)
+          }
+        </div>
+      </>
     );
   }
 }
