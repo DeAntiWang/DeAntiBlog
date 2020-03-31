@@ -10,6 +10,7 @@ import { Link } from '@zeit-ui/react';
  * - avatar:        博客头像路径或url
  * - menu:          博客菜单
  *    - title:        菜单标题
+ *    - outside:      站外链接(开启时，router中只有pathname生效)
  *    - router:       菜单router(请参考next.js文档)
  * - recordNumber:  备案号 (如果不需要，请将值设置为null)
  */
@@ -20,12 +21,13 @@ const BlogConfig = {
   menu: [
     {
       title: 'Home',
-      router: {pathname: '/Index'}
+      router: {pathname: '/index'}
     },{
       title: 'Article',
       router: {pathname: '/ArticleList'}
     },{
       title: 'Admin',
+      outside: true,
       router: {pathname: '/Admin'}
     },{
       title: 'About',
