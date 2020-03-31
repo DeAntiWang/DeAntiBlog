@@ -29,4 +29,6 @@ $ yarn run start    # run the project that has been built
 
 ## TODO
 
+- Back to top function
+- Fix search input cant input Chinese
 - API interface configuration

@@ -30,7 +30,7 @@ export default class App extends React.Component<Prop> {
               {
                 BlogConfig.menu.map((val: any, index: number) => {
                   let outside = false || val.outside;
-                  if(outside) {
+                  if(!outside) {
                     return (
                       <Link href={val.router} key={val.title + index}>
                         <a>{val.title}</a>
