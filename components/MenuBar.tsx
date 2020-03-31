@@ -38,7 +38,7 @@ export default class App extends React.Component<Prop> {
                     )
                   }else{
                     return (
-                      <a href={val.router.pathname}>{val.title}</a>
+                      <a href={val.router.pathname} key={val.title + index}>{val.title}</a>
                     )
                   }
                 })

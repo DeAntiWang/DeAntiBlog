@@ -1,8 +1,9 @@
-import App, { Container } from 'next/app';
-import { Head } from 'next/document';
-import './styles/index.scss';
+import * as React from 'react';
+import App from 'next/app';
+import Head from 'next/head';
+import '../styles/index.scss';
 
-export default class myApp extends App {
+export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx }) {
     let pageProps = {};
 
@@ -16,12 +17,12 @@ export default class myApp extends App {
   render () {
     const {Component, pageProps} = this.props;
     return (
-      <Container>
+      <React.Fragment>
         <Head>
           <title>DeAnti- Blog</title>
         </Head>
         <Component {...pageProps} />
-      </Container>
+      </React.Fragment>
     )
   }
 }

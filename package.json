@@ -14,7 +14,7 @@
     "@types/markdown-to-jsx": "^6.11.0",
     "@types/next": "^9.0.0",
     "@zeit-ui/normalize": "^0.0.2",
-    "@zeit-ui/react": "^0.0.1-alpha.36",
+    "@zeit-ui/react": "^0.0.1-beta.1",
     "@zeit-ui/react-icons": "^0.0.1",
     "@zeit-ui/style": "^0.9.4",
     "@zeit/next-css": "^1.0.1",
@@ -30,7 +30,8 @@
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "regenerator-runtime": "^0.13.5",
-    "xss": "^1.0.6"
+    "xss": "^1.0.6",
+    "minimist": "^1.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

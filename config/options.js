@@ -17,7 +17,7 @@ import { Link } from '@zeit-ui/react';
 const BlogConfig = {
   title: "DeAnti",
   desc: "Same on the other side",
-  avatar: "https://zeit.co/api/www/avatar/?u=evilrabbit&s=160",
+  avatar: "/static/avatar.jpg",
   menu: [
     {
       title: 'Home',
@@ -50,7 +50,8 @@ const md2jsxOptions = {
     img:  DisplayImage,
     a: {
       component: Link
-    }
+    },
+    p: ({children, ...props}) => {return (<div {...props}>{children}</div>)}
   }
 };
 
