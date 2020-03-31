@@ -26,10 +26,10 @@ export default async function(url = '', method = 'GET', data = {}, headers = {} 
 
     // 信息请求
     let requestConfig = {
-        credentials: 'include',
+        // credentials: 'include',
         method: method,
         headers: header_data,
-        mode: "cors",
+        // mode: "cors",
         cache: "force-cache"
     };
 
