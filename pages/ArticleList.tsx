@@ -157,16 +157,16 @@ export default class ArticleList extends React.Component<any, State> {
       });
       data.shift();
     }
-    for(let i=3;i<=10;i++) {
-      const content = "test content <img jaVasCriPT:alert('XSS') /><a href=\"/404\">Click</a>";
-      data.push({
-        id: i,
-        title: `test${i}`,
-        time: '2020-1-10',
-        content: content+i,
-        desc: ArticleList.stringFilter(content).substr(0,165)
-      });
-    }
+    // for(let i=3;i<=10;i++) {
+    //   const content = "test content <img jaVasCriPT:alert('XSS') /><a href=\"/404\">Click</a>";
+    //   data.push({
+    //     id: i,
+    //     title: `test${i}`,
+    //     time: '2020-1-10',
+    //     content: content+i,
+    //     desc: ArticleList.stringFilter(content).substr(0,165)
+    //   });
+    // }
     return { list: data };
   }
 
