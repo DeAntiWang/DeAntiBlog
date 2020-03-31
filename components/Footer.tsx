@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container } from "@zeit-ui/react";
 import { BlogConfig } from '../config/options';
-import '../styles/Footer.scss';
+import '../static/styles/Footer.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side"
@@ -10,6 +10,10 @@ interface Prop {
 export default class Footer extends React.Component<Prop> {
   constructor(props: any) {
     super(props);
+  }
+
+  componentDidUpdate() {
+    document.getElementById("footer").className=this.props.type+"-footer";
   }
 
   public render() {

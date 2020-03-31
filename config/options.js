@@ -21,9 +21,11 @@ const BlogConfig = {
   menu: [
     {
       title: 'Home',
-      router: {pathname: '/index'}
+      // outside: true,
+      router: {pathname: '/'}
     },{
       title: 'Article',
+      // outside: true,
       router: {pathname: '/ArticleList'}
     },{
       title: 'Admin',
@@ -67,7 +69,7 @@ const xssOptions = {
 /**
  * fetch BaseUrl
  */
-const baseUrl = "http://localhost:3001/";
+const baseUrl = "http://blog.darkkris.xin/api/";
 
 /**
  * debounce wait time (ms)

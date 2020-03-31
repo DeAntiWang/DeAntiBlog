@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card } from '@zeit-ui/react';
-import '../styles/ArticleCard.scss';
+import '../static/styles/ArticleCard.scss';
 
 interface Prop {
   // title time desc id

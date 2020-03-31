@@ -1,14 +1,13 @@
 import * as React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
-// import Pages
-import Index from './index';
+import Router from 'next/router';
 // import Components
 import MenuBar from '../components/MenuBar';
 import BackTop from '../components/BackTop';
 import Footer from '../components/Footer';
 // import Css
-import '../styles/index.scss';
+import '../static/blank.css'
 
 export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx }) {
@@ -18,12 +17,31 @@ export default class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx)
     }
 
+    Router.events.on('routeChangeComplete', () => {
+      if (process.env.NODE_ENV !== 'production') {
+        const els = document.querySelectorAll('link[href*="/_next/static/css/styles.chunk.css"]');
+        const timestamp = new Date().valueOf();
+        els[0].href = '/_next/static/css/styles.chunk.css?v=' + timestamp;
+      }
+    });
+
     return {pageProps}
   }
 
+  checkType(str) {
+    return !(str==="/index" || str==="" || str==="/");
+  }
+
+
+
   render () {
     const {Component, pageProps} = this.props;
-    const screenType = (Component.constructor.name+Component.name).indexOf('Index')===-1?"left-side":"whole-screen";
+    let screenType = "left-side";
+    if(this.checkType(this.props.router.pathname.toLowerCase())){
+      screenType = "left-side"
+    }else{
+      screenType = "whole-screen";
+    }
 
     return (
       <React.Fragment>

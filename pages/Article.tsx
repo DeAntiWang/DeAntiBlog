@@ -5,7 +5,7 @@ import fetch from '../common/fetch';
 import Markdown from 'markdown-to-jsx';
 import { md2jsxOptions } from '../config/options';
 // import Css
-import '../styles/Article.scss';
+import '../static/styles/Article.scss';
 
 export default class Article extends React.Component<any> {
   constructor(props: any) {

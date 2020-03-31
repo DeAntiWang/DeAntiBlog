@@ -1,21 +1,27 @@
 import * as React from 'react';
-import Footer from './Footer';
 import { BlogConfig } from '../config/options';
 // next.js
 import Link from 'next/link';
 // zeit-ui
-import { Avatar, Container } from '@zeit-ui/react'
+import { Avatar } from '@zeit-ui/react'
 // css
-import '../styles/MenuBar.scss';
+import '../static/styles/MenuBar.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side",
   [propName: string]: any
 }
 
-export default class App extends React.Component<Prop> {
+export default class App extends React.Component<Prop, any> {
   constructor(props: Prop) {
     super(props);
+    this.state = {
+      type: this.props.type
+    }
+  }
+
+  componentDidUpdate() {
+    document.getElementById("menu-bar").className=this.props.type;
   }
 
   public render() {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import "../styles/Page404.scss";
+import "../static/styles/Page404.scss";
 
 export default class Page404 extends React.Component {
   public render() {

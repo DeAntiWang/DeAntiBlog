@@ -6,7 +6,7 @@ import Router from 'next/router';
 import fetch from '../common/fetch';
 import debounce from '../common/debounce';
 import { xssOptions } from '../config/options';
-import '../styles/ArticleList.scss';
+import '../static/styles/ArticleList.scss';
 
 interface State {
   inputContent: string,
