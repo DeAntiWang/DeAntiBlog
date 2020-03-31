@@ -135,6 +135,17 @@ export default class ArticleList extends React.Component<any, State> {
     const result = await fetch('/Article/findAll');
     let data: any = {};
     if(result.statusCode===200) {
+      result.data.sort((a: any, b: any) => {
+        const aTime = new Date(a.time),
+              bTime = new Date(b.time);
+        if(aTime<bTime) {
+          return 1;
+        }else if(aTime>bTime){
+          return -1;
+        }
+        return 0;
+      });
+
       data = result.data.map( (val: any) => {
         return {
           id: val.id,
@@ -145,6 +156,16 @@ export default class ArticleList extends React.Component<any, State> {
         }
       });
       data.shift();
+    }
+    for(let i=3;i<=10;i++) {
+      const content = "test content <img jaVasCriPT:alert('XSS') /><a href=\"/404\">Click</a>";
+      data.push({
+        id: i,
+        title: `test${i}`,
+        time: '2020-1-10',
+        content: content+i,
+        desc: ArticleList.stringFilter(content).substr(0,165)
+      });
     }
     return { list: data };
   }
@@ -206,7 +227,7 @@ export default class ArticleList extends React.Component<any, State> {
     };
 
     return (
-      <>
+      <div id="article-list-content">
         <div id={"input-bar"}>
           <Input
             size={"medium"}
@@ -224,7 +245,7 @@ export default class ArticleList extends React.Component<any, State> {
               :this.state.list.map(listElement)
           }
         </div>
-      </>
+      </div>
     );
   }
 }

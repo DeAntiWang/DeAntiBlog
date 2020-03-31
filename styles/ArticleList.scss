@@ -1,28 +1,29 @@
 @import './index';
 
-
-#right-content {
+#article-list-content {
+    width: 100%;
+    padding: 8px 13px 0 13px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8px 13px 8px $left-side-width+13px;
-
-    > .list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 10px 20px;
-    }
-    
-    > .search-bar {
-        width: 100%;
-        min-width: 600px;
-        max-width: 940px;
-        padding: 0 20px;
-        margin-top: 20px;
-    }
 }
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.search-bar {
+    width: 100%;
+    min-width: 600px;
+    max-width: 940px;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
 
 #input-bar {
     display: flex;

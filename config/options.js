@@ -74,10 +74,18 @@ const baseUrl = "http://localhost:3001/";
  */
 const debounceWait = 450;
 
+/**
+ * Back-To-Top Component Options
+ * - offset:    the scrollTop to open component
+ */
+const backTopOption = {
+  offset: 50
+};
 
 export {
   BlogConfig,
   debounceWait,
+  backTopOption,
   md2jsxOptions,
   xssOptions,
   baseUrl,

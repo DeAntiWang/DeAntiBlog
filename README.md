@@ -29,6 +29,5 @@ $ yarn run start    # run the project that has been built
 
 ## TODO
 
-- Back to top function
 - API interface configuration
 - Mobile terminal adaptation
