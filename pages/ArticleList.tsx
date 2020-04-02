@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Keyboard, Container } from '@zeit-ui/react';
+import { Input, Keyboard, Container, Select } from '@zeit-ui/react';
 import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
 import Router from 'next/router';
@@ -102,6 +102,67 @@ export default class ArticleList extends React.Component<any, State> {
     this.debounceSearch(ev.target.value);
   }
 
+  private onSelect(val: string) {
+    switch(val) {
+      case 'publish_desc':
+        this.setState({
+          list: this.state.list.sort((a: any, b: any) => {
+            let aTime = new Date(a.time),
+                bTime = new Date(b.time);
+            if(aTime < bTime) {
+              return 1;
+            }else if(aTime > bTime) {
+              return -1;
+            }
+            return 0;
+          })
+        });
+        break;
+      case 'publish_asc':
+        this.setState({
+          list: this.state.list.sort((a: any, b: any) => {
+            let aTime = new Date(a.time),
+              bTime = new Date(b.time);
+            if(aTime > bTime) {
+              return 1;
+            }else if(aTime < bTime) {
+              return -1;
+            }
+            return 0;
+          })
+        });
+        break;
+      case 'edit_desc':
+        this.setState({
+          list: this.state.list.sort((a: any, b: any) => {
+            let aTime = new Date(a.edit_time),
+              bTime = new Date(b.edit_time);
+            if(aTime < bTime) {
+              return 1;
+            }else if(aTime > bTime) {
+              return -1;
+            }
+            return 0;
+          })
+        });
+        break;
+      case 'edit_asc':
+        this.setState({
+          list: this.state.list.sort((a: any, b: any) => {
+            let aTime = new Date(a.edit_time),
+              bTime = new Date(b.edit_time);
+            if(aTime > bTime) {
+              return 1;
+            }else if(aTime < bTime) {
+              return -1;
+            }
+            return 0;
+          })
+        });
+        break;
+    }
+  }
+
   private static onClickList(event: MouseEvent) {
     event.preventDefault();
     let ev = event || window.event;
@@ -135,9 +196,10 @@ export default class ArticleList extends React.Component<any, State> {
 
   static async getInitialProps() {
     const result = await fetch('/Article/findAll');
-    let data: any = {};
+    let data: any = [];
     if(result.statusCode===200) {
-      data = result.data.shift();
+      data = result.data;
+      data.shift();
 
       data.sort((a: any, b: any) => {
         const aTime = new Date(a.time),
@@ -160,16 +222,6 @@ export default class ArticleList extends React.Component<any, State> {
         }
       });
     }
-    // for(let i=3;i<=10;i++) {
-    //   const content = "test content <img jaVasCriPT:alert('XSS') /><a href=\"/404\">Click</a>";
-    //   data.push({
-    //     id: i,
-    //     title: `test${i}`,
-    //     time: '2020-1-10',
-    //     content: content+i,
-    //     desc: ArticleList.stringFilter(content).substr(0,165)
-    //   });
-    // }
     return { list: data };
   }
 
@@ -245,6 +297,16 @@ export default class ArticleList extends React.Component<any, State> {
             value={this.state.inputContent}
             onChange={this.onChange.bind(this)}
           />
+          <Select
+            initialValue={"publish_desc"}
+            size={"medium"}
+            onChange={this.onSelect.bind(this)}
+          >
+            <Select.Option value="publish_desc">发布时间降序</Select.Option>
+            <Select.Option value="publish_asc">发布时间升序</Select.Option>
+            <Select.Option value="edit_desc">编辑时间降序</Select.Option>
+            <Select.Option value="edit_asc">编辑时间升序</Select.Option>
+          </Select>
         </div>
         <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
           {
