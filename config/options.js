@@ -25,12 +25,10 @@ const BlogConfig = {
       router: {pathname: '/'}
     },{
       title: 'Article',
-      // outside: true,
       router: {pathname: '/ArticleList'}
     },{
-      title: 'Admin',
-      outside: true,
-      router: {pathname: '/Admin'}
+      title: 'Tags',
+      router: {pathname: '/Tags'}
     },{
       title: 'About',
       router: {

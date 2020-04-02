@@ -1,0 +1,51 @@
+@import './index';
+
+#tag-list-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > #tag-list {
+        width: 100%;
+
+        > .tag-element {
+
+            > .tag-title {
+                font-size: 22px;
+                font-weight: bold;
+                padding-top: 12px;
+                padding-bottom: 7px;
+            }
+
+            > .tag-sub-list {
+                padding-left: 25px;
+
+                .article-in-tag {
+                    cursor: pointer;
+
+                    > .article-title-in-tag {
+                        font-size: 19px;
+                        font-weight: normal;
+                    }
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #tag-list-content {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    #tag-list-content {
+        padding: 20px 33px 0 33px;
+    }
+}

@@ -30,5 +30,5 @@ $ yarn run start    # run the project that has been built
 ## TODO
 
 - TOC
-- Tags & Tags List
+- Tags List Style
 - Music-in-Article Plugin/Component
