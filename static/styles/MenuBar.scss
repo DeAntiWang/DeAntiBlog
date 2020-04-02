@@ -8,6 +8,10 @@
         @include allCenter;
         flex-direction: column;
 
+        #title {
+            margin-top: 15px;
+        }
+
         > .nav-bar {
             display: flex;
             justify-content: space-around;
