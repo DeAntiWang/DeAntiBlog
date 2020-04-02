@@ -124,13 +124,34 @@
             }
 
             > .nav-bar {
-                width: 40%;
+                width: 60%;
                 height: 40px;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-around;
                 margin-top: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .left-side {
+        > .content {
+            > .nav-bar {
+                width: 60%;
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 501px) and (max-width: 900px) {
+    .left-side {
+        > .content {
+            > .nav-bar {
+                width: 40%;
             }
         }
     }

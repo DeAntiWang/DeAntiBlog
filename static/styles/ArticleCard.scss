@@ -1,10 +1,7 @@
 @import 'index';
 
 .article-card {
-    width: 90%;
     height: 180px;
-    min-width: 600px;
-    max-width: 900px;
     margin: 15px 0;
     overflow: hidden;
     -webkit-backdrop-filter: blur(7px);
@@ -46,5 +43,19 @@
     cursor: pointer;
     &:hover {
         text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .article-card {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .article-card {
+        width: 90%;
+        min-width: 600px;
+        max-width: 900px;
     }
 }

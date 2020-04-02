@@ -10,7 +10,8 @@ import '../static/styles/ArticleList.scss';
 
 interface State {
   inputContent: string,
-  list: Array<any>
+  list: Array<any>,
+  wordNumLim: number
 }
 
 export default class ArticleList extends React.Component<any, State> {
@@ -18,7 +19,8 @@ export default class ArticleList extends React.Component<any, State> {
     super(props);
     this.state = {
       inputContent: '',
-      list: null
+      list: null,
+      wordNumLim: 165
     };
   }
 
@@ -152,7 +154,7 @@ export default class ArticleList extends React.Component<any, State> {
           title: val.title,
           time: ArticleList.dateFormat(val.time),
           content: val.content,   // for search func
-          desc: ArticleList.stringFilter(val.content).substr(0,165)
+          desc: ArticleList.stringFilter(val.content)
         }
       });
       data.shift();
@@ -179,6 +181,11 @@ export default class ArticleList extends React.Component<any, State> {
   public componentDidMount() {
     this._window = window;
     window.onkeydown = ArticleList.keyDownToFocus;
+
+    this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+    this._window.onresize = () => {
+      this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+    }
   }
 
   public render() {
@@ -221,7 +228,7 @@ export default class ArticleList extends React.Component<any, State> {
           id={val.id}
           title={val.title}
           time={val.time}
-          desc={val.desc}
+          desc={val.desc.substr(0, this.state.wordNumLim)}
         />
       );
     };
