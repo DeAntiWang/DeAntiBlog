@@ -12,7 +12,6 @@
     //padding-left: $left-side-width;
     width: $left-side-width;
     height: auto;
-    color: #FFF;
     top: auto;
     bottom: 8px;
     font-size: 13px;
@@ -35,4 +34,17 @@
 
 .record-number {
     font-size: 8px;
+}
+
+@media screen and (max-width: 900px) {
+    #footer {
+        color: #111111;
+        margin-left: calc(50% - 125px);
+    }
+}
+
+@media screen and (min-width: 901px) {
+    #footer {
+        color: #FFF;
+    }
 }

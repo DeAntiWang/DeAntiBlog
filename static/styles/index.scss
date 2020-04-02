@@ -59,6 +59,17 @@ html, body, #__next {
 #right-content {
     @include fullSize;
     //background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
-    padding-left: $left-side-width;
     overflow-y: scroll;
+}
+
+@media screen and (min-width: 901px) {
+    #right-content {
+        padding-left: $left-side-width;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #right-content {
+        padding: 40px 13px 0 13px;
+    }
 }

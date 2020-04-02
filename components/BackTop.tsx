@@ -48,8 +48,12 @@ export default class BackTop extends React.Component<Prop, any> {
 
   private scrollHandler() {
     const dom = this.listen,
-          scrollTop = dom.scrollTop,
-          height = this.getContentHeight(dom) - dom.offsetHeight;
+          scrollTop = dom.scrollTop;
+    let height = this.getContentHeight(dom) - dom.offsetHeight;
+
+    if(document.body.offsetWidth<=900) {
+      height += 40;
+    }
 
     if(scrollTop > backTopOption.offset) {
       this.setState({display: true});
@@ -70,7 +74,7 @@ export default class BackTop extends React.Component<Prop, any> {
     this._window = window;
     this.progressPath = document.querySelector('.progress-wrap path');
     this.pathLength = this.progressPath.getTotalLength();
-    //
+    // progressPath
     this.progressPath.style.transition = this.progressPath.style.webkitTransition = 'none';
     this.progressPath.style.strokeDasharray = ~~this.pathLength + ' ' + ~~this.pathLength;
     this.progressPath.style.strokeDashoffset = `${this.pathLength}`;
