@@ -29,4 +29,6 @@ $ yarn run start    # run the project that has been built
 
 ## TODO
 
-null
+- TOC
+- Article Sorting
+- Tags & Tags List

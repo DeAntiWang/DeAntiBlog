@@ -3,8 +3,7 @@
 .article {
     width: 85%;
     max-width: 900px;
-    min-width: 600px;
-    padding: 25px;
+
     margin: 0 auto;
 
     > #need-latex-render {
@@ -50,3 +49,15 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .article {
+        padding: 25px 10px 0 10px;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .article {
+        min-width: 600px;
+        padding: 25px;
+    }
+}

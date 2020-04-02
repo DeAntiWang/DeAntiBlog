@@ -137,7 +137,9 @@ export default class ArticleList extends React.Component<any, State> {
     const result = await fetch('/Article/findAll');
     let data: any = {};
     if(result.statusCode===200) {
-      result.data.sort((a: any, b: any) => {
+      data = result.data.shift();
+
+      data.sort((a: any, b: any) => {
         const aTime = new Date(a.time),
               bTime = new Date(b.time);
         if(aTime<bTime) {
@@ -148,7 +150,7 @@ export default class ArticleList extends React.Component<any, State> {
         return 0;
       });
 
-      data = result.data.map( (val: any) => {
+      data = data.map( (val: any) => {
         return {
           id: val.id,
           title: val.title,
@@ -157,7 +159,6 @@ export default class ArticleList extends React.Component<any, State> {
           desc: ArticleList.stringFilter(val.content)
         }
       });
-      data.shift();
     }
     // for(let i=3;i<=10;i++) {
     //   const content = "test content <img jaVasCriPT:alert('XSS') /><a href=\"/404\">Click</a>";
