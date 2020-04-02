@@ -26,7 +26,14 @@ export default class MyDocument extends Document {
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.3/css/unicons.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-        <script src={"../common/analyse.js"} type={"text/javascript"}/>
+        {"<!-- Baidu Anaylse -->"}
+        <script type={"text/javascript"} dangerouslySetInnerHTML={"var _hmt = _hmt || [];\n" +
+        "(function() {\n" +
+        "  var hm = document.createElement(\"script\");\n" +
+        "  hm.src = \"https://hm.baidu.com/hm.js?d790d9f864c6f0f4152f1186bb72c282\";\n" +
+        "  var s = document.getElementsByTagName(\"script\")[0];\n" +
+        "  s.parentNode.insertBefore(hm, s);\n" +
+        "})();"}/>
       </Head>
       <body>
         <CSSBaseline/>
