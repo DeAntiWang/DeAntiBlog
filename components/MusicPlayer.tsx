@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card, Spinner } from '@zeit-ui/react';
 import "../static/styles/MusicPlayer.scss";
+import {Simulate} from "react-dom/test-utils";
 
 interface Prop {
   imgSrc: string,
@@ -11,7 +12,8 @@ interface Prop {
 
 interface  State {
   isPlay: boolean,
-  isLoading: boolean
+  isLoading: boolean,
+  canplay: boolean
 }
 
 export default class MusicPlayer extends React.Component<Prop, State> {
@@ -20,34 +22,43 @@ export default class MusicPlayer extends React.Component<Prop, State> {
     this.state = {
       isPlay: false,
       isLoading: false,
+      canplay: false
     };
   }
 
   private audio: any = null;
 
-  private async onClick(ev: MouseEvent) {
+  private onClick() {
     const nowPlay = this.state.isPlay;
     if(this.audio===null) {
       // 第一次点击播放
       this.setState({
         isLoading: true
       });
-      this.audio = await new Audio(this.props.src);
-      await this.audio.load();
-      this.setState({
-        isLoading: false
+      this.audio = new Audio(this.props.src);
+      this.audio.load();
+
+      this.audio.addEventListener('canplay', () => {
+        this.setState({
+          canplay: true,
+          isLoading: false
+        });
+        this.onClick();
       });
     }
 
-    if(nowPlay) {
-      this.audio.pause();
-    }else{
-      this.audio.play();
-    }
+    if(this.state.canplay) {
 
-    this.setState({
-      isPlay: !nowPlay,
-    })
+      if (nowPlay) {
+        this.audio.pause();
+      } else {
+        this.audio.play();
+      }
+
+      this.setState({
+        isPlay: !nowPlay,
+      })
+    }
   }
 
   public render() {
