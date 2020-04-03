@@ -157,27 +157,32 @@ export default class Article extends React.Component<any, any> {
 
     return (
       <div className={"article"}>
-        <FunctionBar
-          list={functionBarOption}
-          className={"-function-bar"}
-        />
-        <Modal
-          open={this.state.modalOpen}
-          onClose={() => {this.setState({modalOpen: false})}}
-        >
-          <Modal.Title>Give Tips</Modal.Title>
-          <Modal.Subtitle>Thanks for your giving</Modal.Subtitle>
-          <Modal.Content>
-            <Tabs initialValue="1">
-              <Tabs.Item label="支付宝" value="1">
-                <Image width={350} height={350} src="/static/img/alipay.jpg" />
-              </Tabs.Item>
-              <Tabs.Item label="微信" value="2">
-                <Image width={350} height={350} src="/static/img/wechat.jpg" />
-              </Tabs.Item>
-            </Tabs>
-          </Modal.Content>
-        </Modal>
+        {
+          parseInt(this.props.id)===0?<></>:
+            (<>
+              <FunctionBar
+                list={functionBarOption}
+                className={"-function-bar"}
+              />
+              <Modal
+                open={this.state.modalOpen}
+                onClose={() => {this.setState({modalOpen: false})}}
+              >
+                <Modal.Title>Give Tips</Modal.Title>
+                <Modal.Subtitle>Thanks for your giving</Modal.Subtitle>
+                <Modal.Content>
+                  <Tabs initialValue="1">
+                    <Tabs.Item label="支付宝" value="1">
+                      <Image width={350} height={350} src="/static/img/alipay.jpg" />
+                    </Tabs.Item>
+                    <Tabs.Item label="微信" value="2">
+                      <Image width={350} height={350} src="/static/img/wechat.jpg" />
+                    </Tabs.Item>
+                  </Tabs>
+                </Modal.Content>
+              </Modal>
+            </>)
+        }
         <Markdown options={md2jsxOptions} id={"need-latex-render"}>
           {mdText}
         </Markdown>
