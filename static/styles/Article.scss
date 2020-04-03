@@ -7,6 +7,8 @@
     margin: 0 auto;
 
     > #need-latex-render {
+        padding-bottom: 130px;
+
         * {
             @include user-select-text;
 
@@ -52,6 +54,10 @@
 @media screen and (max-width: 500px) {
     .article {
         padding: 25px 10px 0 10px;
+
+        > #need-latex-render * {
+            word-wrap: break-word;
+        }
     }
 }
 

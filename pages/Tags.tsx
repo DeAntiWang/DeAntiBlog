@@ -56,13 +56,15 @@ export default class Tag extends React.Component<Prop, State> {
   }
 
   public render() {
-    const tagEle = (idxOfList: any) => {
+    const list = this.state.list;
+
+    const tagEle = (idxOfList: string) => {
       return (
         <div className="tag-element" key={"tag_"+idxOfList}>
           <div className="tag-title">{idxOfList}</div>
           <div className="tag-sub-list">
             {
-              this.props.list[idxOfList].map((val: any) => {
+              list[idxOfList].map((val: any) => {
                 return (
                   <Link href={{pathname: "/Article", query: {id: val.id}}} key={val.title+val.id}>
                     <div className="article-in-tag">
@@ -77,14 +79,12 @@ export default class Tag extends React.Component<Prop, State> {
       )
     };
 
-    console.log(this.props.list);
-
     return (
       <div id="tag-list-content">
         {/*<h2>Tags List</h2>*/}
         <div id="tag-list">
           {
-            Object.keys(this.props.list).map(tagEle)
+            Object.keys(list).map(tagEle)
           }
         </div>
       </div>
