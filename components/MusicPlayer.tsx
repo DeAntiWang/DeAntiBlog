@@ -45,6 +45,13 @@ export default class MusicPlayer extends React.Component<Prop, State> {
         });
         this.onClick();
       });
+
+      this.audio.addEventListener('ended', () => {
+        this.audio.pause();
+        this.setState({
+          isPlay: false
+        });
+      })
     }
 
     if(this.state.canplay) {
