@@ -168,7 +168,7 @@ export default class Article extends React.Component<any, any> {
                 open={this.state.modalOpen}
                 onClose={() => {this.setState({modalOpen: false})}}
               >
-                <Modal.Title>Give Tips</Modal.Title>
+                <Modal.Title>Sponsor</Modal.Title>
                 <Modal.Subtitle>Thanks for your giving</Modal.Subtitle>
                 <Modal.Content>
                   <Tabs initialValue="1">
