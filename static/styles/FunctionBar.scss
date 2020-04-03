@@ -1,0 +1,31 @@
+@import './index';
+
+@mixin verticalDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#function-bar-container {
+    @include verticalDisplay;
+
+    > * {
+        @include verticalDisplay;
+    }
+
+    > #normal-function-list {
+
+    }
+
+    > #share-function-list {
+
+    }
+
+    .function-icon {
+        @include allCenter;
+
+        > svg {
+            
+        }
+    }
+}
