@@ -4,6 +4,14 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and ZEIT-UI
 
 **Developer: DeAnti-**
 
+## Feature
+
+- Home page
+- Article List with searching and sorting
+- Tags List
+- Menu router
+- 
+
 ## Install
 
 Install library  
@@ -30,5 +38,5 @@ $ yarn run start    # run the project that has been built
 ## TODO
 
 - TOC
-- Tags List Style
 - Music-in-Article Plugin/Component
+- Sharing and Tips on the side

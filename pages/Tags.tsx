@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import { Collapse } from '@zeit-ui/react';
 import fetch from '../common/fetch';
 import "../static/styles/Tags.scss";
 
@@ -60,33 +61,38 @@ export default class Tag extends React.Component<Prop, State> {
 
     const tagEle = (idxOfList: string) => {
       return (
-        <div className="tag-element" key={"tag_"+idxOfList}>
-          <div className="tag-title">{idxOfList}</div>
-          <div className="tag-sub-list">
+        <Collapse
+          title={idxOfList}
+          className="tag-element"
+          key={"tag_"+idxOfList}
+        >
+          <ul className="tag-sub-list">
             {
               list[idxOfList].map((val: any) => {
                 return (
-                  <Link href={{pathname: "/Article", query: {id: val.id}}} key={val.title+val.id}>
-                    <div className="article-in-tag">
-                      <div className={"article-title-in-tag"}>{val.title}</div>
-                    </div>
-                  </Link>
+                  <li>
+                    <Link href={{pathname: "/Article", query: {id: val.id}}} key={val.title+val.id}>
+                      <div className="article-in-tag">
+                        <div className={"article-title-in-tag"}>{val.title}</div>
+                      </div>
+                    </Link>
+                  </li>
                 )
               })
             }
-          </div>
-        </div>
+          </ul>
+        </Collapse>
       )
     };
 
     return (
       <div id="tag-list-content">
         {/*<h2>Tags List</h2>*/}
-        <div id="tag-list">
+        <Collapse.Group id="tag-list">
           {
             Object.keys(list).map(tagEle)
           }
-        </div>
+        </Collapse.Group>
       </div>
     )
   }

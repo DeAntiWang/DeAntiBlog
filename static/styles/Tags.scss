@@ -4,21 +4,48 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding-top:20px;
+    padding-bottom: 130px;
 
     > #tag-list {
         width: 100%;
+        padding: 0;
+        border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+        max-width: 900px;
 
         > .tag-element {
 
-            > .tag-title {
-                font-size: 22px;
-                font-weight: bold;
-                padding-top: 12px;
-                padding-bottom: 7px;
+            border-top: 1px solid #EAEAEA;
+            border-left: 1px solid #EAEAEA;
+            border-right: 1px solid #EAEAEA;
+            border-bottom: none;
+
+            &:first-child {
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
             }
 
-            > .tag-sub-list {
-                padding-left: 25px;
+            &:last-child {
+                border-bottom: 1px solid #EAEAEA;
+                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+
+
+            > div[role=button] {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .tag-sub-list {
+                padding: 0 30px;
+                list-style: disc !important;
+
+                li::before {
+                    content: none;
+                }
 
                 .article-in-tag {
                     cursor: pointer;
@@ -46,6 +73,7 @@
 
 @media screen and (min-width: 501px) {
     #tag-list-content {
-        padding: 20px 33px 0 33px;
+        padding-left: 33px;
+        padding-right: 33px;
     }
 }
