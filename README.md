@@ -43,4 +43,4 @@ $ npm run start    # run the project that has been built
 ## TODO
 
 - TOC
-- Sharing and Tips on the side
+- Mobile end Music Player BUG fixing

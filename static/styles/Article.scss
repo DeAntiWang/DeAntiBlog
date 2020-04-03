@@ -51,13 +51,22 @@
     }
 }
 
+#zeit-ui-modal .backdrop .offset {
+    height: 10px !important;
+}
+
 @media screen and (max-width: 500px) {
     .article {
-        padding: 25px 10px 0 10px;
+        padding: 25px 20px 0 0;
 
         > #need-latex-render * {
             word-wrap: break-word;
         }
+    }
+
+    .-function-bar {
+        position: fixed;
+        right: 5px;
     }
 }
 
@@ -65,5 +74,17 @@
     .article {
         min-width: 600px;
         padding: 25px;
+    }
+
+    .-function-bar {
+        position: fixed;
+        right: 30px;
+        top: 150px;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .-function-bar {
+        top: 110px;
     }
 }

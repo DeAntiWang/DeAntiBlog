@@ -8,9 +8,11 @@
 
 #function-bar-container {
     @include verticalDisplay;
+    width: 46px;
 
     > * {
         @include verticalDisplay;
+        align-items: center;
     }
 
     > #normal-function-list {
@@ -18,14 +20,32 @@
     }
 
     > #share-function-list {
-
+        margin-top: 7px;
+        > span {
+            font-size: 13px;
+            font-weight: lighter;
+            margin-bottom: 6px;
+        }
     }
 
     .function-icon {
         @include allCenter;
+        border-radius: 50%;
+        background-color: #EAEAEA;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 6px;
+        cursor: pointer;
 
         > svg {
-            
+            width: 20px;
+            height: 20px;
+            fill: rgb(100,100,100);
+            transition: fill ease-in-out 0.3s;
+        }
+
+        &:hover > svg {
+            fill: rgb(10,10,10);
         }
     }
 }

@@ -1,15 +1,11 @@
 import * as React from 'react';
 import '../static/styles/FunctionBar.scss';
 
-interface Element {
-  icon: SVGElement,
-  onClick: (event: any) => void
-}
 
 interface Prop {
   list: {
-    normal?: Array<Element>,
-    share?: Array<Element>
+    normal?: Array<any>,
+    share?: Array<any>
   },
   className?: string,
   style?: React.CSSProperties
@@ -17,8 +13,8 @@ interface Prop {
 
 interface State {
   list: {
-    normal?: Array<Element>,
-    share?: Array<Element>
+    normal?: Array<any>,
+    share?: Array<any>
   }
 }
 
@@ -37,9 +33,16 @@ export default class FunctionBar extends React.Component<Prop, State> {
   }
 
   public render() {
-    const element = (val: Element) => {
+    let cnt = 0;
+
+    const element = (val: any) => {
+      cnt++;
       return (
-        <div className="function-icon" onClick={val.onClick} >
+        <div
+          className="function-icon"
+          onClick={val.onClick}
+          key={"element-"+cnt}
+        >
           {val.icon}
         </div>
       )
@@ -47,17 +50,25 @@ export default class FunctionBar extends React.Component<Prop, State> {
 
     return (
       <div id={"function-bar-container"} className={this.props.className} style={this.props.style}>
-        <div id={"normal-function-list"}>
-          {
-            this.state.list.normal.map(element)
-          }
-        </div>
-        <div id={"share-function-list"}>
-          <span>Share</span>
-          {
-            this.state.list.share.map(element)
-          }
-        </div>
+        {
+          this.state.list.normal === undefined?
+            <></>:
+            <div id={"normal-function-list"}>
+              {
+                this.state.list.normal.map(element)
+              }
+            </div>
+        }
+        {
+          this.state.list.share === undefined ?
+            <></> :
+            <div id={"share-function-list"}>
+              <span>分享</span>
+              {
+                this.state.list.share.map(element)
+              }
+            </div>
+        }
       </div>
     )
   }

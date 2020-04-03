@@ -49,8 +49,10 @@ export default class ArticleList extends React.Component<any, State> {
     )
   }
 
-  private static stringFilter(str: string): string {
+  public static stringFilter(str: string, inHtml: boolean = true): string {
     // 链式工作，顺序不可替换
+    const codeReplace = inHtml?'<span class="-in-desc-code">(请文中查看代码)</span>':''
+
     const ret = str.replace(/\r\n/g, "\n")  // 预处理
       .replace(/\<MusicPlayer([\s\S]*)\/\>/g, "")  // 音乐播放器
       .replace(/(#+)([^\n]*)/g, "$2: ") // 标题
@@ -62,12 +64,12 @@ export default class ArticleList extends React.Component<any, State> {
       .replace(/(\*|_)(.*?)\1/g, "$2") // 斜体
       .replace(/\~\~(.*?)\~\~/g, "$1") // 删除线
       .replace(/```([^`\n]*)```/g, "$1")  // 行内代码
-      .replace(/```([\s\S]*?)```[\s]?/g, '<span class="-in-desc-code">(请文中查看代码)</span>')  // 代码块
+      .replace(/```([\s\S]*?)```[\s]?/g, codeReplace)  // 代码块
       .replace(/^-+$/g, "") // 分割线
       .replace(/^[\s]*[-\*\+] +(.*)/g, "$1") // 无序列表
       .replace(/^[\s]*[0-9]+\.(.*)/g, "$1") // 有序列表
-      .replace(/\$\$(.*)\$\$/, "<span class=\"-in-desc-code\">(请文中查看公式)</span>")  // latex公式
-      .replace(/\$(.*)\$/, "<span class=\"-in-desc-code\">(请文中查看公式)</span>");  // latex行内公式
+      .replace(/\$\$(.*)\$\$/, codeReplace)  // latex公式
+      .replace(/\$(.*)\$/, codeReplace);  // latex行内公式
     const xss = require('xss');
     return xss(ret, xssOptions);
   }
