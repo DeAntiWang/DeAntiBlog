@@ -7,17 +7,22 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and ZEIT-UI
 ## Feature
 
 - Home page
+- Frosty style UI
 - Article List with searching and sorting
 - Tags List
-- Menu router
-- 
+- Customizable menu navigation
+- Full text search
+- Markdown and LaTeX rendering
+- Beautiful BackTop
+- Music Player in Article 
+- Server Side Render (Better SEO)
 
 ## Install
 
-Install library  
+Install Dependence  
 
 ```shell
-$ yarn install
+$ npm install
 ```
 
 ## Usage
@@ -27,16 +32,15 @@ $ yarn install
 Configure blog options in ```/config/options.js```  
 
 ```shell
-$ yarn run dev      # run in development environment
+$ npm run dev      # run in development environment
   
-$ yarn run export   # export static pages
+$ npm run export   # export static pages
   
-$ yarn run build    # build project
-$ yarn run start    # run the project that has been built
+$ npm run build    # build project
+$ npm run start    # run the project that has been built
 ```
 
 ## TODO
 
 - TOC
-- Music-in-Article Plugin/Component
 - Sharing and Tips on the side

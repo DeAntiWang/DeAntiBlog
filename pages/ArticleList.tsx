@@ -52,6 +52,7 @@ export default class ArticleList extends React.Component<any, State> {
   private static stringFilter(str: string): string {
     // 链式工作，顺序不可替换
     const ret = str.replace(/\r\n/g, "\n")  // 预处理
+      .replace(/\<MusicPlayer([\s\S]*)\/\>/g, "")  // 音乐播放器
       .replace(/(#+)([^\n]*)/g, "$2: ") // 标题
       .replace(/!\[([\s\S]*?)\]\(([\s\S]*?)\)/g, "")  // 图片
       .replace(/\[([\s\S]*?)\]\([\s\S]*?\)/g, "$1") // 链接
@@ -66,7 +67,7 @@ export default class ArticleList extends React.Component<any, State> {
       .replace(/^[\s]*[-\*\+] +(.*)/g, "$1") // 无序列表
       .replace(/^[\s]*[0-9]+\.(.*)/g, "$1") // 有序列表
       .replace(/\$\$(.*)\$\$/, "<span class=\"-in-desc-code\">(请文中查看公式)</span>")  // latex公式
-      .replace(/\$(.*)\$/, "<span class=\"-in-desc-code\">(请文中查看公式)</span>"); // latex行内公式
+      .replace(/\$(.*)\$/, "<span class=\"-in-desc-code\">(请文中查看公式)</span>");  // latex行内公式
     const xss = require('xss');
     return xss(ret, xssOptions);
   }
