@@ -7,7 +7,7 @@ import ArticleList from './ArticleList';
 import FunctionBar from '../components/FunctionBar';
 // import Md2jsx lib
 import Markdown from 'markdown-to-jsx';
-import { md2jsxOptions, BlogConfig } from '../config/options';
+import { md2jsxOptions } from '../config/options';
 // import Css and Svg
 import { coin, qq, qqzone, weibo } from '../static/svgs';
 import '../static/styles/Article.scss';
