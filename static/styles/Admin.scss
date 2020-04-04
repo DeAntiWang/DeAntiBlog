@@ -1,0 +1,12 @@
+@import "./index";
+
+#login-page {
+    @include fullSize;
+}
+
+#admin-page {
+    @include fullSize;
+    > .admin-container {
+        @include fullSize;
+    }
+}
