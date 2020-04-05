@@ -14,11 +14,13 @@
     flex-direction: row;
     align-items: center;
 
+
     > .play-button {
         @include allCenter;
-        position: absolute;
+        //position: absolute;
         padding: 0;
-        margin-left: 25px;
+        margin-left: -75px;
+        margin-right: 50px;
         background: transparent;
         border: none;
         cursor: pointer;
