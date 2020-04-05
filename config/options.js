@@ -14,6 +14,7 @@ import { Link } from '@zeit-ui/react';
  *    - outside:      站外链接(开启时，router中只有pathname生效)
  *    - router:       菜单router(请参考next.js文档)
  * - recordNumber:  备案号 (如果不需要，请将值设置为null)
+ * - background:    是否需要keyboard wrapper作为背景 (试验功能，未开发完毕)
  */
 const BlogConfig = {
   title: "DeAnti",
@@ -40,7 +41,8 @@ const BlogConfig = {
       }
     }
   ],
-  recordNumber: "鄂ICP备18004914号-1"
+  recordNumber: "鄂ICP备18004914号-1",
+  background: false
 };
 
 /**

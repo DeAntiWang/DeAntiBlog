@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Input, Keyboard, Container, Select } from '@zeit-ui/react';
 import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
+import KeyboardWrapper from "../components/KeyboardWrapper";
 import Router from 'next/router';
 import fetch from '../common/fetch';
 import debounce from '../common/debounce';
-import { xssOptions } from '../config/options';
+import { xssOptions, BlogConfig } from '../config/options';
 import '../static/styles/ArticleList.scss';
 
 interface State {
@@ -171,7 +172,7 @@ export default class ArticleList extends React.Component<any, State> {
     let ev = event || window.event;
     let target: any = ev.target || ev.srcElement;
 
-    if(target.className.indexOf('go-link')!==-1) {
+    if(target.classList.indexOf('go-link')!==-1) {
       let targetDom = target;
       while(targetDom.className.indexOf('card')===-1) {
         targetDom = targetDom.parentElement;
@@ -187,7 +188,7 @@ export default class ArticleList extends React.Component<any, State> {
     }
   }
 
-  private static keyDownToFocus(ev: any) {
+  private keyDownToFocus(ev: any) {
     if(ev.keyCode === 191) {
       ev.preventDefault();
       const input = document.querySelector("input[type=\"text\"]") as HTMLElement;
@@ -235,13 +236,15 @@ export default class ArticleList extends React.Component<any, State> {
   }
 
   public componentDidMount() {
-    this._window = window;
-    window.onkeydown = ArticleList.keyDownToFocus;
+    if(this._window!==null) {
+      this._window = window;
+      window.addEventListener('keydown', this.keyDownToFocus.bind(this));
+      this._window.onresize = () => {
+        this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+      }
+    }
 
     this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
-    this._window.onresize = () => {
-      this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
-    }
   }
 
   public render() {
@@ -311,6 +314,7 @@ export default class ArticleList extends React.Component<any, State> {
             <Select.Option value="edit_asc">编辑时间升序</Select.Option>
           </Select>
         </div>
+        {BlogConfig.background?<KeyboardWrapper/>:<></>}
         <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
           {
             this.state.list===null?
