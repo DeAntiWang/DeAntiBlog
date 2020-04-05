@@ -236,15 +236,15 @@ export default class ArticleList extends React.Component<any, State> {
   }
 
   public componentDidMount() {
-    if(this._window!==null) {
+    if(this._window===null) {
       this._window = window;
       window.addEventListener('keydown', this.keyDownToFocus.bind(this));
-      this._window.onresize = () => {
-        this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
-      }
     }
-
+    
     this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+    this._window.onresize = () => {
+      this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+    }
   }
 
   public render() {
@@ -314,7 +314,6 @@ export default class ArticleList extends React.Component<any, State> {
             <Select.Option value="edit_asc">编辑时间升序</Select.Option>
           </Select>
         </div>
-        {BlogConfig.background?<KeyboardWrapper/>:<></>}
         <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
           {
             this.state.list===null?
