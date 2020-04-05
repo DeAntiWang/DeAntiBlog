@@ -40,7 +40,7 @@ export default class List extends React.Component<any, any> {
 
   private noticeDele(id: number) {
     this.setState({
-      displayModel: true,
+      displayModal: true,
       readyDele: id
     })
   }
@@ -50,13 +50,14 @@ export default class List extends React.Component<any, any> {
     if(result.statusCode===200) {
       // 提示删除成功
       notice('删除成功');
-      this.setState({
-        readyDele: null
-      });
     }else{
       // 提示有错误
       notice('系统错误');
     }
+    this.setState({
+      readyDele: null,
+      displayModal: false
+    });
   }
 
   public render() {
@@ -89,7 +90,7 @@ export default class List extends React.Component<any, any> {
               DeleteOption can't be <code>git reset</code>
             </div>
           </Modal.Content>
-          <Modal.Action onClick={() => this.setState({readyDele: null})}>Cancel</Modal.Action>
+          <Modal.Action onClick={() => this.setState({readyDele: null, displayModal: false})}>Cancel</Modal.Action>
           <Modal.Action onClick={this.onDele.bind(this)} passive>Submit</Modal.Action>
         </Modal>
       </div>
