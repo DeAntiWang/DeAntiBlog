@@ -172,7 +172,7 @@ export default class ArticleList extends React.Component<any, State> {
     let ev = event || window.event;
     let target: any = ev.target || ev.srcElement;
 
-    if(target.classList.indexOf('go-link')!==-1) {
+    if(target.className.indexOf('go-link')!==-1) {
       let targetDom = target;
       while(targetDom.className.indexOf('card')===-1) {
         targetDom = targetDom.parentElement;
