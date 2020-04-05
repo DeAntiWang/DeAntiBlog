@@ -70,7 +70,7 @@ export default class List extends React.Component<any, any> {
           {
             this.props.list.map((val: any) => {
               return (
-                <li>
+                <li key={val.id}>
                   {val.title}
                   <div>
                     <Button onClick={() => this.onEdit(val.id)}>Edit</Button>

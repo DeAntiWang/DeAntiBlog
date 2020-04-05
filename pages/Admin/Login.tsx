@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Input, Button } from '@zeit-ui/react';
 import Router from 'next/router';
+import * as crypto from 'crypto';
 import fetch from '../../common/fetch';
 import notice from '../../common/clientMsg';
 import "../../static/styles/Admin.scss";
@@ -17,9 +18,13 @@ export default class AdminLogin extends React.Component<any, any> {
   private async onLogin() {
     const username = this.state.username,
           password = this.state.password;
+
+    let _passwd = Buffer.from(password).toString('base64');
+    _passwd = crypto.createHash('md5').update(_passwd).digest('hex');
+
     const result = await fetch('/User/login', 'POST', {
       nick: username,
-      password: password
+      password: _passwd
     });
 
     if(result.statusCode===200) {
