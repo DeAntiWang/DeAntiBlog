@@ -28,16 +28,14 @@ export default class Article extends React.Component<any, any> {
       data = {...result};
     }
     if(data.statusCode===200 && (data.data===undefined || data.data.content===undefined)) {
-      if(res === undefined) {
+      if(res===undefined) {
         Router.push('/404');
-      }else{
-        res.writeHead(301, {
-          Location: '404'
-        });
+      }else {
+        res.writeHead(301, {Location: '404'});
         res.end();
       }
     }
-    return { data: data, id: query.id };
+    return {data: data, id: query.id};
   }
 
   private static renderLatex() {
@@ -78,7 +76,7 @@ export default class Article extends React.Component<any, any> {
 
   private getImgSrc() {
     let regex = /!\[[\s\S]*?\]\(([\s\S]*?)\)/;
-    let result = regex.exec(this.props.data.data.content);
+    let result = regex.exec(this.props.data.data===undefined?"":this.props.data.data.content);
     return result===null?"":result[1];
   }
 
@@ -101,8 +99,8 @@ export default class Article extends React.Component<any, any> {
     const mdText: string = this.props.data.data===undefined?"":this.props.data.data.content;
 
     const URL = `http://blog.darkkrix.xin/Article?id=${this.props.id}`,
-          TITLE = this.props.data.data.title,
-          SUMMARY = ArticleList.stringFilter(this.props.data.data.content, false).replace(/\r*\n/g, ""),
+          TITLE = this.props.data.data===undefined?"":this.props.data.data.title,
+          SUMMARY = ArticleList.stringFilter(mdText, false).replace(/\r*\n/g, ""),
           IMG = this.getImgSrc();
 
     const functionBarOption = {

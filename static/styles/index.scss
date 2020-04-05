@@ -63,6 +63,26 @@ html, body, #__next {
     overflow-y: scroll;
 }
 
+.msg-notice {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: $information-index;
+
+    max-width: 430px;
+    min-width: 300px;
+    border-radius: 10px;
+    border: 1px solid #EAEAEA;
+    padding: 3px 13px;
+    box-shadow: 5px 5px 10px rgba(50,50,50, .3);
+
+    > p {
+        line-height: 14px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
 @media screen and (min-width: 901px) {
     #right-content {
         padding-left: $left-side-width;

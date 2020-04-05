@@ -13,6 +13,10 @@ export default async function(url = '', method = 'GET', data = {}, headers = {} 
     header_data['Accept'] = 'application/json';
     header_data['Content-Type'] = 'application/json';
 
+    if(method==='FILE') {
+        delete header_data['Content-Type'];
+    }
+
     // 区分站内外API地址
     if(url.indexOf('https://') === -1) {
         // 站内API
@@ -27,10 +31,11 @@ export default async function(url = '', method = 'GET', data = {}, headers = {} 
     // 信息请求
     let requestConfig = {
         // credentials: 'include',
-        method: method,
+        method: method==='GET'?'GET':'POST',
         headers: header_data,
         // mode: "cors",
-        cache: "force-cache"
+        cache: "force-cache",
+        body: method==='FILE'?data:undefined
     };
 
     if (method === 'POST') {

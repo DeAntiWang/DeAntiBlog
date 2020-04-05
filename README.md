@@ -17,6 +17,8 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and ZEIT-UI
 - Music Player in Article
 - Function bar on the side of Article 
 - Server Side Render (Better SEO)
+- Admin Page
+- Editor for this blog specially
 
 ## Install
 
@@ -45,4 +47,4 @@ $ npm run start    # run the project that has been built
 
 - TOC
 - Mobile end Music Player BUG fixing
-- Admin Page
+- Password trans method (crypto)
