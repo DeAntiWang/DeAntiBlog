@@ -62,9 +62,9 @@ html, body, #__next {
     //background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
     overflow-y: scroll;
 
-    * {
-        z-index: $content-index;
-    }
+    //* {
+    //    z-index: $content-index;
+    //}
 }
 
 .msg-notice {

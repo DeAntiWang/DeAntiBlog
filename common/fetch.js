@@ -12,6 +12,7 @@ export default async function(url = '', method = 'GET', data = {}, headers = {} 
     let header_data = headers;
     header_data['Accept'] = 'application/json';
     header_data['Content-Type'] = 'application/json';
+    header_data['Cache-Contorol'] = 'no-store';
 
     if(method==='FILE') {
         delete header_data['Content-Type'];
@@ -34,7 +35,7 @@ export default async function(url = '', method = 'GET', data = {}, headers = {} 
         method: method==='GET'?'GET':'POST',
         headers: header_data,
         // mode: "cors",
-        cache: "force-cache",
+        cache: "no-cache",
         body: method==='FILE'?data:undefined
     };
 
