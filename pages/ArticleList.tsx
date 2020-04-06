@@ -221,6 +221,7 @@ export default class ArticleList extends React.Component<any, State> {
           id: val.id,
           title: val.title,
           time: ArticleList.dateFormat(val.time),
+          edit_time: ArticleList.dateFormat(val.edit_time),
           content: val.content,   // for search func
           desc: ArticleList.stringFilter(val.content)
         }
