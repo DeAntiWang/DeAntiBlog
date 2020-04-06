@@ -33,6 +33,18 @@ export default class MyDocument extends Document {
         "  var s = document.getElementsByTagName(\"script\")[0];\n" +
         "  s.parentNode.insertBefore(hm, s);\n" +
         "})();"}}/>
+        <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: "(function(){\n" +
+          "          var bp = document.createElement('script');\n" +
+          "          var curProtocol = window.location.protocol.split(':')[0];\n" +
+          "          if (curProtocol === 'https') {\n" +
+          "          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';\n" +
+          "        }\n" +
+          "          else {\n" +
+          "          bp.src = 'http://push.zhanzhang.baidu.com/push.js';\n" +
+          "        }\n" +
+          "          var s = document.getElementsByTagName(\"script\")[0];\n" +
+          "          s.parentNode.insertBefore(bp, s);\n" +
+          "        })();"}}/>
       </Head>
       <body>
         <CSSBaseline/>
