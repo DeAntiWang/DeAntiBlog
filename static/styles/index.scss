@@ -57,6 +57,14 @@ html, body, #__next {
     @include fullSize;
 }
 
+ul, ol {
+    list-style-type: disc;
+}
+
+li:before {
+    content: 'none';
+}
+
 #right-content {
     @include fullSize;
     //background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
