@@ -2,6 +2,7 @@
 
 import MusicPlayer from '../components/MusicPlayer';
 import DisplayImage from '../components/DisplayImage';
+import Blogroll from '../components/Blogroll';
 import { Link } from '@zeit-ui/react';
 
 /**
@@ -57,6 +58,9 @@ const md2jsxOptions = {
     p: ({children, ...props}) => {return (<div {...props}>{children}</div>)},
     MusicPlayer: {
       component: MusicPlayer
+    },
+    Blogroll: {
+      component: Blogroll
     }
   }
 };
