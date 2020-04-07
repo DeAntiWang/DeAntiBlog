@@ -49,6 +49,7 @@ export default class Article extends React.Component<any, any> {
         "      jax: [\"input/TeX\", \"output/HTML-CSS\"],\n" +
         "      tex2jax: {\n" +
         "        inlineMath: [[\"$\", \"$\"], [\"\\\\(\", \"\\\\)\"]], //行内公式选择符\n" +
+        "        processEscapes: true, " +
         "        displayMath: [[\"$$\", \"$$\"], [\"\\\\[\", \"\\\\]\"]], //段内公式选择符\n" +
         "        skipTags: [\"script\", \"noscript\", \"style\", \"textarea\", \"pre\", \"code\", \"a\"] //避开某些标签\n" +
         "      },\n" +
