@@ -47,17 +47,21 @@ export default class MyDocument extends Document {
           "        })();"}}/>
         <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: "(function() {\n" +
           "    let OriginTitile = document.title;\n" +
-          "    let titleTime, leaveTime;\n" +
+          "    let titleTime, leaveTime, flag=false;\n" +
           "    document.addEventListener('visibilitychange', function() {\n" +
           "        if (document.hidden) {\n" +
           "            clearTimeout(leaveTime);\n" +
           "            leaveTime = setTimeout(() => {\n" +
           "                document.title = '_( ﾟДﾟ)ﾉ 页面崩溃了??';\n" +
+          "                flag=true;\n" +
           "                clearTimeout(titleTime);\n" +
           "            }, 10000);\n" +
           "        } else {\n" +
           "            clearTimeout(leaveTime);\n" +
-          "            document.title = '(つェ⊂)咦!又好了!';\n" +
+          "            if(flag) {\n" +
+          "                document.title = '(つェ⊂)咦!又好了!';\n" +
+          "                flag = false;\n" +
+          "            }\n" +
           "            titleTime = setTimeout(function() {\n" +
           "                document.title = OriginTitile;\n" +
           "            },1000);\n" +
