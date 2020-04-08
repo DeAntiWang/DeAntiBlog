@@ -57,13 +57,6 @@ html, body, #__next {
     @include fullSize;
 }
 
-ul, ol {
-    list-style-type: disc;
-}
-
-li:before {
-    content: none;
-}
 
 #right-content {
     @include fullSize;
@@ -73,6 +66,14 @@ li:before {
     //* {
     //    z-index: $content-index;
     //}
+
+    ul, ol {
+        list-style-type: disc;
+
+        li:before {
+            content: none !important;
+        }
+    }
 }
 
 .msg-notice {
