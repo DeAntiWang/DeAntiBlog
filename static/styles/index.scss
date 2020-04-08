@@ -67,9 +67,15 @@ html, body, #__next {
     //    z-index: $content-index;
     //}
 
-    ul, ol {
+    ul {
         list-style-type: disc;
+    }
 
+    ol {
+        list-style-type: decimal;
+    }
+
+    ul, ol {
         li:before {
             content: none !important;
         }
