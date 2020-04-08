@@ -46,7 +46,7 @@ export default class MyDocument extends Document {
           "          s.parentNode.insertBefore(bp, s);\n" +
           "        })();"}}/>
         <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: "(function() {\n" +
-          "    let OriginTitile = document.title;\n" +
+          "    let OriginTitile = \"DeAnti Blog\";\n" +
           "    let titleTime, leaveTime, flag=false;\n" +
           "    document.addEventListener('visibilitychange', function() {\n" +
           "        if (document.hidden) {\n" +
