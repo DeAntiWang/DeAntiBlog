@@ -46,16 +46,21 @@ export default class MyDocument extends Document {
           "          s.parentNode.insertBefore(bp, s);\n" +
           "        })();"}}/>
         <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: "(function() {\n" +
-          "    var OriginTitile = document.title, titleTime;\n" +
+          "    let OriginTitile = document.title;\n" +
+          "    let titleTime, leaveTime;\n" +
           "    document.addEventListener('visibilitychange', function() {\n" +
           "        if (document.hidden) {\n" +
-          "            document.title = '_( ﾟДﾟ)ﾉ 页面崩溃了??';\n" +
-          "            clearTimeout(titleTime);\n" +
+          "            clearTimeout(leaveTime);\n" +
+          "            leaveTime = setTimeout(() => {\n" +
+          "                document.title = '_( ﾟДﾟ)ﾉ 页面崩溃了??';\n" +
+          "                clearTimeout(titleTime);\n" +
+          "            }, 10000);\n" +
           "        } else {\n" +
+          "            clearTimeout(leaveTime);\n" +
           "            document.title = '(つェ⊂)咦!又好了!';\n" +
           "            titleTime = setTimeout(function() {\n" +
           "                document.title = OriginTitile;\n" +
-          "            },2000);\n" +
+          "            },1000);\n" +
           "        }\n" +
           "    });\n" +
           "})();"}}/>
