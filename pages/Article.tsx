@@ -40,6 +40,26 @@ export default class Article extends React.Component<any, any> {
 
   private static renderLatex() {
     const _window: any = window;
+
+    // 解决md，latex syntax冲突
+    _window.addEventListener('load', () => {
+      console.log('here');
+      document.querySelectorAll('code').forEach(code => {
+        const text = code.innerHTML;
+        let is_inline_math = /^\$(.*)\$$/.exec(text);
+        let is_display_math = /^\$\$(.*)\$\$$/ms.exec(text) || /^\\begin\{.+\}(.*)\\end\{.+\}/ms.exec(text);
+        if (is_inline_math || is_display_math) {
+          code.parentElement.classList.add('has-jax');
+          if (is_inline_math) {
+            code.outerHTML = "<span class=yuuki_mathjax_inline>" + text + "</span>";
+          } else {
+            code.outerHTML = "<span class=yuuki_mathjax_display>" + text + "</span>";
+          }
+        }
+      });
+    });
+    //
+
     if(_window.$latexRender === undefined) {
       const scriptConfig = document.createElement('script');
       scriptConfig.type = "text/x-mathjax-config";
