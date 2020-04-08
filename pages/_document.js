@@ -45,6 +45,20 @@ export default class MyDocument extends Document {
           "          var s = document.getElementsByTagName(\"script\")[0];\n" +
           "          s.parentNode.insertBefore(bp, s);\n" +
           "        })();"}}/>
+        <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: "(function() {\n" +
+          "    var OriginTitile = document.title, titleTime;\n" +
+          "    document.addEventListener('visibilitychange', function() {\n" +
+          "        if (document.hidden) {\n" +
+          "            document.title = '_( ﾟДﾟ)ﾉ 页面崩溃了??';\n" +
+          "            clearTimeout(titleTime);\n" +
+          "        } else {\n" +
+          "            document.title = '(つェ⊂)咦!又好了!';\n" +
+          "            titleTime = setTimeout(function() {\n" +
+          "                document.title = OriginTitile;\n" +
+          "            },2000);\n" +
+          "        }\n" +
+          "    });\n" +
+          "})();"}}/>
       </Head>
       <body>
         <CSSBaseline/>
