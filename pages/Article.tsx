@@ -9,14 +9,15 @@ import FunctionBar from '../components/FunctionBar';
 import Markdown from 'markdown-to-jsx';
 import { md2jsxOptions } from '../config/options';
 // import Css and Svg
-import { coin, qq, qqzone, weibo } from '../static/svgs';
+import {catalog, coin, qq, qqzone, weibo} from '../static/svgs';
 import '../static/styles/Article.scss';
 
 export default class Article extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      tocOpen: false
     };
   }
 
@@ -126,6 +127,14 @@ export default class Article extends React.Component<any, any> {
 
     const functionBarOption = {
       normal: [
+        // {
+        //   icon: catalog,
+        //   onClick: () => {
+        //     this.setState({
+        //       tocOpen: true
+        //     })
+        //   }
+        // },
         {
           icon: coin,
           onClick: () => {
