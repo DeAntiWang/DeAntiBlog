@@ -243,9 +243,9 @@ export default class ArticleList extends React.Component<any, State> {
       window.addEventListener('keydown', this.keyDownToFocus);
     }
 
-    this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 165});
+    this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 145});
     this._window.onresize = () => {
-      this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 165});
+      this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 145});
     }
   }
 

@@ -5,6 +5,13 @@ import fetch from '../common/fetch';
 import { Modal, Tabs, Image } from '@zeit-ui/react';
 import ArticleList from './ArticleList';
 import FunctionBar from '../components/FunctionBar';
+// import hljs lib
+import * as hljs from 'highlightjs';
+import 'highlightjs/styles/a11y-light.css';
+// import abcjs lib
+// @ts-ignore: have no @types/abcjs
+// import abcjs from "abcjs";
+// import 'abcjs/abcjs-audio.css';
 // import Md2jsx lib
 import Markdown from 'markdown-to-jsx';
 import { md2jsxOptions } from '../config/options';
@@ -39,27 +46,28 @@ export default class Article extends React.Component<any, any> {
     return {data: data, id: query.id};
   }
 
-  private static renderLatex() {
+  private codeToLatexSpan() {
+    document.querySelectorAll('code').forEach(code => {
+      const text = code.innerHTML;
+      let is_inline_math = /^\$(.*)\$$/.exec(text);
+      let is_display_math = /^\$\$(.*)\$\$$/ms.exec(text) || /^\\begin\{.+\}(.*)\\end\{.+\}/ms.exec(text);
+      if (is_inline_math || is_display_math) {
+        code.parentElement.classList.add('has-jax');
+        if (is_inline_math) {
+          code.outerHTML = "<span class=yuuki_mathjax_inline>" + text + "</span>";
+        } else {
+          code.outerHTML = "<span class=yuuki_mathjax_display>" + text + "</span>";
+        }
+      }
+    });
+  }
+
+  private renderLatex() {
     const _window: any = window;
 
     // 解决md，latex syntax冲突
-    _window.addEventListener('load', () => {
-      console.log('here');
-      document.querySelectorAll('code').forEach(code => {
-        const text = code.innerHTML;
-        let is_inline_math = /^\$(.*)\$$/.exec(text);
-        let is_display_math = /^\$\$(.*)\$\$$/ms.exec(text) || /^\\begin\{.+\}(.*)\\end\{.+\}/ms.exec(text);
-        if (is_inline_math || is_display_math) {
-          code.parentElement.classList.add('has-jax');
-          if (is_inline_math) {
-            code.outerHTML = "<span class=yuuki_mathjax_inline>" + text + "</span>";
-          } else {
-            code.outerHTML = "<span class=yuuki_mathjax_display>" + text + "</span>";
-          }
-        }
-      });
-    });
-    //
+    _window.addEventListener('load', this.codeToLatexSpan());
+
 
     if(_window.$latexRender === undefined) {
       const scriptConfig = document.createElement('script');
@@ -91,8 +99,33 @@ export default class Article extends React.Component<any, any> {
       document.body.appendChild(scriptConfig);
       document.body.appendChild(script);
       document.body.appendChild(scriptRun);
-    }else{
+    } else {
       _window.$latexRender();
+    }
+  }
+
+  private renderAbc() {
+    const _window: any = window;
+
+    if(_window.$abcRender === undefined) {
+      let abcjsCdn = document.createElement('script');
+      abcjsCdn.type = "text/javascript";
+      abcjsCdn.src = "https://cdnjs.cloudflare.com/ajax/libs/abcjs/3.1.1/abcjs_basic-min.js";
+
+      let abcRun = document.createElement('script');
+      abcRun.type = "text/javascript";
+      abcRun.innerHTML = "window.$abcRender = () => {\n" +
+        "      let abc_arr = document.querySelectorAll('pre .lang-abc');\n" +
+        "      for (let i = 0; i < abc_arr.length; i++) {\n" +
+        "        abc_arr[i].id = `abc-${i}`;\n" +
+        "        window.ABCJS.renderAbc(`abc-${i}`, abc_arr[i].innerHTML);\n" +
+        "      }\n" +
+        "    }";
+
+      document.body.appendChild(abcjsCdn);
+      document.body.appendChild(abcRun);
+    } else {
+      _window.$abcRender();
     }
   }
 
@@ -114,7 +147,20 @@ export default class Article extends React.Component<any, any> {
   };
 
   componentDidMount() {
-    Article.renderLatex();
+    // render Latex
+    this.renderLatex();
+
+    // code highlight
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+
+    // render Music Notation
+    // this.renderAbc();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('load', this.codeToLatexSpan);
   }
 
   public render() {
