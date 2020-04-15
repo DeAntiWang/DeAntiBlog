@@ -8,15 +8,13 @@
     -webkit-backdrop-filter: blur(20px);
     
     > * {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+        @include user-select-none;
     }
 }
 
 .desc {
     @include user-select-text;
+    margin-top: 0;
 }
 
 .desc::selection {
