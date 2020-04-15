@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { Card } from '@zeit-ui/react';
+import { Card, Tag } from '@zeit-ui/react';
 import '../static/styles/ArticleCard.scss';
 
 interface Prop {
-  // title time desc id
+  // title time desc id tag
   title: string,
   time: string,
   desc: string,
   id: number,
+  tag: string,
   [propName: string]: any
 }
 
@@ -31,7 +32,10 @@ export default class ArticleCard extends React.Component<Prop, any> {
           shadow
         >
           <h4 className="go-link">{this.props.title}</h4>
-          <div style={{fontWeight: "lighter", fontSize: '13px'}}>{this.props.time}</div>
+          <div style={{fontWeight: "lighter", fontSize: '13px'}}>
+            <span>{this.props.time}</span>
+            <Tag type="secondary" style={{marginLeft: "10px"}}>{this.props.tag}</Tag>
+          </div>
           <p className="desc" dangerouslySetInnerHTML={{__html:desc}} />
         </Card>
     );

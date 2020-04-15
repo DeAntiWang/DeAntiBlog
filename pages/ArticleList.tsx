@@ -223,7 +223,8 @@ export default class ArticleList extends React.Component<any, State> {
           time: ArticleList.dateFormat(val.time),
           edit_time: ArticleList.dateFormat(val.edit_time),
           content: val.content,   // for search func
-          desc: ArticleList.stringFilter(val.content)
+          desc: ArticleList.stringFilter(val.content),
+          tag: val.tag
         }
       });
     }
@@ -239,13 +240,17 @@ export default class ArticleList extends React.Component<any, State> {
   public componentDidMount() {
     if(this._window===null) {
       this._window = window;
-      window.addEventListener('keydown', this.keyDownToFocus.bind(this));
+      window.addEventListener('keydown', this.keyDownToFocus);
     }
 
-    this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+    this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 165});
     this._window.onresize = () => {
-      this.setState({wordNumLim: document.body.offsetWidth < 600 ? 85 : 165});
+      this.setState({wordNumLim: document.body.offsetWidth < 800 ? 85 : 165});
     }
+  }
+
+  public componentWillUnmount() {
+    window.removeEventListener('keydown', this.keyDownToFocus);
   }
 
   public render() {
@@ -289,6 +294,7 @@ export default class ArticleList extends React.Component<any, State> {
           title={val.title}
           time={val.time}
           desc={val.desc.substr(0, this.state.wordNumLim)}
+          tag={val.tag}
         />
       );
     };
