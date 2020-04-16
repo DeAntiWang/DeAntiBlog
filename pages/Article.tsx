@@ -10,14 +10,18 @@ import * as hljs from 'highlightjs';
 import 'highlightjs/styles/a11y-light.css';
 // import abcjs lib
 // @ts-ignore: have no @types/abcjs
-// import abcjs from "abcjs";
-// import 'abcjs/abcjs-audio.css';
+import abcjs from "abcjs";
+import 'abcjs/abcjs-audio.css';
 // import Md2jsx lib
 import Markdown from 'markdown-to-jsx';
 import { md2jsxOptions } from '../config/options';
 // import Css and Svg
 import {catalog, coin, qq, qqzone, weibo} from '../static/svgs';
 import '../static/styles/Article.scss';
+
+declare const ABCJS: {
+  renderAbc(element: HTMLElement, text: string): void;
+};
 
 export default class Article extends React.Component<any, any> {
   constructor(props: any) {
@@ -94,7 +98,7 @@ export default class Article extends React.Component<any, any> {
 
       const scriptRun = document.createElement('script');
       scriptRun.type = "text/javascript";
-      script.innerHTML = "window.$latexRender = () => MathJax.Hub.Queue([\"Typeset\", MathJax.Hub, document.getElementById(\"need-latex-render\")]);";
+      script.innerHTML = "console.log('here');window.$latexRender = () => MathJax.Hub.Queue([\"Typeset\", MathJax.Hub, document.getElementById(\"need-latex-render\")]);";
 
       document.body.appendChild(scriptConfig);
       document.body.appendChild(script);
@@ -105,27 +109,29 @@ export default class Article extends React.Component<any, any> {
   }
 
   private renderAbc() {
-    const _window: any = window;
+    if(document.querySelectorAll('pre .lang-abc').length!==0) {
+      const _window: any = window;
 
-    if(_window.$abcRender === undefined) {
-      let abcjsCdn = document.createElement('script');
-      abcjsCdn.type = "text/javascript";
-      abcjsCdn.src = "https://cdnjs.cloudflare.com/ajax/libs/abcjs/3.1.1/abcjs_basic-min.js";
+      if (_window.$abcRender === undefined) {
+        let abcjsCdn = document.createElement('script');
+        abcjsCdn.type = "text/javascript";
+        abcjsCdn.src = "https://cdn.jsdelivr.net/npm/vditor@3.1.10/dist/js/abcjs/abcjs_basic.min.js";
 
-      let abcRun = document.createElement('script');
-      abcRun.type = "text/javascript";
-      abcRun.innerHTML = "window.$abcRender = () => {\n" +
-        "      let abc_arr = document.querySelectorAll('pre .lang-abc');\n" +
-        "      for (let i = 0; i < abc_arr.length; i++) {\n" +
-        "        abc_arr[i].id = `abc-${i}`;\n" +
-        "        window.ABCJS.renderAbc(`abc-${i}`, abc_arr[i].innerHTML);\n" +
-        "      }\n" +
-        "    }";
+        let abcRun = document.createElement('script');
+        abcRun.type = "text/javascript";
+        abcRun.innerHTML = "window.$abcRender = () => {\n" +
+          "      let abc_arr = document.querySelectorAll('pre .lang-abc');\n" +
+          "      for (let i = 0; i < abc_arr.length; i++) {\n" +
+          "        abc_arr[i].id = `abc-${i}`;\n" +
+          "        window.ABCJS.renderAbc(`abc-${i}`, abc_arr[i].innerHTML);\n" +
+          "      }\n" +
+          "    }";
 
-      document.body.appendChild(abcjsCdn);
-      document.body.appendChild(abcRun);
-    } else {
-      _window.$abcRender();
+        document.body.appendChild(abcjsCdn);
+        document.body.appendChild(abcRun);
+      } else {
+        _window.$abcRender();
+      }
     }
   }
 
@@ -156,7 +162,7 @@ export default class Article extends React.Component<any, any> {
     });
 
     // render Music Notation
-    // this.renderAbc();
+    this.renderAbc();
   }
 
   componentWillUnmount() {
