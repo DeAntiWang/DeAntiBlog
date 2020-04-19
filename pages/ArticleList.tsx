@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Input, Keyboard, Container, Select } from '@zeit-ui/react';
 import ArticleCard from '../components/ArticleCard';
 import DisplayImage from '../components/DisplayImage';
-import KeyboardWrapper from "../components/KeyboardWrapper";
 import Router from 'next/router';
+import Head from 'next/head';
 import fetch from '../common/fetch';
 import debounce from '../common/debounce';
 import { xssOptions, BlogConfig } from '../config/options';
@@ -301,6 +301,9 @@ export default class ArticleList extends React.Component<any, State> {
 
     return (
       <div id="article-list-content">
+        <Head>
+          <title>{'Article List - DeAnti Blog'}</title>
+        </Head>
         <div id={"input-bar"}>
           <Input
             size={"medium"}

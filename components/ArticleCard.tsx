@@ -16,7 +16,6 @@ export default class ArticleCard extends React.Component<Prop, any> {
   public constructor(props: Prop) {
     super(props);
     this.state = {
-
     }
   }
 
@@ -31,7 +30,7 @@ export default class ArticleCard extends React.Component<Prop, any> {
           hoverable
           shadow
         >
-          <h4 className="go-link" style={{marginBottom: "0"}}>{this.props.title}</h4>
+          <a style={{color: 'unset'}}><h4 className="go-link" style={{marginBottom: "0"}}>{this.props.title}</h4></a>
           <div style={{fontWeight: "lighter", fontSize: '13px'}}>
             <span>{this.props.time}</span>
             <Tag type="secondary" style={{marginLeft: "10px"}}>{this.props.tag}</Tag>

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import App from 'next/app';
-import Head from 'next/head';
 import Router from 'next/router';
 // import Components
 import MenuBar from '../components/MenuBar';
@@ -45,9 +44,6 @@ export default class MyApp extends App {
 
     return (
       <React.Fragment>
-        <Head>
-          <title>DeAnti Blog</title>
-        </Head>
         <div id={"root"}>
           <MenuBar type={screenType}/>
           <div id={"right-content"}>

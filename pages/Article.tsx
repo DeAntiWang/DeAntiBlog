@@ -239,7 +239,7 @@ export default class Article extends React.Component<any, any> {
     return (
       <div className={"article"}>
         <Head>
-          <title>{TITLE}</title>
+          <title>{TITLE+' - DeAnti Blog'}</title>
         </Head>
         {
           parseInt(this.props.id)===0?<></>:

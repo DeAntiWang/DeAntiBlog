@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { Collapse } from '@zeit-ui/react';
 import fetch from '../common/fetch';
 import "../static/styles/Tags.scss";
@@ -88,6 +89,9 @@ export default class Tag extends React.Component<Prop, State> {
     return (
       <div id="tag-list-content">
         {/*<h2>Tags List</h2>*/}
+        <Head>
+          <title>{'Tag List - DeAnti Blog'}</title>
+        </Head>
         <Collapse.Group id="tag-list">
           {
             Object.keys(list).map(tagEle)
