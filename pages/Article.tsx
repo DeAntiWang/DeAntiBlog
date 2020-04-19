@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Router from 'next/router';
+import Head from 'next/head';
 import fetch from '../common/fetch';
 // import Component
 import { Modal, Tabs, Image } from '@zeit-ui/react';
@@ -98,7 +99,7 @@ export default class Article extends React.Component<any, any> {
 
       const scriptRun = document.createElement('script');
       scriptRun.type = "text/javascript";
-      script.innerHTML = "console.log('here');window.$latexRender = () => MathJax.Hub.Queue([\"Typeset\", MathJax.Hub, document.getElementById(\"need-latex-render\")]);";
+      script.innerHTML = "window.$latexRender = () => MathJax.Hub.Queue([\"Typeset\", MathJax.Hub, document.getElementById(\"need-latex-render\")]);";
 
       document.body.appendChild(scriptConfig);
       document.body.appendChild(script);
@@ -237,6 +238,9 @@ export default class Article extends React.Component<any, any> {
 
     return (
       <div className={"article"}>
+        <Head>
+          <title>{TITLE}</title>
+        </Head>
         {
           parseInt(this.props.id)===0?<></>:
             (<>
