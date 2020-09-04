@@ -25,7 +25,7 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "highlightjs": "^9.16.2",
-    "markdown-to-jsx": "^6.11.0",
+    "markdown-to-jsx": "^6.11.4",
     "minimist": "^1.2.3",
     "next": "^9.3.2",
     "node-fetch": "^2.6.0",
