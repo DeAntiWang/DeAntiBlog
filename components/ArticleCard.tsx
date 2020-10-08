@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Card, Tag } from '@zeit-ui/react';
 import '../static/styles/ArticleCard.scss';
 
@@ -12,31 +11,23 @@ interface Prop {
   [propName: string]: any
 }
 
-export default class ArticleCard extends React.Component<Prop, any> {
-  public constructor(props: Prop) {
-    super(props);
-    this.state = {
-    }
-  }
+export default function ArticleCard(props: Prop) {
+  const desc = props.desc + '<span class="-in-desc go-link"> ... Read more</span>';
 
-  public render() {
-    const desc = this.props.desc + '<span class="-in-desc go-link"> ... Read more</span>';
-
-    return (
-        <Card
-          id={"Article"+this.props.id}
-          className={"article-card"}
-          style={{margin: '15px 0', background: 'rgba(255,255,255,0.3)'}}
-          hoverable
-          shadow
-        >
-          <a style={{color: 'unset'}}><h4 className="go-link" style={{marginBottom: "0"}}>{this.props.title}</h4></a>
-          <div style={{fontWeight: "lighter", fontSize: '13px'}}>
-            <span>{this.props.time}</span>
-            <Tag type="secondary" style={{marginLeft: "10px"}}>{this.props.tag}</Tag>
-          </div>
-          <p className="desc" dangerouslySetInnerHTML={{__html:desc}} />
-        </Card>
-    );
-  }
+  return (
+    <Card
+      id={"Article"+props.id}
+      className={"article-card"}
+      style={{margin: '15px 0', background: 'rgba(255,255,255,0.3)'}}
+      hoverable
+      shadow
+    >
+      <a style={{color: 'unset'}}><h4 className="go-link" style={{marginBottom: "0"}}>{props.title}</h4></a>
+      <div style={{fontWeight: "lighter", fontSize: '13px'}}>
+        <span>{props.time}</span>
+        <Tag type="secondary" style={{marginLeft: "10px"}}>{props.tag}</Tag>
+      </div>
+      <p className="desc" dangerouslySetInnerHTML={{__html:desc}} />
+    </Card>
+  );
 }

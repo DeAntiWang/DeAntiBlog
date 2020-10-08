@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Button } from '@zeit-ui/react';
 
 interface Prop {
@@ -6,18 +5,12 @@ interface Prop {
   href: string
 }
 
-export default class Blogroll extends React.Component<Prop, any> {
-  public constructor(props: Prop) {
-    super(props);
-  }
+export default function Blogroll(props: Prop) {
+  const onLink = () => {
+    window.open(props.href);
+  };
 
-  onLink() {
-    window.open(this.props.href)
-  }
-
-  public render() {
-    return (
-      <Button onClick={this.onLink.bind(this)} type="secondary" ghost>{this.props.title}</Button>
-    )
-  }
+  return (
+    <Button onClick={onLink} type="secondary" ghost>{props.title}</Button>
+  )
 }

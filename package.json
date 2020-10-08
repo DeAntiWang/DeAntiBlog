@@ -8,7 +8,7 @@
     "start": "next start",
     "build": "next build",
     "dev": "next dev",
-	"export": "next export",
+    "export": "next export",
     "test": "npx webpack --config webpack.config.js"
   },
   "dependencies": {

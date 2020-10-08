@@ -335,3 +335,42 @@ export default class ArticleList extends React.Component<any, State> {
     );
   }
 }
+
+// export default function ArticleList(props: any) {
+//   const inputContent = React.useState("");
+//   const list = React.useState(null);
+//   const wordNumLim = React.useState(165);
+
+//   return (
+//     <div id="article-list-content">
+//       <Head>
+//         <title>{'Article List - DeAnti Blog'}</title>
+//       </Head>
+//       <div id={"input-bar"}>
+//         <Input
+//           size={"medium"}
+//           icon={<SearchIcon />}
+//           iconRight={<MyKeyBoard />}
+//           placeholder={"Search..."}
+//           value={this.state.inputContent}
+//           onChange={this.onChange.bind(this)}
+//         />
+//         <Select
+//           initialValue={"publish_desc"}
+//           size={"medium"}
+//           onChange={this.onSelect.bind(this)}
+//         >
+//           <Select.Option value="publish_desc">发布时间降序</Select.Option>
+//           <Select.Option value="publish_asc">发布时间升序</Select.Option>
+//           <Select.Option value="edit_desc">编辑时间降序</Select.Option>
+//           <Select.Option value="edit_asc">编辑时间升序</Select.Option>
+//         </Select>
+//       </div>
+//       <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
+//         {
+//           list === null ? props.list.map(listElement) : list.map(listElement)
+//         }
+//       </div>
+//     </div>
+//   );
+// }
