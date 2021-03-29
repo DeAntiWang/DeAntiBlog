@@ -42,7 +42,7 @@ const BlogConfig = {
       }
     }
   ],
-  recordNumber: "鄂ICP备18004914号-1",
+  recordNumber: "鄂ICP备18004914号-2",
   background: false
 };
 
@@ -77,7 +77,7 @@ const xssOptions = {
 /**
  * fetch BaseUrl
  */
-const baseUrl = "http://blog.darkkris.xin/api/";
+const baseUrl = "http://deanti.wang/api/";
 
 /**
  * debounce wait time (ms)
