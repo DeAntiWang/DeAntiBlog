@@ -6,7 +6,7 @@ import Blogroll from '../components/Blogroll';
 import { Link } from '@zeit-ui/react';
 
 /**
- * Blog Config 
+ * Blog Config
  * - title:         博客标题
  * - desc:          博客描述
  * - avatar:        博客头像路径或url
