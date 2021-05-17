@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Container } from "@zeit-ui/react";
 import { BlogConfig } from '../config/options';
 import '../static/styles/Footer.scss';
 

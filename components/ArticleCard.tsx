@@ -1,4 +1,4 @@
-import { Card, Tag } from '@zeit-ui/react';
+import { Card, Tag } from '@geist-ui/react';
 import '../static/styles/ArticleCard.scss';
 
 interface Prop {

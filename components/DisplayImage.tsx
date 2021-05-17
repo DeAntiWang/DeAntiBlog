@@ -1,4 +1,4 @@
-import { Display } from '@zeit-ui/react';
+import { Display } from '@geist-ui/react';
 
 export default function DisplayImage(props: any) {
   const leftProps = Object.assign(props, {

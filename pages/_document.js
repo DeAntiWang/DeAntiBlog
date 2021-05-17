@@ -1,10 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { CSSBaseline } from '@zeit-ui/react'
+import { GeistProvider, CssBaseline } from '@geist-ui/react'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    const styles = CSSBaseline.flush();
+    const styles = CssBaseline.flush();
 
     return {
       ...initialProps,
@@ -69,9 +69,11 @@ export default class MyDocument extends Document {
           "})();"}}/>
       </Head>
       <body>
-        <CSSBaseline/>
-        <Main />
-        <NextScript />
+        <GeistProvider>
+          <CssBaseline/>
+          <Main/>
+          <NextScript/>
+        </GeistProvider>
       </body>
       </Html>
     );

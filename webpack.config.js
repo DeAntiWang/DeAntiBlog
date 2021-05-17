@@ -1,3 +1,6 @@
+const path = require('path');
+const resolve = dir => path.resolve(__dirname, dir);
+
 module.exports = {
   // mode: "development",
   watch: true,
@@ -7,7 +10,14 @@ module.exports = {
     path: __dirname + "/dist"
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      'static': resolve('static'),
+      'pages': resolve('pages'),
+      'config': resolve('config'),
+      'common': resolve('common'),
+      'components': resolve('components'),
+    }
   },
   devtool: "source-map",
   module: {

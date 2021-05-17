@@ -1,7 +1,7 @@
 import { baseUrl } from '../config/options'
 import fetch from "node-fetch";
 
-export default async function(url = '', method = 'GET', data = {}, headers = {} ){
+export default async function ifetch(url = '', method = 'GET', data = {}, headers = {} ){
     // 超时时间配置
     let timeout = 30 * 1000;
 

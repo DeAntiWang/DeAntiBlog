@@ -3,7 +3,7 @@ import { BlogConfig } from '../config/options';
 // next.js
 import Link from 'next/link';
 // zeit-ui
-import { Avatar } from '@zeit-ui/react'
+import { Avatar } from '@geist-ui/react'
 // css
 import '../static/styles/MenuBar.scss';
 
