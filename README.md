@@ -1,6 +1,6 @@
 # DeAnti- Blog
 
-DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and ZEIT-UI  
+DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and GEIST-UI  
 
 **Developer: DeAnti-**
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { BlogConfig } from '../config/options';
 // next.js
 import Link from 'next/link';
-// zeit-ui
 import { Avatar } from '@geist-ui/react'
 // css
 import '../static/styles/MenuBar.scss';
