@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { Collapse } from '@geist-ui/react';
 import fetch from '../common/fetch';
-import "../static/styles/Tags.scss";
+import style from "styles/Tags.module.scss";
 
 interface Prop {
   list: any,
@@ -51,7 +51,7 @@ export default class Tag extends React.Component<Prop, State> {
     return { list: data };
   }
 
-  public componentWillMount() {
+  public componentDidMount() {
     this.setState({
       list: this.props.list
     })
@@ -64,17 +64,17 @@ export default class Tag extends React.Component<Prop, State> {
       return (
         <Collapse
           title={idxOfList}
-          className="tag-element"
+          className={style["tag-element"]}
           key={"tag_"+idxOfList}
         >
-          <ul className="tag-sub-list">
+          <ul className={style["tag-sub-list"]}>
             {
-              list[idxOfList].map((val: any) => {
+              list[idxOfList].map((val: any, index: number) => {
                 return (
-                  <li>
+                  <li key={"tag-li_"+index}>
                     <Link href={{pathname: "/Article", query: {id: val.id}}} key={val.title+val.id}>
-                      <div className="article-in-tag">
-                        <div className={"article-title-in-tag"}>{val.title}</div>
+                      <div className={style["article-in-tag"]}>
+                        <div className={style["article-title-in-tag"]}>{val.title}</div>
                       </div>
                     </Link>
                   </li>
@@ -87,12 +87,12 @@ export default class Tag extends React.Component<Prop, State> {
     };
 
     return (
-      <div id="tag-list-content">
+      <div id={style["tag-list-content"]}>
         {/*<h2>Tags List</h2>*/}
         <Head>
           <title>{'Tag List - DeAnti Blog'}</title>
         </Head>
-        <Collapse.Group id="tag-list">
+        <Collapse.Group id={style["tag-list"]}>
           {
             Object.keys(list).map(tagEle)
           }

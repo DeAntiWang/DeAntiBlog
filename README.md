@@ -17,7 +17,6 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and GEIST-UI
 - Music Player in Article
 - Function bar on the side of Article 
 - Server Side Render (Better SEO)
-- Admin Page
 - Editor for this blog specially
 
 ## Install

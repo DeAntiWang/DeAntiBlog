@@ -13,6 +13,7 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js", ".json"],
     alias: {
       'static': resolve('static'),
+      'styles': resolve('styles'),
       'pages': resolve('pages'),
       'config': resolve('config'),
       'common': resolve('common'),

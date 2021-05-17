@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import "../static/styles/Page404.scss";
+import "styles/Page404.module.scss";
 
 export default function Page404() {
   return (

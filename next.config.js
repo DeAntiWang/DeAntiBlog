@@ -1,9 +1,10 @@
 const path = require('path');
 const resolve = dir => path.resolve(__dirname, dir);
-const withCss = require('@zeit/next-css');
-const withSass = require('@zeit/next-sass');
 
-module.exports = withSass(withCss({
+module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   webpack: function (config) {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
@@ -19,6 +20,7 @@ module.exports = withSass(withCss({
     config.resolve.alias = {
       ...config.resolve.alias,
       'static': resolve('static'),
+      'styles': resolve('styles'),
       'pages': resolve('pages'),
       'config': resolve('config'),
       'common': resolve('common'),
@@ -26,4 +28,4 @@ module.exports = withSass(withCss({
     };
     return config;
   }
-}));
+};

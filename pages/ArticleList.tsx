@@ -7,7 +7,7 @@ import Head from 'next/head';
 import fetch from '../common/fetch';
 import debounce from '../common/debounce';
 import { xssOptions, BlogConfig } from '../config/options';
-import '../static/styles/ArticleList.scss';
+import style from 'styles/ArticleList.module.scss';
 
 interface State {
   inputContent: string,
@@ -280,7 +280,7 @@ export default class ArticleList extends React.Component<any, State> {
     const MyKeyBoard = () => {
       return (
         <Keyboard
-          id={"keyboard"}
+          id={style.keyboard}
           small
         >/</Keyboard>
       );
@@ -300,11 +300,11 @@ export default class ArticleList extends React.Component<any, State> {
     };
 
     return (
-      <div id="article-list-content">
+      <div id={style["article-list-content"]}>
         <Head>
           <title>{'Article List - DeAnti Blog'}</title>
         </Head>
-        <div id={"input-bar"}>
+        <div id={style["input-bar"]}>
           <Input
             size={"medium"}
             icon={<SearchIcon />}
@@ -324,7 +324,7 @@ export default class ArticleList extends React.Component<any, State> {
             <Select.Option value="edit_asc">编辑时间升序</Select.Option>
           </Select>
         </div>
-        <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
+        <div className={style.list} onClick={ArticleList.onClickList.bind(this)}>
           {
             this.state.list===null?
               this.props.list.map(listElement)
@@ -335,42 +335,3 @@ export default class ArticleList extends React.Component<any, State> {
     );
   }
 }
-
-// export default function ArticleList(props: any) {
-//   const inputContent = React.useState("");
-//   const list = React.useState(null);
-//   const wordNumLim = React.useState(165);
-
-//   return (
-//     <div id="article-list-content">
-//       <Head>
-//         <title>{'Article List - DeAnti Blog'}</title>
-//       </Head>
-//       <div id={"input-bar"}>
-//         <Input
-//           size={"medium"}
-//           icon={<SearchIcon />}
-//           iconRight={<MyKeyBoard />}
-//           placeholder={"Search..."}
-//           value={this.state.inputContent}
-//           onChange={this.onChange.bind(this)}
-//         />
-//         <Select
-//           initialValue={"publish_desc"}
-//           size={"medium"}
-//           onChange={this.onSelect.bind(this)}
-//         >
-//           <Select.Option value="publish_desc">发布时间降序</Select.Option>
-//           <Select.Option value="publish_asc">发布时间升序</Select.Option>
-//           <Select.Option value="edit_desc">编辑时间降序</Select.Option>
-//           <Select.Option value="edit_asc">编辑时间升序</Select.Option>
-//         </Select>
-//       </div>
-//       <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
-//         {
-//           list === null ? props.list.map(listElement) : list.map(listElement)
-//         }
-//       </div>
-//     </div>
-//   );
-// }

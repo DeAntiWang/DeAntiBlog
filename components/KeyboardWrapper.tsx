@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../static/styles/KeyboardWrapper.scss';
+import 'styles/KeyboardWrapper.module.scss';
 
 export default class KeyboardWrapper extends React.Component<any, any> {
   public constructor(props: any) {

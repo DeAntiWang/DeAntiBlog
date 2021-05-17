@@ -15,15 +15,11 @@ import 'highlightjs/styles/a11y-light.css';
 import reactHtmlReplace from 'react-html-replace';
 // import abcjs lib
 // @ts-ignore: have no @types/abcjs
-import abcjs from "abcjs";
-import 'abcjs/abcjs-audio.css';
+// import abcjs from "abcjs";
+// import 'abcjs/abcjs-audio.css';
 
 import { replaceTags, ArticleBarOption, BlogConfig } from '../config/options';
-import 'static/styles/Article.scss';
-
-declare const ABCJS: {
-  renderAbc(element: HTMLElement, text: string): void;
-};
+import style from 'styles/Article.module.scss';
 
 export default class Article extends React.Component<any, any> {
   constructor(props: any) {
@@ -35,7 +31,7 @@ export default class Article extends React.Component<any, any> {
   }
 
   static async getInitialProps({res, query}: any) {
-    const id = query.id===undefined?0:query.id;
+    const id = query.id || 0;
     const result = await fetch('/Article/findById', 'GET', {id});
     let data: any = {};
     if(result.statusCode===200) {
@@ -145,7 +141,7 @@ export default class Article extends React.Component<any, any> {
 
   componentDidMount() {
     // render Latex
-    this.renderLatex();
+    // this.renderLatex();
 
     // code highlight
     document.querySelectorAll('pre code').forEach((block) => {
@@ -153,15 +149,17 @@ export default class Article extends React.Component<any, any> {
     });
 
     // render Music Notation
-    this.renderAbc();
+    // this.renderAbc();
   }
 
   componentWillUnmount() {
-    window.removeEventListener('load', this.codeToLatexSpan);
+    // window.removeEventListener('load', this.codeToLatexSpan);
   }
 
   public render() {
     const htmlStr: string = this.props.data.data===undefined?"":this.props.data.data.content;
+    console.log(htmlStr);
+    console.log();
 
     const articleInfo = {
       url: `${BlogConfig.baseURL}/Article?id=${this.props.id}`,
@@ -171,7 +169,7 @@ export default class Article extends React.Component<any, any> {
     };
 
     return (
-      <div className={"article"}>
+      <div className={style.article}>
         <Head>
           <title>{articleInfo.title+' - DeAnti Blog'}</title>
         </Head>
@@ -181,12 +179,15 @@ export default class Article extends React.Component<any, any> {
               <ArticleBar
                 normal={ArticleBarOption.normal}
                 share={ArticleBarOption.share}
-                className={"-function-bar"}
+                className={style["-function-bar"] || "-function-bar"}
               />
               <SponsorModal/>
             </>)
         }
-        {reactHtmlReplace(htmlStr, replaceTags)}
+        {
+          // reactHtmlReplace(htmlStr, replaceTags)
+          <div dangerouslySetInnerHTML={{__html: htmlStr}}></div>
+        }
       </div>
     );
   }

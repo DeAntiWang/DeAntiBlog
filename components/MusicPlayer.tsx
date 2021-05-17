@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card, Spinner } from '@geist-ui/react';
-import "../static/styles/MusicPlayer.scss";
+import style from "styles/MusicPlayer.module.scss";
 
 interface Prop {
   imgSrc: string,
@@ -75,7 +75,7 @@ export default class MusicPlayer extends React.Component<Prop, State> {
         height="50"
       >
         <defs>
-          <linearGradient id={"hover"} x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={style["hover"] || "hover"} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FFEFBA" />
             <stop offset="100%" stopColor="#FFFFFF" />
           </linearGradient>
@@ -96,7 +96,7 @@ export default class MusicPlayer extends React.Component<Prop, State> {
         height="50"
       >
         <defs>
-          <linearGradient id={"hover"} x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={style["hover"] || hover} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#FFEFBA" />
             <stop offset="100%" stopColor="#FFFFFF" />
           </linearGradient>

@@ -15,8 +15,6 @@
     "@geist-ui/react": "^2.1.5",
     "@types/markdown-to-jsx": "^6.11.3",
     "@types/next": "^9.0.0",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "abcjs": "^5.12.0",
     "core-js": "^3.12.1",
     "crypto": "^1.0.1",
