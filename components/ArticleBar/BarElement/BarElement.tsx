@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import "styles/ArticleBar.scss";
+import "../../../styles/ArticleBar.scss";
 export interface IconOption {
   icon: JSX.Element,
   onClick: MouseEventHandler,

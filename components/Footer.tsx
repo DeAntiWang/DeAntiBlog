@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { BlogConfig } from 'config/options';
-import 'styles/Footer.scss';
+import { BlogConfig } from '../configs/options';
+import '../styles/Footer.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side"

@@ -1,16 +1,16 @@
 import Router from 'next/router';
 import Head from 'next/head';
-import fetch from 'common/fetch';
+import fetch from '../common/fetch';
 // import Component
-import SponsorModal from 'components/SponsorModal/SponsorModal';
+import SponsorModal from '../components/SponsorModal/SponsorModal';
+import ArticleBar from '../components/ArticleBar/ArticleBar';
 import ArticleList from './ArticleList';
-import ArticleBar from 'components/ArticleBar/ArticleBar';
 // import lib
 import Markdown from "markdown-to-jsx";
 // import css ans options
-import { MathJaxConfig } from 'config/inline-script';
-import { ArticleBarOption, BlogConfig, md2jsxOptions } from 'config/options';
-import 'styles/Article.scss';
+import { MathJaxConfig } from '../configs/inline-script';
+import { ArticleBarOption, BlogConfig, md2jsxOptions } from '../configs/options';
+import '../styles/Article.scss';
 
 export default function Article(props: any) {
   // document.querySelectorAll('pre code').forEach((block) => {

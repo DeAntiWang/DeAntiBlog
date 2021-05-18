@@ -22,7 +22,7 @@ module.exports = withSass(withCss({
       'static': resolve('static'),
       'styles': resolve('styles'),
       'pages': resolve('pages'),
-      'config': resolve('config'),
+      'configs': resolve('configs'),
       'common': resolve('common'),
       'components': resolve('components'),
     };

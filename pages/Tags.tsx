@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Collapse } from '@geist-ui/react';
-import fetch from 'common/fetch';
-import TagElement from 'components/TagElement/TagElement';
-import "styles/Tags.scss";
+import fetch from '../common/fetch';
+import TagElement from '../components/TagElement/TagElement';
+import "../styles/Tags.scss";
 
 interface Prop {
   list: any,

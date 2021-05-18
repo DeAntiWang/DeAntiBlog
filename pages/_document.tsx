@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { GeistProvider, CssBaseline } from '@geist-ui/react'
-import { baiduSEO, zhanzhangStatistics, titleGame } from 'config/inline-script';
+import { baiduSEO, zhanzhangStatistics, titleGame } from '../configs/inline-script';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

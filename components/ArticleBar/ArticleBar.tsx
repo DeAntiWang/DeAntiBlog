@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import BarElement, { IconOption } from "./BarElement/BarElement";
-import 'styles/ArticleBar.scss';
+import '../../styles/ArticleBar.scss';
 
 interface Prop {
   normal?: Array<IconOption>,

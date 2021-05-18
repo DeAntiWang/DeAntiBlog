@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { BlogConfig } from '../config/options';
+import { BlogConfig } from '../configs/options';
 // next.js
 import Link from 'next/link';
 import { Avatar } from '@geist-ui/react'
 // css
-import 'styles/MenuBar.scss';
+import '../styles/MenuBar.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side",

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { backTopOption } from 'config/options';
-import 'styles/BackTop.scss';
+import { backTopOption } from '../configs/options';
+import '../styles/BackTop.scss';
 
 interface Prop {
   listen: string

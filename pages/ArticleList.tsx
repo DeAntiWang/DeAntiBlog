@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Input, Keyboard, Select } from '@geist-ui/react';
-import ArticleCard from 'components/ArticleCard';
+import ArticleCard from '../components/ArticleCard';
 import Router from 'next/router';
 import Head from 'next/head';
-import fetch from 'common/fetch';
-import debounce from 'common/debounce';
-import { xssOptions } from 'config/options';
-import 'styles/ArticleList.scss';
+import fetch from '../common/fetch';
+import debounce from '../common/debounce';
+import { xssOptions } from '../configs/options';
+import '../styles/ArticleList.scss';
 
 interface State {
   inputContent: string,

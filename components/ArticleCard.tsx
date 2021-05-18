@@ -1,5 +1,5 @@
 import { Card, Tag } from '@geist-ui/react';
-import 'styles/ArticleCard.scss';
+import '../styles/ArticleCard.scss';
 
 interface Prop {
   // title time desc id tag

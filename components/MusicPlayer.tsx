@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card, Spinner } from '@geist-ui/react';
-import "styles/MusicPlayer.scss";
+import "../styles/MusicPlayer.scss";
 
 interface Prop {
   imgSrc: string,

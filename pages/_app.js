@@ -2,11 +2,11 @@ import * as React from 'react';
 import App from 'next/app';
 import Router from 'next/router';
 // import Components
-import MenuBar from 'components/MenuBar';
-import BackTop from 'components/BackTop';
-import Footer from 'components/Footer';
+import MenuBar from '../components/MenuBar';
+import BackTop from '../components/BackTop';
+import Footer from '../components/Footer';
 // import Css
-import 'styles/index.scss';
+import '../styles/index.scss';
 
 export default class MyApp extends App {
   static async getInitialProps ({ Component, router, ctx }) {

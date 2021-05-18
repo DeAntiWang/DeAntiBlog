@@ -98,11 +98,10 @@ export const MathJaxConfig = () => {
     MathJax.Hub.processUpdateDelay = 0;
     MathJax.Hub.Queue(["setRenderer", MathJax.Hub, "SVG"]);
     MathJax.Hub.Register.StartupHook("TeX autoload-all Ready", function () {
-      console.log('here');
-      // var MACROS = MathJax.InputJax.TeX.Definitions.macros;
-      // MACROS.color = "Color";
-      // delete MACROS.colorbox;
-      // delete MACROS.fcolorbox;
+      var MACROS = MathJax.InputJax.TeX.Definitions.macros;
+      MACROS.color = "Color";
+      delete MACROS.colorbox;
+      delete MACROS.fcolorbox;
     });
   `;
 }

@@ -19,7 +19,7 @@ import { Link } from '@geist-ui/react';
  * - recordNumber:  备案号 (如果不需要，请将值设置为null)
  * - background:    是否需要keyboard wrapper作为背景 (试验功能，未开发完毕)
  */
-const BlogConfig = {
+export const BlogConfig = {
   title: "DeAnti",
   desc: "Same on the other side",
   avatar: "/static/avatar.jpg",
@@ -52,7 +52,7 @@ const BlogConfig = {
 /**
  * reactHtmlReplace Options
  */
-const replaceTags = (tag, props) => {
+export const replaceTags = (tag, props) => {
   switch (tag) {
     case 'img':
       return <DisplayImage/>;
@@ -68,7 +68,7 @@ const replaceTags = (tag, props) => {
   }
 };
 
-const md2jsxOptions = {
+export const md2jsxOptions = {
   overrides: {
     img:  DisplayImage,
     a: {
@@ -87,7 +87,7 @@ const md2jsxOptions = {
 /**
  * xss options
  */
-const xssOptions = {
+export const xssOptions = {
   whiteList: {
     span: ["class"]
   }
@@ -96,26 +96,26 @@ const xssOptions = {
 /**
  * fetch BaseUrl
  */
-const baseUrl = "http://deanti.wang/api/";
+export const baseUrl = "http://deanti.wang/api/";
 // const baseUrl = "/api/";
 
 /**
  * debounce wait time (ms)
  */
-const debounceWait = 450;
+export const debounceWait = 450;
 
 /**
  * Back-To-Top Component Options
  * - offset:    the scrollTop to open component
  */
-const backTopOption = {
+export const backTopOption = {
   offset: 50
 };
 
 /**
  * ArticleBar Default Options
  */
-const ArticleBarOption = {
+export const ArticleBarOption = {
   normal: [
     // {
     //   icon: catalog,
@@ -170,14 +170,3 @@ const ArticleBarOption = {
     }
   ]
 };
-
-export {
-  BlogConfig,
-  debounceWait,
-  backTopOption,
-  replaceTags,
-  xssOptions,
-  baseUrl,
-  ArticleBarOption,
-  md2jsxOptions,
-}
