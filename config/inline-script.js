@@ -80,7 +80,7 @@ export const MathJaxConfig = () => {
       },
       showProcessingMessages: false,
       tex2jax: {
-        displayMath: [['$$', '$$'], ['$$\n', '\n$$'], ['$$\r\n', '\r\n$$']],
+        displayMath: [['$$', '$$'], ['$$\\n', '\\n$$'], ['$$\\r\\n', '\\r\\n$$']],
         inlineMath: [['$','$']],
         processEscapes: true,
         preview: "none",
