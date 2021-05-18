@@ -46,3 +46,4 @@ $ npm run start    # run the project that has been built
 
 - TOC
 - Mobile end Music Player BUG fixing
+- BUGs: don't render latex after first time; style mayb need flush
