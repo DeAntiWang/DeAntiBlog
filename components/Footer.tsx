@@ -1,34 +1,29 @@
-import * as React from 'react';
-import { BlogConfig } from '../config/options';
-import style from 'styles/Footer.module.scss';
+import { useEffect } from 'react'
+import { BlogConfig } from 'config/options';
+import 'styles/Footer.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side"
 }
 
-export default class Footer extends React.Component<Prop> {
-  constructor(props: any) {
-    super(props);
-  }
+export default function Footer(props: Prop) {
+  useEffect(() => {
+    // Always do navigations after the first render
+    document.getElementById("footer").className = props.type + "-footer";
+  }, [])
 
-  componentDidUpdate() {
-    document.getElementById(style.footer).className=style[this.props.type+"-footer"];
-  }
+  const nowYear = new Date().getFullYear();
 
-  public render() {
-    const nowYear = new Date().getFullYear();
-
-    return (
-        <div id={style.footer} className={style[this.props.type + "-footer"]}>
-          <span className={style["footer-row"]}>
-            Copyright&nbsp;{nowYear}&nbsp;<span dangerouslySetInnerHTML={{__html: "&#169"}}/>&nbsp;Developed by DeAnti-
-          </span>
-          {
-            BlogConfig.recordNumber!==null?
-              (<span className={`${style["footer-row"]} ${style["record-number"]}`}>{BlogConfig.recordNumber}</span>)
-              :(<></>)
-          }
-        </div>
-    )
-  }
+  return (
+      <div id={"footer"} className={props.type + "-footer"}>
+        <span className={"footer-row"}>
+          Copyright&nbsp;{nowYear}&nbsp;<span dangerouslySetInnerHTML={{__html: "&#169"}}/>&nbsp;Developed by DeAnti-
+        </span>
+        {
+          BlogConfig.recordNumber!==null?
+            (<span className={`footer-row record-number`}>{BlogConfig.recordNumber}</span>)
+            :(<></>)
+        }
+      </div>
+  )
 }

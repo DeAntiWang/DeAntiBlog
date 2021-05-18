@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Input, Keyboard, Select } from '@geist-ui/react';
-import ArticleCard from '../components/ArticleCard';
-import DisplayImage from '../components/DisplayImage';
+import ArticleCard from 'components/ArticleCard';
+import DisplayImage from 'components/DisplayImage';
 import Router from 'next/router';
 import Head from 'next/head';
-import fetch from '../common/fetch';
-import debounce from '../common/debounce';
-import { xssOptions, BlogConfig } from '../config/options';
-import style from 'styles/ArticleList.module.scss';
+import fetch from 'common/fetch';
+import debounce from 'common/debounce';
+import { xssOptions } from 'config/options';
+import 'styles/ArticleList.scss';
 
 interface State {
   inputContent: string,
@@ -280,7 +280,7 @@ export default class ArticleList extends React.Component<any, State> {
     const MyKeyBoard = () => {
       return (
         <Keyboard
-          id={style.keyboard}
+          id={"keyboard"}
           small
         >/</Keyboard>
       );
@@ -300,11 +300,11 @@ export default class ArticleList extends React.Component<any, State> {
     };
 
     return (
-      <div id={style["article-list-content"]}>
+      <div id={"article-list-content"}>
         <Head>
           <title>{'Article List - DeAnti Blog'}</title>
         </Head>
-        <div id={style["input-bar"]}>
+        <div id={"input-bar"}>
           <Input
             size={"medium"}
             icon={<SearchIcon />}
@@ -324,7 +324,7 @@ export default class ArticleList extends React.Component<any, State> {
             <Select.Option value="edit_asc">编辑时间升序</Select.Option>
           </Select>
         </div>
-        <div className={style.list} onClick={ArticleList.onClickList.bind(this)}>
+        <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
           {
             this.state.list===null?
               this.props.list.map(listElement)

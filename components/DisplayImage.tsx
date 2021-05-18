@@ -1,7 +1,7 @@
 import { Display } from '@geist-ui/react';
 
 export default function DisplayImage(props: any) {
-  const leftProps = Object.assign(props, {
+  const leftProps = Object.assign({}, props, {
     alt: undefined,
     src: undefined,
     className: undefined

@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import BarElement, { IconOption } from "./BarElement/BarElement";
-import style from 'styles/ArticleBar.module.scss';
+import 'styles/ArticleBar.scss';
 
 interface Prop {
   normal?: Array<IconOption>,
@@ -11,10 +11,10 @@ interface Prop {
 
 export default function ArticleBar(props: Prop) {
   return (
-    <div id={style["function-bar-container"]} className={style[props.className] || props.className} style={props.style}>
+    <div id={"function-bar-container"} className={props.className} style={props.style}>
       {
         props.normal &&
-          <div id={style["normal-function-list"]}>
+          <div id={"normal-function-list"}>
             {
               props.normal.map(BarElement)
             }
@@ -22,7 +22,7 @@ export default function ArticleBar(props: Prop) {
       }
       {
         props.share &&
-          <div id={style["share-function-list"]}>
+          <div id={"share-function-list"}>
             <span>分享</span>
             {
               props.share.map(BarElement)

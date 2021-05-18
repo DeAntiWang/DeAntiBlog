@@ -31,10 +31,9 @@ export default class MyApp extends App {
     return !(str==="/index" || str==="" || str==="/");
   }
 
-
-
-  render () {
-    const {Component, pageProps} = this.props;
+  render() {
+    const { Component, pageProps } = this.props;
+    
     let screenType = "left-side";
     if(this.checkType(this.props.router.pathname.toLowerCase())){
       screenType = "left-side"

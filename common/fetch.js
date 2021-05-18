@@ -29,6 +29,8 @@ export default async function ifetch(url = '', method = 'GET', data = {}, header
         }
     }
 
+    console.log("fetch %s", url);
+
     // 信息请求
     let requestConfig = {
         // credentials: 'include',

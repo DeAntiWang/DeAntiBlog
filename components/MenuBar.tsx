@@ -4,7 +4,7 @@ import { BlogConfig } from '../config/options';
 import Link from 'next/link';
 import { Avatar } from '@geist-ui/react'
 // css
-import style from 'styles/MenuBar.module.scss';
+import 'styles/MenuBar.scss';
 
 interface Prop {
   type: "whole-screen" | "left-side",
@@ -20,17 +20,17 @@ export default class App extends React.Component<Prop, any> {
   }
 
   componentDidUpdate() {
-    document.getElementById(style["menu-bar"]).className=style[this.props.type];
+    document.getElementById("menu-bar").className = this.props.type;
   }
-
+  
   public render() {
     return (
-      <div className={style[this.props.type]} id={style["menu-bar"]}>
-        <div className={style.content}>
-          <Avatar src={BlogConfig.avatar} size={"large"} />
-          <div id={style.title} >{BlogConfig.title}</div>
-          <div id={style.desc} >{BlogConfig.desc}</div>
-          <div className={style["nav-bar"]}>
+      <div className={this.props.type} id={"menu-bar"}>
+        <div className={"content"}>
+          <Avatar src={BlogConfig.avatar} size={"large"} className={"avatar"}/>
+          <div id={"title"} >{BlogConfig.title}</div>
+          <div id={"desc"} >{BlogConfig.desc}</div>
+          <div className={"nav-bar"}>
             {
               BlogConfig.menu.map((val: any, index: number) => {
                 let outside = false || val.outside;

@@ -1,6 +1,6 @@
 // 配置文件
 import { htmlEncode } from 'common/format';
-import { catalog, coin, qq, qqzone, weibo } from 'static/svgs';
+import { coin, qq, qqzone, weibo } from 'static/svgs';
 import MusicPlayer from 'components/MusicPlayer';
 import DisplayImage from 'components/DisplayImage';
 import Blogroll from 'components/Blogroll';
@@ -68,6 +68,22 @@ const replaceTags = (tag, props) => {
   }
 };
 
+const md2jsxOptions = {
+  overrides: {
+    img:  DisplayImage,
+    a: {
+      component: Link
+    },
+    p: ({children, ...props}) => {return (<div {...props}>{children}</div>)},
+    MusicPlayer: {
+      component: MusicPlayer
+    },
+    Blogroll: {
+      component: Blogroll
+    }
+  }
+};
+
 /**
  * xss options
  */
@@ -81,6 +97,7 @@ const xssOptions = {
  * fetch BaseUrl
  */
 const baseUrl = "http://deanti.wang/api/";
+// const baseUrl = "/api/";
 
 /**
  * debounce wait time (ms)
@@ -162,4 +179,5 @@ export {
   xssOptions,
   baseUrl,
   ArticleBarOption,
+  md2jsxOptions,
 }

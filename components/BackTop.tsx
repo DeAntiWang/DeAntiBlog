@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { backTopOption } from '../config/options';
-import style from 'styles/BackTop.module.scss';
+import { backTopOption } from 'config/options';
+import 'styles/BackTop.scss';
 
 interface Prop {
   listen: string
@@ -70,9 +70,9 @@ export default class BackTop extends React.Component<Prop, any> {
 
   componentDidMount() {
     // init
-    this.listen = document.getElementById(style[this.props.listen] || this.props.listen);
+    this.listen = document.getElementById(this.props.listen);
     this._window = window;
-    this.progressPath = document.querySelector(`.${style["progress-wrap"]} path`);
+    this.progressPath = document.querySelector(`.progress-wrap path`);
     this.pathLength = this.progressPath.getTotalLength();
     // progressPath
     this.progressPath.style.transition = this.progressPath.style.webkitTransition = 'none';
@@ -88,10 +88,10 @@ export default class BackTop extends React.Component<Prop, any> {
   public render() {
     return (
       <div
-        className={`${style["progress-wrap"]} ` + (this.state.display?"active-progress":"hidden-progress")}
+        className={`progress-wrap ` + (this.state.display?"active-progress":"hidden-progress")}
         onClick={this.backTop.bind(this)}
       >
-        <svg className={`${style["progress-circle"]} ${style["svg-content"]}`} width="100%" height="100%" viewBox="-1 -1 102 102">
+        <svg className={`progress-circle svg-content`} width="100%" height="100%" viewBox="-1 -1 102 102">
           <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
         </svg>
       </div>
