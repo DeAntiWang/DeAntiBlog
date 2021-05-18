@@ -30,8 +30,8 @@ export default function Article(props: any) {
     <div className={"article"}>
       <Head>
         <title>{articleInfo.title+' - DeAnti Blog'}</title>
-        <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{__html: MathJaxConfig()}}></script>
-        <script type={"text/javascript"} src="static/MathJax/MathJax.js" async></script>
+        {/* <script type={"text/x-mathjax-config"} ></script> */}
+        <script type={"text/javascript"} src="static/MathJax/MathJax.js" async dangerouslySetInnerHTML={{__html: MathJaxConfig()}}></script>
       </Head>
       {
         +props.id !== 0 &&

@@ -85,7 +85,7 @@ export const MathJaxConfig = () => {
         processEscapes: true,
         preview: "none",
         skipTags: ["script","noscript","style","textarea","pre","code", "span"],
-        processClass: "md-inline-math|inline-math-export-jax|math-in-toc|test"
+        processClass: "md-inline-math|inline-math-export-jax|math-in-toc|need-latex-render"
       },
       menuSettings: {
         inTabOrder: false
@@ -98,10 +98,11 @@ export const MathJaxConfig = () => {
     MathJax.Hub.processUpdateDelay = 0;
     MathJax.Hub.Queue(["setRenderer", MathJax.Hub, "SVG"]);
     MathJax.Hub.Register.StartupHook("TeX autoload-all Ready", function () {
-      var MACROS = MathJax.InputJax.TeX.Definitions.macros;
-      MACROS.color = "Color";
-      delete MACROS.colorbox;
-      delete MACROS.fcolorbox;
+      console.log('here');
+      // var MACROS = MathJax.InputJax.TeX.Definitions.macros;
+      // MACROS.color = "Color";
+      // delete MACROS.colorbox;
+      // delete MACROS.fcolorbox;
     });
   `;
 }

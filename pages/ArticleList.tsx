@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Input, Keyboard, Select } from '@geist-ui/react';
 import ArticleCard from 'components/ArticleCard';
-import DisplayImage from 'components/DisplayImage';
 import Router from 'next/router';
 import Head from 'next/head';
 import fetch from 'common/fetch';
