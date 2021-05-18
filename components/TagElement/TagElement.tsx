@@ -11,7 +11,6 @@ export default function TagElement(props: Prop) {
     <Collapse
       title={props.title}
       className={"tag-element"}
-      key={ "tag-" + props.title }
     >
       <ul className={"tag-sub-list"}>
         {

@@ -39,17 +39,6 @@ export default class ArticleList extends React.Component<any, State> {
     return `${year}-${month}-${day}`;
   }
 
-  // TODO 图片
-  private static getImage(str: string): JSX.Element {
-    let regex = /!\[([\s\S]*?)\]\(([\s\S]*?)\)/;
-    let title = regex.exec(str)[1],
-        src = regex.exec(str)[2];
-
-    return (
-      <DisplayImage alt={title} src={src}/>
-    )
-  }
-
   public static stringFilter(str: string, inHtml: boolean = true): string {
     // 链式工作，顺序不可替换
     const codeReplace = inHtml?'<span class="-in-desc-code">(请文中查看代码)</span>':''
@@ -172,19 +161,22 @@ export default class ArticleList extends React.Component<any, State> {
     let ev = event || window.event;
     let target: any = ev.target || ev.srcElement;
 
-    if(target.className.indexOf('go-link')!==-1) {
+    if(target.className.indexOf('go-link') !== -1) {
       let targetDom = target;
-      while(targetDom.className.indexOf('card')===-1) {
+      while(targetDom.className.indexOf('card') ===- 1) {
         targetDom = targetDom.parentElement;
       }
-      const articleId: number = parseInt(targetDom.id.substr(7));
+
+      const articleId: number = +targetDom.id.substr(7);
+
+      console.log(targetDom.id, articleId);
 
       Router.push({
         pathname: '/Article',
         query: {
           id: articleId
         }
-      })
+      });
     }
   }
 
@@ -326,9 +318,7 @@ export default class ArticleList extends React.Component<any, State> {
         </div>
         <div className={"list"} onClick={ArticleList.onClickList.bind(this)}>
           {
-            this.state.list===null?
-              this.props.list.map(listElement)
-              :this.state.list.map(listElement)
+            this.state.list ? this.state.list.map(listElement) : this.props.list.map(listElement)
           }
         </div>
       </div>

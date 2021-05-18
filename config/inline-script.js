@@ -54,3 +54,54 @@ export const titleGame = () => {
     })();
   `;
 }
+
+export const MathJaxConfig = () => {
+  return `
+    MathJax.Hub.Config({
+      skipStartupTypeset: false,
+      jax: ["input/TeX", "output/SVG"],
+      extensions: ["tex2jax.js", "toMathML.js"],
+      TeX: {
+        extensions: ["noUndefined.js", "autoload-all.js", "AMSmath.js", "AMSsymbols.js", "mediawiki-texvc.js"],
+        mhchem: { legacy: false },
+        MAXBUFFER: 10*1024
+      },
+      SVG: {
+        useGlobalCache: false,
+        merrorStyle: {
+          fontSize:"90%", color:"red", background:"",
+              border: "1px solid red", padding:"2px"
+        },
+        scale: 100, 
+        minScaleAdjust: 80,
+        blacker: 0,
+        matchFontHeight: false,
+        undefinedFamily: "STIXGeneral, 'PingFang SC', serif"
+      },
+      showProcessingMessages: false,
+      tex2jax: {
+        displayMath: [['$$', '$$'], ['$$\n', '\n$$'], ['$$\r\n', '\r\n$$']],
+        inlineMath: [['$','$']],
+        processEscapes: true,
+        preview: "none",
+        skipTags: ["script","noscript","style","textarea","pre","code", "span"],
+        processClass: "md-inline-math|inline-math-export-jax|math-in-toc|test"
+      },
+      menuSettings: {
+        inTabOrder: false
+      },
+      showMathMenu: false,
+      positionToHash: false
+    });
+    MathJax.Hub.processSectionDelay = 0;
+    MathJax.Hub.processUpdateTime = 25;
+    MathJax.Hub.processUpdateDelay = 0;
+    MathJax.Hub.Queue(["setRenderer", MathJax.Hub, "SVG"]);
+    MathJax.Hub.Register.StartupHook("TeX autoload-all Ready", function () {
+      var MACROS = MathJax.InputJax.TeX.Definitions.macros;
+      MACROS.color = "Color";
+      delete MACROS.colorbox;
+      delete MACROS.fcolorbox;
+    });
+  `;
+}

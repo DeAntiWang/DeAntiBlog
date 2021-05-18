@@ -8,57 +8,11 @@ import ArticleBar from 'components/ArticleBar/ArticleBar';
 // import lib
 import Markdown from "markdown-to-jsx";
 // import css ans options
+import { MathJaxConfig } from 'config/inline-script';
 import { ArticleBarOption, BlogConfig, md2jsxOptions } from 'config/options';
 import 'styles/Article.scss';
 
 export default function Article(props: any) {
-  const MathJaxConfigStr = `MathJax.Hub.Config({
-    skipStartupTypeset: false,
-    jax: ["input/TeX", "output/SVG"],
-    extensions: ["tex2jax.js", "toMathML.js"],
-    TeX: {
-      extensions: ["noUndefined.js", "autoload-all.js", "AMSmath.js", "AMSsymbols.js", "mediawiki-texvc.js"],
-      mhchem: { legacy: false },
-      MAXBUFFER: 10*1024
-    },
-    SVG: {
-      useGlobalCache: false,
-      merrorStyle: {
-        fontSize:"90%", color:"red", background:"",
-            border: "1px solid red", padding:"2px"
-      },
-      scale: 100, 
-      minScaleAdjust: 80,
-      blacker: 0,
-      matchFontHeight: false,
-      undefinedFamily: "STIXGeneral, 'PingFang SC', serif"
-    },
-    showProcessingMessages: false,
-    tex2jax: {
-      displayMath: [['$$', '$$'], ['$$\n', '\n$$'], ['$$\r\n', '\r\n$$']],
-      inlineMath: [['$','$']],
-      processEscapes: true,
-      preview: "none",
-      skipTags: ["script","noscript","style","textarea","pre","code", "span"],
-      processClass: "md-inline-math|inline-math-export-jax|math-in-toc|test"
-    },
-    menuSettings: {
-      inTabOrder: false
-    },
-    showMathMenu: false,
-    positionToHash: false
-  });
-  MathJax.Hub.processSectionDelay = 0;
-  MathJax.Hub.processUpdateTime = 25;
-  MathJax.Hub.processUpdateDelay = 0;
-  MathJax.Hub.Queue(["setRenderer", MathJax.Hub, "SVG"]);
-  MathJax.Hub.Register.StartupHook("TeX autoload-all Ready", function () {
-    var MACROS = MathJax.InputJax.TeX.Definitions.macros;
-    MACROS.color = "Color";
-    delete MACROS.colorbox;
-    delete MACROS.fcolorbox;
-  });`;
-
   // document.querySelectorAll('pre code').forEach((block) => {
   //   hljs.highlightBlock(block);
   // });
@@ -76,7 +30,7 @@ export default function Article(props: any) {
     <div className={"article"}>
       <Head>
         <title>{articleInfo.title+' - DeAnti Blog'}</title>
-        <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{__html: MathJaxConfigStr}}></script>
+        <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{__html: MathJaxConfig()}}></script>
         <script type={"text/javascript"} src="static/MathJax/MathJax.js" async></script>
       </Head>
       {

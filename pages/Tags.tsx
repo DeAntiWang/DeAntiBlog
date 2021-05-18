@@ -15,13 +15,17 @@ export default function Tag(props: Prop) {
   return (
     <div id={"tag-list-content"}>
       <Head>
-        <title>{'Tag List - DeAnti Blog'}</title>
+        <title>{'Tags List - DeAnti Blog'}</title>
       </Head>
       <Collapse.Group id={"tag-list"}>
         {
-          Object.keys(list).map((key: string) => {
-            <TagElement title={key} list={list[key]}/>
-          })
+          Object.keys(list).map((key: string) => (
+            <TagElement
+              title={key}
+              list={list[key]}
+              key={`tag-${key}`}
+            />
+          ))
         }
       </Collapse.Group>
     </div>
@@ -31,6 +35,7 @@ export default function Tag(props: Prop) {
 Tag.getInitialProps = async () => {
   const result = await fetch('/Article/findAll');
   let data: any = {};
+
   if(result.statusCode===200) {
     let workArr = JSON.parse(JSON.stringify(result.data));
     workArr.shift();  // shift About Me Article
@@ -42,6 +47,7 @@ Tag.getInitialProps = async () => {
       data[val.tag].push(val);
     })
   }
+
   Object.keys(data).forEach((idx: string) => {
     data[idx].sort((a: any, b: any) => {
       const aTime = new Date(a.time),
@@ -54,5 +60,6 @@ Tag.getInitialProps = async () => {
       return 0;
     })
   });
+  
   return { list: data };
 }
