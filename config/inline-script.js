@@ -70,7 +70,7 @@ export const MathJaxConfig = () => {
         useGlobalCache: false,
         merrorStyle: {
           fontSize:"90%", color:"red", background:"",
-              border: "1px solid red", padding:"2px"
+          border: "1px solid red", padding:"2px"
         },
         scale: 100, 
         minScaleAdjust: 80,
