@@ -1,21 +1,28 @@
 import Router from 'next/router';
 import Head from 'next/head';
 import fetch from '../common/fetch';
+import { useEffect } from 'react';
 // import Component
 import SponsorModal from '../components/SponsorModal/SponsorModal';
 import ArticleBar from '../components/ArticleBar/ArticleBar';
 import ArticleList from './ArticleList';
 // import lib
 import Markdown from "markdown-to-jsx";
+import hljs from "highlightjs";
 // import css ans options
 import { MathJaxConfig } from '../configs/inline-script';
 import { ArticleBarOption, BlogConfig, md2jsxOptions } from '../configs/options';
 import '../styles/Article.scss';
+import 'highlightjs/styles/a11y-light.css';
 
 export default function Article(props: any) {
-  // document.querySelectorAll('pre code').forEach((block) => {
-  //   hljs.highlightBlock(block);
-  // });
+  useEffect(() => {
+    const _window: any = window;
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+    });
+    _window.MathJax.Hub.Queue(['Typeset', _window.MathJax.Hub, document.getElementById("need-latex-render")])
+  })
 
   const mdText: string = props.data ? props.data.content : "";
 
