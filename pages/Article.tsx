@@ -31,7 +31,7 @@ export default function Article(props: any) {
       <Head>
         <title>{articleInfo.title+' - DeAnti Blog'}</title>
         <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{ __html: MathJaxConfig() }}></script>
-        <script type={"text/javascript"} src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script type={"text/javascript"} src="/static/MathJax/MathJax.js"></script>
       </Head>
       {
         +props.id !== 0 &&
