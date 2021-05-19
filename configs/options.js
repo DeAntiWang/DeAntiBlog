@@ -1,6 +1,4 @@
 // 配置文件
-import { htmlEncode } from 'common/format';
-import { coin, qq, qqzone, weibo } from 'static/svgs';
 import MusicPlayer from 'components/MusicPlayer';
 import DisplayImage from 'components/DisplayImage';
 import Blogroll from 'components/Blogroll';
@@ -50,27 +48,11 @@ export const BlogConfig = {
 };
 
 /**
- * reactHtmlReplace Options
+ * Markdown to JSX Options
  */
-export const replaceTags = (tag, props) => {
-  switch (tag) {
-    case 'img':
-      return <DisplayImage/>;
-    case 'a':
-      return <Link/>;
-    case 'p': // TODO maybe delete
-      return <div {...props}></div>;
-    case 'MusicPlayer':
-      return <MusicPlayer/>;
-    case 'Blogroll':
-      return <Blogroll/>;
-    default:
-  }
-};
-
 export const md2jsxOptions = {
   overrides: {
-    img:  DisplayImage,
+    img: DisplayImage,
     a: {
       component: Link
     },
@@ -110,63 +92,4 @@ export const debounceWait = 450;
  */
 export const backTopOption = {
   offset: 50
-};
-
-/**
- * ArticleBar Default Options
- */
-export const ArticleBarOption = {
-  normal: [
-    // {
-    //   icon: catalog,
-    //   onClick: () => {
-    //     this.setState({
-    //       tocOpen: true
-    //     })
-    //   }
-    // },
-    {
-      icon: coin,
-      onClick: () => {
-        // setSponsorModalVisible(true);
-      }
-    }
-  ],
-  share: [
-    {
-      icon: qq,
-      onClick: () => {
-        const url = htmlEncode(URL),
-              title = htmlEncode(TITLE),
-              summary = htmlEncode(SUMMARY),
-              img = htmlEncode(IMG);
-
-        let str = `https://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${title}&summary=${summary}&pics=${img}`;
-        window.open(str);
-      }
-    },
-    {
-      icon: qqzone,
-      onClick: () => {
-        const url = htmlEncode(URL),
-          title = htmlEncode(TITLE),
-          summary = htmlEncode(SUMMARY),
-          img = htmlEncode(IMG);
-
-        let str = `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${url}&title=${title}&desc=${summary}&summary=${summary}&pics=${img}`;
-        window.open(str)
-      }
-    },
-    {
-      icon: weibo,
-      onClick: () => {
-        const url = htmlEncode(URL),
-          desc = htmlEncode(SUMMARY),
-          img = htmlEncode(IMG);
-
-        let str = `http://service.weibo.com/share/mobile.php?url=${url}&title=${desc}&pic=${img}`;
-        window.open(str);
-      }
-    }
-  ]
 };

@@ -1,8 +1,10 @@
-import { useModal, Modal, Tabs, Image } from "@geist-ui/react";
+import { useContext } from "react";
+import { Modal, Tabs, Image } from "@geist-ui/react";
+import { SponsorContext } from "../../pages/Article";
 
 
 export default function SponsorModal() {
-  const { visible, setVisible, bindings } = useModal();
+  const { bindings } = useContext(SponsorContext);
 
   return (
     <Modal {...bindings}>
