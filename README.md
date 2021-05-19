@@ -47,4 +47,3 @@ $ npm run start    # run the project that has been built
 - TOC
 - Mobile end Music Player BUG fixing
 - DarkMode
-- BUGs: don't render latex after first time; style mayb need flush

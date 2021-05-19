@@ -58,7 +58,7 @@ export const titleGame = () => {
 export const MathJaxConfig = () => {
   return `
     MathJax.Hub.Config({
-      skipStartupTypeset: false,
+      skipStartupTypeset: true,
       jax: ["input/TeX", "output/SVG"],
       extensions: ["tex2jax.js", "toMathML.js"],
       TeX: {

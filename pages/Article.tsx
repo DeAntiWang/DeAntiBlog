@@ -12,7 +12,6 @@ import ArticleList from './ArticleList';
 import Markdown from "markdown-to-jsx";
 import hljs from "highlightjs";
 // import css ans options
-import { MathJaxConfig } from '../configs/inline-script';
 import { BlogConfig, md2jsxOptions } from '../configs/options';
 import { coin, qq, qqzone, weibo } from '../static/svgs';
 import '../styles/Article.scss';
@@ -94,8 +93,6 @@ export default function Article(props: any) {
     <div className={"article"}>
       <Head>
         <title>{articleInfo.title+' - DeAnti Blog'}</title>
-        <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{ __html: MathJaxConfig() }}></script>
-        <script type={"text/javascript"} src="/static/MathJax/MathJax.js"></script>
       </Head>
       {
         +props.id !== 0 &&

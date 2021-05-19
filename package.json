@@ -5,7 +5,7 @@
   "author": "DeAnti-",
   "license": "MIT",
   "scripts": {
-    "start": "next start",
+    "start": "set NODE_ENV=production && next start",
     "build": "next build",
     "dev": "next dev",
     "export": "next export",

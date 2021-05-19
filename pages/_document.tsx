@@ -1,8 +1,15 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
-import { GeistProvider, CssBaseline } from '@geist-ui/react'
-import { baiduSEO, zhanzhangStatistics, titleGame } from '../configs/inline-script';
+import { CssBaseline } from '@geist-ui/react';
+import { AppInitialProps } from 'next/app';
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from 'next/document';
+import { MathJaxConfig, baiduSEO, zhanzhangStatistics, titleGame } from '../configs/inline-script';
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<AppInitialProps> {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     const styles = CssBaseline.flush();
@@ -14,8 +21,8 @@ export default class MyDocument extends Document {
           {initialProps.styles}
           {styles}
         </>
-      )
-    }
+      ),
+    };
   }
 
   render() {
@@ -29,13 +36,12 @@ export default class MyDocument extends Document {
           <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: baiduSEO()}}/>
           <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: zhanzhangStatistics()}}/>
           <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: titleGame()}}/>
+          <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{ __html: MathJaxConfig() }}></script>
+          <script type={"text/javascript"} src="/static/MathJax/MathJax.js"></script>
         </Head>
         <body>
-          <GeistProvider>
-            <CssBaseline/>
-            <Main/>
-            <NextScript/>
-          </GeistProvider>
+          <Main/>
+          <NextScript/>
         </body>
       </Html>
     );
