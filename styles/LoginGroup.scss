@@ -1,0 +1,10 @@
+.login-group {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+
+
+  > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
