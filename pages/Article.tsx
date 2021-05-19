@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import Head from 'next/head';
 import fetch from '../common/fetch';
+import { htmlEncode } from '../common/format';
 import { useModal } from '@geist-ui/react';
 import { useEffect, createContext } from 'react';
 // import Component
@@ -12,9 +13,8 @@ import Markdown from "markdown-to-jsx";
 import hljs from "highlightjs";
 // import css ans options
 import { MathJaxConfig } from '../configs/inline-script';
-import { htmlEncode } from 'common/format';
-import { coin, qq, qqzone, weibo } from 'static/svgs';
 import { BlogConfig, md2jsxOptions } from '../configs/options';
+import { coin, qq, qqzone, weibo } from '../static/svgs';
 import '../styles/Article.scss';
 import 'highlightjs/styles/a11y-light.css';
 
