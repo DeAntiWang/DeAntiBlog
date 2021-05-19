@@ -83,7 +83,7 @@ export default function Article(props: any) {
 
   useEffect(() => {
     const _window: any = window;
-    document.querySelectorAll('pre code').forEach((block) => {
+    document.querySelectorAll('pre code').forEach((block: any) => {
       hljs.highlightBlock(block);
     });
     _window.MathJax.Hub.Queue(['Typeset', _window.MathJax.Hub, document.getElementById("need-latex-render")])

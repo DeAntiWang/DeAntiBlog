@@ -1,4 +1,5 @@
 import { Display } from '@geist-ui/react';
+// import Image from 'next/image';
 
 export default function DisplayImage(props: any) {
   const leftProps = Object.assign({}, props, {

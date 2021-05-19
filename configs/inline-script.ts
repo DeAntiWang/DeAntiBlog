@@ -61,10 +61,12 @@ export const MathJaxConfig = () => {
       skipStartupTypeset: true,
       jax: ["input/TeX", "output/SVG"],
       extensions: ["tex2jax.js", "toMathML.js"],
+      messageStyle: "none", // 隐藏加载过程
       TeX: {
         extensions: ["noUndefined.js", "autoload-all.js", "AMSmath.js", "AMSsymbols.js", "mediawiki-texvc.js"],
         mhchem: { legacy: false },
-        MAXBUFFER: 10*1024
+        MAXBUFFER: 10*1024,
+        preview: 'none', // 隐藏加载过程
       },
       SVG: {
         useGlobalCache: false,

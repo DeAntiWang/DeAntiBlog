@@ -5,6 +5,9 @@ const withSass = require("@zeit/next-sass");
 const withCss = require("@zeit/next-css");
 
 module.exports = withSass(withCss({
+  // future: {
+  //   webpack5: true,
+  // },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,

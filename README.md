@@ -46,4 +46,5 @@ $ npm run start    # run the project that has been built
 ## TODO
 
 - TOC
-- Mobile end Music Player BUG fixing
+- Admin Page with Drag'n'Drop API
+- Update NPM libs & replace <img> with <next/Image> (notice: breaking update)
