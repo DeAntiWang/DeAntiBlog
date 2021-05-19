@@ -81,7 +81,7 @@ html, body, #__next {
 
 @media (prefers-color-scheme: dark) {
     // 阴间效果，好耶
-    img:not(.avatar-img) {
+    img:not(.avatar-img, .music-player-img) {
         filter: invert(1);
     }
     

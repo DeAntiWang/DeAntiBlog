@@ -7,7 +7,7 @@ import { useEffect, createContext } from 'react';
 // import Component
 import SponsorModal from '../components/SponsorModal/SponsorModal';
 import ArticleBar from '../components/ArticleBar/ArticleBar';
-import ArticleList from './ArticleList';
+import { stringFilter }  from "../common/format";
 // import lib
 import Markdown from "markdown-to-jsx";
 import hljs from "highlightjs";
@@ -29,7 +29,7 @@ export default function Article(props: any) {
   const articleInfo = { // 文章信息
     url: `${BlogConfig.baseURL}/Article?id=${props.id}`,
     title: (props.data && props.data.title) || "",
-    summary: ArticleList.stringFilter(mdText, false).replace(/\r*\n/g, ""),
+    summary: stringFilter(mdText, false).replace(/\r*\n/g, ""),
     img: ""
   };
 

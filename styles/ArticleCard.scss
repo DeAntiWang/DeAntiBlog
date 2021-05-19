@@ -18,13 +18,26 @@
 }
 
 .desc {
+    position: relative;
     display: inline-block;
     @include user-select-text;
     margin-top: 0 !important;
+    line-height: 26px;
     width: 100%;
+    height: 100%;
 
+    // white-space: nowrap;
     overflow: hidden;
-    text-overflow: "…";
+    // text-overflow: "…";
+
+    // &::after {
+    //     position: absolute;
+    //     content: "...阅读更多";
+    //     color: #3291FF;
+    //     bottom: 0;
+    //     right: 0;
+    //     padding: 0 20px 0 10px;
+    // }
 }
 
 .desc::selection {

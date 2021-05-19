@@ -25,9 +25,9 @@ export default function ArticleCard(props: Prop) {
       <a style={{color: 'unset'}}><h4 className={"go-link"} style={{marginBottom: "0"}}>{props.title}</h4></a>
       <div style={{fontWeight: "lighter", fontSize: '13px'}}>
         <span>{props.time}</span>
-        <Tag type="secondary" style={{marginLeft: "10px"}}>{props.tag}</Tag>
+        <Tag type="secondary" style={{marginLeft: "10px", fontWeight: "normal"}}>{props.tag}</Tag>
       </div>
-      <p className={"desc"} dangerouslySetInnerHTML={{__html: props.desc}} />
+      <div className={"desc"} dangerouslySetInnerHTML={{__html: props.desc}}/>
     </Card>
   );
 }

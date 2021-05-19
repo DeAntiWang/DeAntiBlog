@@ -24,7 +24,6 @@ export const BlogConfig = {
   menu: [
     {
       title: 'Home',
-      // outside: true,
       router: {pathname: '/'}
     },{
       title: 'Article',

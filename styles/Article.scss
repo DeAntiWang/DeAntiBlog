@@ -34,13 +34,6 @@
 	    border-left: 3px solid #7a7a7a;
     }
 
-    @media (prefers-color-scheme: dark) {
-        blockquote {
-            color: #BDBDBD;
-	        border-left: 3px solid #858585;
-        }
-    }
-
     .p-div {
         display: block;
         margin-block-start: .7em;
@@ -101,5 +94,18 @@
 @media screen and (min-width: 901px) {
     .-function-bar {
         top: 110px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .article {
+        #need-latex-render *::selection {
+            background-color: #7928CA;
+        }
+
+        blockquote {
+            color: #BDBDBD;
+	        border-left: 3px solid #858585;
+        }
     }
 }

@@ -14,6 +14,10 @@
     flex-direction: row;
     align-items: center;
 
+    .music-player-img {
+        width: 100px !important;
+        height: 100px !important;
+    }
 
     > .play-button {
         @include allCenter;
@@ -24,6 +28,7 @@
         background: transparent;
         border: none;
         cursor: pointer;
+        z-index: 1;
 
         > svg {
             border-radius: 50%;
