@@ -12,7 +12,7 @@ interface Prop {
 }
 
 export default function ArticleCard(props: Prop) {
-  const desc = props.desc + `<span class="-in-desc go-link"> ... Read more</span>`;
+  // const desc = props.desc + `<span class="-in-desc go-link"> ... Read more</span>`;
 
   return (
     <Card
@@ -27,7 +27,7 @@ export default function ArticleCard(props: Prop) {
         <span>{props.time}</span>
         <Tag type="secondary" style={{marginLeft: "10px"}}>{props.tag}</Tag>
       </div>
-      <p className={desc} dangerouslySetInnerHTML={{__html:desc}} />
+      <p className={"desc"} dangerouslySetInnerHTML={{__html: props.desc}} />
     </Card>
   );
 }

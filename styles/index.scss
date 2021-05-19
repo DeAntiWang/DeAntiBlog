@@ -23,7 +23,7 @@ html, body, #__next {
 #right-content {
     @include fullSize;
     //background: url('https://assets.zeit.co/image/upload/q_auto/front/assets/design/black-nextjs.png') no-repeat;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     //* {
     //    z-index: $content-index;
@@ -63,6 +63,9 @@ html, body, #__next {
         font-weight: bold;
     }
 }
+::-webkit-scrollbar, ::-webkit-scrollbar-thumb {
+    transition: all ease-in-out 0.7s;
+}
 
 @media screen and (min-width: 901px) {
     #right-content {
@@ -73,5 +76,22 @@ html, body, #__next {
 @media screen and (max-width: 900px) {
     #right-content {
         padding: 40px 13px 0 13px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    // 阴间效果，好耶
+    img:not(.avatar-img) {
+        filter: invert(1);
+    }
+    
+    ::-webkit-scrollbar {
+        width: 5px;
+        background-color: #111;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #CACACA;
+        border-radius: 5px;
     }
 }

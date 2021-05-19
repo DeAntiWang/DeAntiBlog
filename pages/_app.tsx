@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { AppProps, NextWebVitalsMetric } from 'next/app';
 import { GeistProvider, CssBaseline } from '@geist-ui/react';
 // import Components
@@ -11,16 +12,6 @@ const checkType = (str: string) => {
   return !(str==="/index" || str==="" || str==="/");
 }
 
-/**
- * @see https://nextjs.org/docs/advanced-features/measuring-performance
- * @param metric NextWebVitalsMetric
- */
- export const reportWebVitals = (metric: NextWebVitalsMetric) => {
-  if (metric.label === "web-vital") {
-    console.table(metric);
-  }
-};
-
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   
@@ -31,9 +22,18 @@ export default function MyApp(props: AppProps) {
     screenType = "whole-screen";
   }
 
+  const [themeType, setThemeType] = useState('light')
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      console.log('🎉 Dark mode is opened!');
+      setThemeType('dark');
+    }
+  }, []);
+
   return (
     <>
-      <GeistProvider>
+      <GeistProvider themeType={themeType}>
         <CssBaseline/>
         <div id={"root"}>
           <MenuBar type={screenType}/>

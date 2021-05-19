@@ -18,6 +18,7 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and GEIST-UI
 - Function bar on the side of Article 
 - Server Side Render (Better SEO)
 - Editor for this blog specially
+- DarkMode including image
 
 ## Install
 
@@ -46,4 +47,3 @@ $ npm run start    # run the project that has been built
 
 - TOC
 - Mobile end Music Player BUG fixing
-- DarkMode

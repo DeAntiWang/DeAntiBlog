@@ -30,3 +30,10 @@
         letter-spacing: 1px;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    #page404 {
+        background: unset;
+        color: #BDBDBD;
+    }
+}

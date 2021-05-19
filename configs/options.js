@@ -56,7 +56,15 @@ export const md2jsxOptions = {
     a: {
       component: Link
     },
-    p: ({children, ...props}) => {return (<div {...props}>{children}</div>)},
+    p: ({children, ...props}) => {
+      const className = "p-div " + (props.className || "")
+      return (
+        <div {...props}
+          className={className}>
+          {children}
+        </div>
+      )
+    },
     MusicPlayer: {
       component: MusicPlayer
     },

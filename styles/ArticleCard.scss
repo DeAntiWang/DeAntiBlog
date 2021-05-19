@@ -9,12 +9,22 @@
     
     > * {
         @include user-select-none;
+        height: 100%;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
     }
 }
 
 .desc {
+    display: inline-block;
     @include user-select-text;
     margin-top: 0 !important;
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: "…";
 }
 
 .desc::selection {
@@ -56,5 +66,30 @@
         width: 90%;
         min-width: 600px;
         max-width: 900px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .article-card {
+        background: rgba(20,20,20,.6) !important;
+    }
+
+    .desc::selection {
+        background-color: #7928CA;
+    }
+    
+    .-in-desc {
+        color: #3291FF;
+        //color: #F81CE5;
+        @include user-select-none;
+    }
+    
+    .-in-desc-code {
+        color: #AB570A;
+    
+        &::selection {
+            color: #F5A623;
+            background-color: #7928CA;
+        }
     }
 }

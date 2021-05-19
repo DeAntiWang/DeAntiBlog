@@ -3,6 +3,8 @@
 .article {
     width: 85%;
     max-width: 900px;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     margin: 0 auto;
 
@@ -29,6 +31,22 @@
 
     blockquote {
         color: #666;
+	    border-left: 3px solid #7a7a7a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        blockquote {
+            color: #BDBDBD;
+	        border-left: 3px solid #858585;
+        }
+    }
+
+    .p-div {
+        display: block;
+        margin-block-start: .7em;
+        margin-block-end: .7em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
     }
 
     // TODO Table CSS Style
@@ -50,10 +68,6 @@
             border-bottom: 1px solid grey;
         }
     }
-}
-
-#geist-ui-modal .backdrop .offset {
-    height: 10px !important;
 }
 
 @media screen and (max-width: 500px) {
