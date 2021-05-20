@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import LoginGroup from "../components/LoginGroup/LoginGroup";
-import UploadBox from "components/UploadBox/UploadBox";
+import UploadBox from "../components/UploadBox/UploadBox";
 import "../styles/Admin.scss";
 
 interface LoginContext {
