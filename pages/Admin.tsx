@@ -27,7 +27,7 @@ export default function Admin() {
     <LoginContext.Provider value={{ isLogin: isLogin , dispatch: loginDispatch }}>
       <div className={"admin-page"}>
         {
-          isLogin ? <LoginGroup/> : <UploadBox/>
+          !isLogin ? <LoginGroup/> : <UploadBox/>
         }
       </div>
     </LoginContext.Provider>
