@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@geist-ui/react";
+import { Input, Button } from "@geist-ui/react";
 import fetch from "../../common/fetch";
+import { dateFormat } from "../../common/format";
 import "../../styles/UploadBox.scss";
 
 interface UploadFile {
@@ -11,19 +12,15 @@ interface UploadFile {
   object: File,
 }
 
-const doUpload = async () => {
-  return;
-  const resp = await fetch("/article/upload", "POST", {
-
-  });
-  // TODO
-};
-
 export default function UploadBox() {
   const defaultFileList: Array<UploadFile> = [];
 
   const dropzoneRef = useRef();
   const [inBox, setIn] = useState(false);
+  const [articleText, setText] = useState("");
+  const [articleName, setName] = useState("");
+  const [articleTag, setTag] = useState("");
+  const [attachURL, setAttachURL] = useState("");
   const [fileList, setFileList] = useState(defaultFileList);
 
   const onEnter = (ev: any) => { ev.target.className.includes("dropzone") && setIn(true); };
@@ -52,9 +49,23 @@ export default function UploadBox() {
   };
 
   const deleteFile = (file: UploadFile) => {
+    if (fileList.length === 1) setFileList([]);
     const files = fileList.filter((val) => (val != file));
     setFileList([...files]);
-  }
+  };
+
+  const doUpload = async () => {
+    const resp = await fetch("/article/upload", "POST", {
+      title: articleName,
+      tag: articleTag,
+      content: articleText,
+      time: dateFormat(new Date().toLocaleString())
+    });
+    // TODO files
+    if (resp.statusCode) { // TODO handler response
+
+    }
+  };
 
   useEffect(() => {
     document.addEventListener("dragenter", onEnter);
@@ -84,7 +95,31 @@ export default function UploadBox() {
   }, [inBox]);
 
   useEffect(() => {
-    console.log(fileList);
+    const articleFile = fileList.find(val => val.filetype === "text/markdown");
+    if (!articleFile) return;
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const getTitleRegex = /#\s*(.*)/g;
+      const uploadURLRegex = /\!\[.*\]\(\.?\/upload\/(.*)\/.*\)/g
+      const text: any = reader.result || "";
+      if (text) {
+        setText(text);
+        // 尝试获取文章标题
+        const matches = getTitleRegex.exec(text);
+        if (matches && matches[1]) {
+          const title = matches[1];
+          setName(title);
+        }
+        // 尝试获取附件目录
+        const uploadMatches = uploadURLRegex.exec(text);
+        if (uploadMatches && uploadMatches[0]) {
+          const uploadURL = uploadMatches[1];
+          setAttachURL(uploadURL);
+        }
+      }
+    });
+    reader.readAsText(articleFile.object);
   }, [fileList]);
 
   return (
@@ -111,7 +146,10 @@ export default function UploadBox() {
             ))
           }
         </ul>
-        <div>
+        <div className="function-group">
+          <Input value={articleName} onChange={setName.bind(this)} placeholder={"Article Title"}/>
+          <Input value={articleTag} onChange={setTag.bind(this)} placeholder={"Article Tag"}/>
+          <Input value={attachURL} onChange={setAttachURL.bind(this)} placeholder={"Files URL of 'upload/'"}/>
           <Button onClick={doUpload}>Upload Article & Files</Button>
         </div>
       </div>
