@@ -65,10 +65,6 @@ export default function UploadBox() {
       }
     });
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ '： ' + pair[1]); 
-    }
-
     const resp = await fetch("/article/upload", "POST", formData);
     if (resp.statusCode === 200) {
       const data = resp.data;

@@ -27,16 +27,6 @@ export default async function ifetch(
     // method大写
     method = method.toUpperCase();
 
-    // headers处理
-    let header_data: HeaderDatas = headers;
-    header_data['Accept'] = 'application/json';
-    header_data['Content-Type'] = 'application/json';
-    header_data['Cache-Contorol'] = 'no-store';
-
-    if(method==='FILE') {
-        delete header_data['Content-Type'];
-    }
-
     // 区分站内外API地址
     if(url.indexOf('https://') === -1) {
         // 站内API
@@ -50,35 +40,45 @@ export default async function ifetch(
 
     console.log("fetch %s", url);
 
-    // 信息请求
-    let requestConfig: RequestInit = {
-        // credentials: 'include',
-        method: method === 'GET' ? 'GET' : 'POST',
-        headers: header_data,
+    const headerData = Object.assign({
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Charset: "utf-8",
+    }, headers);
+
+    if (data instanceof FormData) {
+        delete headerData["Content-Type"];
+    }
+
+    const requestConfig: RequestInit = {
+        // credientials: "include",
+        method,
+        headers: headerData,
         // mode: "cors",
-        // cache: "no-cache"
     };
 
-    if (method === 'POST') {
-        // 仅POST请求附带数据
-        Object.defineProperty(requestConfig, 'body', {
-            value: JSON.stringify(data)
-        })
-    } else if (method === 'GET') {
-        let cnt = 0;
-        Object.keys(data).forEach(val => {
-            if(cnt===0) {
+    if (method === "GET") {
+        let firstFlag = true;
+        Object.keys(data).forEach((key) => {
+            if (firstFlag) {
                 url += "?";
-            }else{
+                firstFlag = false;
+            } else {
                 url += "&";
             }
-            url += val;
-            url += "=";
-            url += data[val];
-            cnt++;
+            url += `${key}=${data[key]}`;
         });
-    } else if (method === 'FILE') {
-        Object.defineProperty(requestConfig, 'body', data)
+    } else {
+        // 仅POST请求附带数据
+        if (data instanceof FormData) {
+            Object.defineProperty(requestConfig, "body", {
+                value: data,
+            });
+        } else {
+            Object.defineProperty(requestConfig, "body", {
+                value: JSON.stringify(data),
+            });
+        }
     }
 
 
