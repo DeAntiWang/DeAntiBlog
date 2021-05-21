@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Input, Button } from "@geist-ui/react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Input, Button, useToasts } from "@geist-ui/react";
 import fetch from "../../common/fetch";
 import { dateFormat } from "../../common/format";
 import "../../styles/UploadBox.scss";
@@ -13,38 +13,37 @@ interface UploadFile {
 }
 
 export default function UploadBox() {
-  const defaultFileList: Array<UploadFile> = [];
-
   const dropzoneRef = useRef();
   const [inBox, setIn] = useState(false);
   const [articleText, setText] = useState("");
   const [articleName, setName] = useState("");
   const [articleTag, setTag] = useState("");
   const [attachURL, setAttachURL] = useState("");
-  const [fileList, setFileList] = useState(defaultFileList);
+  const [fileList, setFileList] = useState<Array<UploadFile>>([]);
+  const [toasts, setToast] = useToasts();
 
-  const onEnter = (ev: any) => { ev.target.className.includes("dropzone") && setIn(true); };
-  const onLeave = (ev: any) => { ev.target.className.includes("dropzone") && setIn(false); };
-  const onOver = (ev: any) => { ev.preventDefault(); };
-  const onEnd = (ev: any) => { setIn(false); };
-  const onDrop = (ev: any) => {
-    if (ev.target.className.includes("dropzone")) {
+  const onEnter = (ev: any) => { ev.target.className.includes("dropzone") && setIn(() => true); };
+  const onLeave = (ev: any) => { ev.target.className.includes("dropzone") && setIn(() => false); };
+  const onOver = (ev: DragEvent) => { ev.preventDefault(); };
+  const onEnd = () => { setIn(() => false); };
+  const onDrop = (ev: DragEvent) => {
+    const target: any = ev.target;
+    if (target.className?.includes("dropzone")) {
       ev.preventDefault();
+      
       const files = ev.dataTransfer.files;
-      setFileList([
-        ...fileList,
-        ...([...files].map((file: File) => {
-          const retFile: UploadFile = {
-            filename: file.name,
-            filetype: file.type,
-            extname: "",
-            data: undefined,
-            object: file
-          };
-          return retFile;
-        })),
-      ]);
-      setIn(false);
+      const newFiles = [...files].map((file: File) => (
+        {
+          filename: file.name,
+          filetype: file.type,
+          extname: "",
+          data: undefined,
+          object: file
+        }
+      ));
+
+      setFileList(prevList => ([...prevList, ...newFiles]));
+      setIn(() => false);
     }
   };
 
@@ -55,15 +54,35 @@ export default function UploadBox() {
   };
 
   const doUpload = async () => {
-    const resp = await fetch("/article/upload", "POST", {
-      title: articleName,
-      tag: articleTag,
-      content: articleText,
-      time: dateFormat(new Date().toLocaleString())
+    const formData = new FormData()
+    formData.append("title", articleName);
+    formData.append("tag", articleTag);
+    formData.append("content", articleText);
+    formData.append("time", dateFormat(new Date().toLocaleString()));
+    fileList.forEach((file) => {
+      if (file.filetype !== "text/markdown") {
+        formData.append("files", file.object);
+      }
     });
-    // TODO files
-    if (resp.statusCode) { // TODO handler response
 
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ '： ' + pair[1]); 
+    }
+
+    const resp = await fetch("/article/upload", "POST", formData);
+    if (resp.statusCode === 200) {
+      const data = resp.data;
+      const id = data.id;
+      setToast({
+        text: '上传发表成功',
+        type: 'success',
+      });
+    } else {
+      console.error("🚀 err_msg: %s", resp.message);
+      setToast({
+        text: '上传失败',
+        type: 'error',
+      });
     }
   };
 
@@ -96,38 +115,38 @@ export default function UploadBox() {
 
   useEffect(() => {
     const articleFile = fileList.find(val => val.filetype === "text/markdown");
-    if (!articleFile) return;
+    
+    if (articleFile) {
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        const getTitleRegex = /#\s*(.*)/g;
+        const uploadURLRegex = /\!\[.*\]\(\.?\/upload\/(.*)\/.*\)/g
+        const text: any = reader.result || "";
+        if (text) {
+          setText(text);
+          // 尝试获取文章标题
+          const matches = getTitleRegex.exec(text);
+          if (matches && matches[1]) {
+            const title = matches[1];
+            setName(title);
+          }
+          // 尝试获取附件目录
+          const uploadMatches = uploadURLRegex.exec(text);
+          if (uploadMatches && uploadMatches[0]) {
+            const uploadURL = uploadMatches[1];
+            setAttachURL(uploadURL);
+          }
+        }
+      });
+      reader.readAsText(articleFile.object);
+    }
 
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      const getTitleRegex = /#\s*(.*)/g;
-      const uploadURLRegex = /\!\[.*\]\(\.?\/upload\/(.*)\/.*\)/g
-      const text: any = reader.result || "";
-      if (text) {
-        setText(text);
-        // 尝试获取文章标题
-        const matches = getTitleRegex.exec(text);
-        if (matches && matches[1]) {
-          const title = matches[1];
-          setName(title);
-        }
-        // 尝试获取附件目录
-        const uploadMatches = uploadURLRegex.exec(text);
-        if (uploadMatches && uploadMatches[0]) {
-          const uploadURL = uploadMatches[1];
-          setAttachURL(uploadURL);
-        }
-      }
-    });
-    reader.readAsText(articleFile.object);
   }, [fileList]);
 
   return (
     <div className="upload-page">
       <div className="upload-box dropzone" ref={dropzoneRef}>
-        <span>
-          { inBox ? "Release, I will catch them!" : "Drag and drop your article & attached files here" }
-        </span>
+        { inBox ? "Release, I will catch them!" : "Drag and drop your article & attached files here" }
       </div>
       <div className="upload-operate-box">
         <ul className="upload-file-list">
@@ -147,9 +166,9 @@ export default function UploadBox() {
           }
         </ul>
         <div className="function-group">
-          <Input value={articleName} onChange={setName.bind(this)} placeholder={"Article Title"}/>
-          <Input value={articleTag} onChange={setTag.bind(this)} placeholder={"Article Tag"}/>
-          <Input value={attachURL} onChange={setAttachURL.bind(this)} placeholder={"Files URL of 'upload/'"}/>
+          <Input value={articleName} onChange={(ev) => setName(ev.target.value)} placeholder={"Article Title"}/>
+          <Input value={articleTag} onChange={(ev) => setTag(ev.target.value)} placeholder={"Article Tag"}/>
+          <Input value={attachURL} onChange={(ev) => setAttachURL(ev.target.value)} placeholder={"Files URL of 'upload/'"}/>
           <Button onClick={doUpload}>Upload Article & Files</Button>
         </div>
       </div>

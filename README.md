@@ -8,17 +8,17 @@ DeAnti- Private Blog write in React, Next.js, TypeScript, SaSS and GEIST-UI
 
 - Home page
 - Frosty style UI
-- Article List with searching and sorting
+- Article List with searching & sorting
 - Tags List
 - Customizable menu navigation
-- Full text search
-- Markdown and LaTeX rendering
-- Beautiful BackTop
+- Full text searching
+- Markdown & LaTeX rendering
+- Beautiful BackTop component
 - Music Player in Articles
 - Function bar on the side of Article 
 - Server Side Render (Better SEO)
-- Editor for this blog specially
 - DarkMode including image
+- Admin page with Drag'n'Drop API
 
 ## Install
 
@@ -46,5 +46,5 @@ $ npm run start    # run the project that has been built
 ## TODO
 
 - TOC
-- Admin Page with Drag'n'Drop API
 - Update NPM libs & replace <img> with <next/Image> (notice: breaking update)
+- Table Style when DarkMode

@@ -86,7 +86,7 @@ export const xssOptions = {
  * fetch BaseUrl
  */
 export const baseUrl = "http://deanti.wang/api/";
-// const baseUrl = "/api/";
+// export const baseUrl = "http://localhost:3001/";
 
 /**
  * debounce wait time (ms)

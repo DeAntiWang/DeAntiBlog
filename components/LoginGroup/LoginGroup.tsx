@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { LoginContext } from "../../pages/Admin";
 import {
   Input,
@@ -18,15 +18,13 @@ export default function LoginGroup() {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     if (!account || !password || loading) return;
-    setLoading(true);
+    setLoading(() => true);
     const resp = await fetch("/user/login", "POST", {
       nick: account,
-      password: passwordEncode(password),
+      password: passwordEncode(account + password),
     });
-
-    console.log(passwordEncode(password));
 
     if (resp.statusCode === 200) {
       dispatch(true);
@@ -41,21 +39,22 @@ export default function LoginGroup() {
         type: 'error',
       });
     }
-    setLoading(false);
-  };
+    setLoading(() => false);
+  }, [account, password, loading]);
+
+  const onEnter = useCallback((ev: any) => {
+    const { key, code } = ev;
+    if (key === "Enter" || code === "Enter") onClick.apply(undefined);
+  }, [onClick]);
 
   useEffect(() => {
     const passwdInputDom: any = passwdRef.current;
-    const onEnter = (ev: any) => {
-      if (ev.key === "Enter" || ev.code === "Enter") onClick.apply(undefined);
-    };
-
     passwdInputDom.addEventListener("keydown", onEnter);
 
     return () => {
       passwdInputDom.removeEventListener("keydown", onEnter)
     }
-  }, []);
+  }, [onClick, onEnter]);
 
   return (
     <div className="login-group">
