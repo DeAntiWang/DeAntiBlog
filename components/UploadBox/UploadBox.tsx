@@ -54,11 +54,11 @@ export default function UploadBox() {
   };
 
   const doUpload = async () => {
-    const formData = new FormData()
+    const formData = new FormData();
     formData.append("title", articleName);
     formData.append("tag", articleTag);
     formData.append("content", articleText);
-    formData.append("time", dateFormat(new Date().toLocaleString()));
+    formData.append("time", dateFormat(new Date().toDateString()));
     fileList.forEach((file) => {
       if (file.filetype !== "text/markdown") {
         formData.append("files", file.object);

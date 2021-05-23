@@ -22,7 +22,7 @@ export default async function ifetch(
     headers: HeaderDatas = {}
 ): PromiseResponse {
     // 超时时间配置
-    let timeout = 30 * 1000;
+    const timeout = 30 * 1000;
 
     // method大写
     method = method.toUpperCase();
@@ -69,42 +69,31 @@ export default async function ifetch(
             url += `${key}=${data[key]}`;
         });
     } else {
-        // 仅POST请求附带数据
-        if (data instanceof FormData) {
-            Object.defineProperty(requestConfig, "body", {
-                value: data,
-            });
-        } else {
-            Object.defineProperty(requestConfig, "body", {
-                value: JSON.stringify(data),
-            });
-        }
+        Object.defineProperty(requestConfig, "body", {
+            value: data instanceof FormData ? data : JSON.stringify(data),
+        });
     }
 
 
-    let timeoutFunc = (): PromiseResponse => {
-        return new Promise( resolve => {
-            setTimeout( () => {
-                resolve({"statusCode": 504, "message": "请求超时", "data": {}});
-            }, timeout)
-        })
-    };
+    const timeoutFunc = (): PromiseResponse => new Promise(resolve => {
+        setTimeout(() => {
+            resolve({"statusCode": 504, "message": "请求超时", "data": {}});
+        }, timeout);
+    });
 
-    let fetchFunc = (): PromiseResponse => {
-        return fetch(url, requestConfig)
-            .then(response => {
-                let retResp: StandardResponse | Response;
-                if(!response.ok) {
-                    retResp = {"statusCode": -1, "message": "请求错误"+response.status, "data": {}};
-                } else {
-                    retResp = response;
-                }
-                return retResp;
-            })
-            .catch( error => {
-                return {"statusCode": -1, "message": "Fail to fetch:"+error, "data": {}}
-            });
-    };
+    const fetchFunc = (): PromiseResponse => fetch(url, requestConfig)
+        .then(response => {
+            let retResp: StandardResponse | Response;
+            if(!response.ok) {
+                retResp = {"statusCode": -1, "message": "请求错误"+response.status, "data": {}};
+            } else {
+                retResp = response;
+            }
+            return retResp;
+        })
+        .catch( error => {
+            return {"statusCode": -1, "message": "Fail to fetch:"+error, "data": {}}
+        });
 
     const retJson = await Promise.race([fetchFunc(), timeoutFunc()])
         .then(response => {
