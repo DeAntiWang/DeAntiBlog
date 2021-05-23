@@ -12,11 +12,11 @@ export const htmlEncode = (html: string) => {
   return temp.innerHTML;
 };
 
-export const dateFormat = (timeStr: string): string => {
-  const time: Date = new Date(timeStr);
-  const year = time.getFullYear(),
-        month = time.getMonth()+1,
-        day = time.getDate();
+export const dateFormat = (timeStr: string, date?: Date): string => {
+  const time: Date = date || new Date(timeStr);
+  const year = time.getFullYear();
+  const month = time.getMonth() + 1;
+  const day = time.getDate();
   return `${year}-${month}-${day}`;
 };
 

@@ -58,7 +58,7 @@ export default function UploadBox() {
     formData.append("title", articleName);
     formData.append("tag", articleTag);
     formData.append("content", articleText);
-    formData.append("time", dateFormat(new Date().toDateString()));
+    formData.append("time", dateFormat("", new Date()));
     fileList.forEach((file) => {
       if (file.filetype !== "text/markdown") {
         formData.append("files", file.object);
