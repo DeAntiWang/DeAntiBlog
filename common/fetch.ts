@@ -1,4 +1,5 @@
 import { baseUrl } from '../configs/options';
+import FormData from 'form-data';
 import fetch from "node-fetch";
 import { RequestInit, Response } from "node-fetch/index";
 
@@ -70,7 +71,7 @@ export default async function ifetch(
         });
     } else {
         Object.defineProperty(requestConfig, "body", {
-            value: data instanceof FormData ? data : JSON.stringify(data),
+            value: (data instanceof FormData) ? data : JSON.stringify(data),
         });
     }
 
