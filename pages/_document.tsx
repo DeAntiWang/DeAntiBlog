@@ -37,7 +37,7 @@ export default class MyDocument extends Document<AppInitialProps> {
           <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: zhanzhangStatistics()}}/>
           <script type={"text/javascript"} dangerouslySetInnerHTML={{__html: titleGame()}}/>
           <script type={"text/x-mathjax-config"} dangerouslySetInnerHTML={{ __html: MathJaxConfig() }}></script>
-          <script type={"text/javascript"} src="/static/MathJax/MathJax.js"></script>
+          <script type={"text/javascript"} src="/static/lib/MathJax/MathJax.js"></script>
         </Head>
         <body>
           <Main/>

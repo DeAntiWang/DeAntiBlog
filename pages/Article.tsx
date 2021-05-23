@@ -12,8 +12,9 @@ import { stringFilter }  from "../common/format";
 import Markdown from "markdown-to-jsx";
 import hljs from "highlightjs";
 // import css ans options
+import { shareQQ } from '../common/share';
 import { BlogConfig, md2jsxOptions } from '../configs/options';
-import { coin, qq, qqzone, weibo } from '../static/svgs';
+import { weixin, pyq, coin, qq, qqzone, weibo } from '../static/svgs';
 import '../styles/Article.scss';
 import 'highlightjs/styles/a11y-light.css';
 
@@ -45,34 +46,43 @@ export default function Article(props: any) {
     share: [
       {
         icon: qq,
+        onClick: () => shareQQ({
+            title: articleInfo.title,
+            desc: articleInfo.summary,
+            share_url: articleInfo.url,
+            image_url: articleInfo.img,
+        })
+      },
+      {
+        icon: weixin,
         onClick: () => {
-          const url = htmlEncode(articleInfo.url),
-                title = htmlEncode(articleInfo.title),
-                summary = htmlEncode(articleInfo.summary),
-                img = htmlEncode(articleInfo.img);
-  
-          let str = `https://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${title}&summary=${summary}&pics=${img}`;
-          window.open(str);
+
         }
       },
       {
         icon: qqzone,
         onClick: () => {
-          const url = htmlEncode(articleInfo.url),
-                title = htmlEncode(articleInfo.title),
-                summary = htmlEncode(articleInfo.summary),
-                img = htmlEncode(articleInfo.img);
+          const url = htmlEncode(articleInfo.url);
+          const title = htmlEncode(articleInfo.title);
+          const summary = htmlEncode(articleInfo.summary);
+          const img = htmlEncode(articleInfo.img);
   
           let str = `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${url}&title=${title}&desc=${summary}&summary=${summary}&pics=${img}`;
           window.open(str)
         }
       },
       {
+        icon: pyq,
+        onClick: () => {
+
+        }
+      },
+      {
         icon: weibo,
         onClick: () => {
-          const url = htmlEncode(articleInfo.url),
-                desc = htmlEncode(articleInfo.summary),
-                img = htmlEncode(articleInfo.img);
+          const url = htmlEncode(articleInfo.url);
+          const desc = htmlEncode(articleInfo.summary);
+          const img = htmlEncode(articleInfo.img);
   
           let str = `http://service.weibo.com/share/mobile.php?url=${url}&title=${desc}&pic=${img}`;
           window.open(str);
@@ -87,7 +97,7 @@ export default function Article(props: any) {
       hljs.highlightBlock(block);
     });
     _window.MathJax.Hub.Queue(['Typeset', _window.MathJax.Hub, document.getElementById("need-latex-render")])
-  });
+  }, []);
 
   return (
     <div className={"article"}>
