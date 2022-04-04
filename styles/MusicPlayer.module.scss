@@ -1,0 +1,80 @@
+@import "icons";
+
+.musicPlayerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.musicPlayer {
+  max-width: 500px;
+}
+
+.musicPlayerContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.musicPlayerImg {
+  width: 100px;
+  height: 100px;
+}
+
+.playButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //position: absolute;
+  padding: 0;
+  margin-left: -75px;
+  margin-right: 50px;
+  width: 50px;
+  height: 50px;
+  // background: transparent;
+  // background-color: rgba(10, 10, 10, .3);
+  background-color: #EAEAEA;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+
+  // > svg {
+  //     border-radius: 50%;
+  //     background-color: rgba(10, 10, 10, .3);
+
+  //     > path {
+  //       transition: fill ease-in-out 0.3s;
+  //       fill: #EAEAEA;
+  //     }
+  // }
+
+  // &:hover > svg > path {
+  //   fill: url(#hover);
+  // }
+}
+
+.musicPlayerInfo {
+  padding: 0 20px;
+}
+
+.musicPlayerTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  > *:last-child {
+    margin-left: 8px;
+  }
+}
+
+.musicPlayerSubTitle {
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.playIcon { @include play(); }
+.pauseIcon { @include pause(); }

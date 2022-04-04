@@ -1,16 +1,16 @@
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Card, Spinner } from '@geist-ui/react';
-import { pauseIcon, playIcon } from '../static/svgs';
-import "../styles/MusicPlayer.scss";
+import styles from 'styles/MusicPlayer.module.scss';
 
-interface Prop {
-  imgSrc: string,
-  src: string,
-  title: string,
-  singer: string
-}
+type Props = {
+  imgSrc: string;
+  src: string;
+  title: string;
+  singer: string;
+};
 
-export default function MusicPlayer(props: Prop) {
+const MusicPlayer = (props: Props): JSX.Element => {
   const [isPlay, setPlayState] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [canplay, setCanplay] = useState(false);
@@ -47,33 +47,29 @@ export default function MusicPlayer(props: Prop) {
   }, []);
 
   return (
-    <div className={"music-player-container"}>
-      <Card
-        className={"music-player"}
-        style={{padding: 0, overflow: "hidden"}}
-        shadow
-      >
-        <div className={"music-player-content"}>
+    <div className={styles.musicPlayerContainer}>
+      <Card className={styles.musicPlayer} style={{padding: 0, overflow: "hidden"}} shadow>
+        <div className={styles.musicPlayerContent}>
           <audio ref={audioDom}
-            id={props.title.replace(/\s+/g,"")+"-audio"}
-            className={"audio"}
+            id={`${props.title.replace(/\s+/g, '')}-audio`}
+            className={'audio'}
             style={{display: "none"}}
           >
-            <source src={props.src}/>
+            <source src={props.src} />
           </audio>
-          <img className={"music-player-img"} src={props.imgSrc} width="100" height="100"/>
-          <button className="play-button" onClick={onClick}>
-            { isPlay ? pauseIcon : playIcon }
-          </button>
-          <div className={"music-player-info"}>
-            <div className={"music-player-title"}>
+          <Image className={styles.musicPlayerImg} src={props.imgSrc} width="100" height="100" />
+          <button className={`${styles.playButton} ${isPlay ? styles.pauseIcon : styles.playIcon}`} onClick={onClick}></button>
+          <div className={styles.musicPlayerInfo}>
+            <div className={styles.musicPlayerTitle}>
               { props.title }
-              { isLoading ? <Spinner/> : <></>}
+              { isLoading ? <Spinner /> : <></> }
             </div>
-            <div className={"music-player-sub-title"}>{props.singer}</div>
+            <div className={styles.musicPlayerSubTitle}>{props.singer}</div>
           </div>
         </div>
       </Card>
     </div>
-  )
-}
+  );
+};
+
+export default MusicPlayer;

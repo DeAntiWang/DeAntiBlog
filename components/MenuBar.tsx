@@ -1,46 +1,44 @@
-import { useEffect } from 'react'
-import { BlogConfig } from '../configs/options';
-// next.js
 import Link from 'next/link';
 import { Avatar } from '@geist-ui/react'
-// css
-import '../styles/MenuBar.scss';
+import { BlogConfig } from 'configs/options';
+import styles from 'styles/MenuBar.module.scss';
 
-interface Prop {
-  type: "whole-screen" | "left-side",
-  [propName: string]: any
-}
+type Props = {
+  fullscreen: boolean;
+};
 
-export default function MenuBar(props: Prop) {
-  useEffect(() => {
-    document.getElementById("menu-bar").className = props.type;
-  }, [])
-
-  return (
-    <div className={props.type} id={"menu-bar"}>
-      <div className={"content"}>
-        <Avatar src={BlogConfig.avatar} size={"large"} className={"avatar"}/>
-        <div id={"title"} >{BlogConfig.title}</div>
-        <div id={"desc"} >{BlogConfig.desc}</div>
-        <div className={"nav-bar"}>
-          {
-            BlogConfig.menu.map((val: any, index: number) => {
-              let outside = false || val.outside;
-              if(!outside) {
-                return (
-                  <Link href={val.router} key={val.title + index}>
-                    <a>{val.title}</a>
-                  </Link>
-                )
-              }else{
-                return (
-                  <a href={val.router.pathname} key={val.title + index}>{val.title}</a>
-                )
-              }
-            })
-          }
-        </div>
+const MenuBar = ({ fullscreen }: Props) => (
+  <div className={fullscreen ? styles.fullscreenBar : styles.sideBar}>
+    <div className={fullscreen ? styles.fullscreenContent : styles.content}>
+      <Avatar
+        className={fullscreen ? styles.fullscreenAvatar : styles.avatar}
+        src={BlogConfig.avatar}
+        alt="头像"
+      />
+      <div className={fullscreen ? styles.fullscreenTitle : styles.title}>
+        {BlogConfig.title}
       </div>
+      <div className={fullscreen ? styles.fullscreenDesc : styles.desc}>{BlogConfig.desc}</div>
+      <nav className={fullscreen ? styles.fullscreenNavBar : styles.navBar}>
+        {
+          BlogConfig.menu.map((val: any, index: number) => {
+            if (val?.outside) {
+              return (
+                <a className={styles.navItem} href={val.router.pathname} key={val.title + index}>
+                  {val.title}
+                </a>
+              );
+            }
+            return (
+              <Link href={val.router} key={val.title + index}>
+                <a className={styles.navItem}>{val.title}</a>
+              </Link>
+            );
+          })
+        }
+      </nav>
     </div>
-  );
-}
+  </div>
+);
+
+export default MenuBar;

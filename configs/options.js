@@ -13,36 +13,35 @@ import { Link } from '@geist-ui/react';
  *    - title:        菜单标题
  *    - outside:      站外链接(开启时，router中只有pathname生效)
  *    - router:       菜单router(请参考next.js文档)
- * - baseURL:       博客主页部署url
  * - recordNumber:  备案号 (如果不需要，请将值设置为null)
  * - background:    是否需要keyboard wrapper作为背景 (试验功能，未开发完毕)
  */
 export const BlogConfig = {
   title: "DeAnti",
   desc: "Same on the other side",
-  avatar: "/static/avatar.jpg",
+  avatar: "/avatar.jpg",
   menu: [
     {
       title: 'Home',
       router: {pathname: '/'}
     },{
       title: 'Article',
-      router: {pathname: '/ArticleList'}
+      router: {pathname: '/list'}
     },{
       title: 'Tags',
-      router: {pathname: '/Tags'}
+      router: {pathname: '/tags'}
     },{
       title: 'About',
       router: {
-        pathname: '/Article',
+        pathname: '/about',
         query: {
           id: 0
         }
       }
     }
   ],
-  baseURL: "http://deanti.wang",
-  recordNumber: "鄂ICP备18004914号-2",
+  baseURL: 'http://deanti.wang',
+  recordNumber: '鄂ICP备18004914号',
   background: false
 };
 
@@ -52,24 +51,10 @@ export const BlogConfig = {
 export const md2jsxOptions = {
   overrides: {
     img: DisplayImage,
-    a: {
-      component: Link
-    },
-    p: ({children, ...props}) => {
-      const className = "p-div " + (props.className || "")
-      return (
-        <div {...props}
-          className={className}>
-          {children}
-        </div>
-      )
-    },
-    MusicPlayer: {
-      component: MusicPlayer
-    },
-    Blogroll: {
-      component: Blogroll
-    }
+    a: Link,
+    p: ({children, ...props}) => <div {...props} className={`p-div ${props.className || ''}`}>{children}</div>,
+    MusicPlayer,
+    Blogroll,
   }
 };
 
@@ -78,8 +63,8 @@ export const md2jsxOptions = {
  */
 export const xssOptions = {
   whiteList: {
-    span: ["class"]
-  }
+    span: ['class'],
+  },
 };
 
 /**

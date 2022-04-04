@@ -1,0 +1,42 @@
+@import "mixins";
+@import "variables";
+
+@mixin footer-row() { display: inline-block; }
+
+@mixin footer($mode) {
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+
+  width: $left-side-width;
+  top: auto;
+  bottom: 8px;
+  font-size: 13px;
+  font-weight: lighter;
+  z-index: map-get($z-levels, bar) + map-get($z-levels, background);
+  @include animation([all]);
+  @if $mode == 'fullscreen' { margin-left: calc(50% - 125px); }
+
+  @include mobile() {
+    color: map-get($colors, BG-1);
+    margin-left: calc(50% - 125px);
+  }
+  @include mini-screen() {
+    color: map-get($colors, BG-1);
+    margin-left: calc(50% - 125px);
+  }
+  @include desktop() { color: map-get($colors, FG-1); }
+}
+
+.footer { @include footer('side'); }
+.fullscreenFooter { @include footer('fullscreen'); }
+
+.footerRow { @include footer-row(); }
+
+.recordCode {
+  font-size: 8px;
+  @include footer-row();
+}

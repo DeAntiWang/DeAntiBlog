@@ -1,0 +1,31 @@
+@import "mixins";
+
+// UI
+$left-side-width: 250px;
+
+// z-index
+$z-levels: (
+  information: 1000,
+  bar: 700,
+  content: 350,
+  background: 1,
+  bottom: 0,
+);
+
+// boz-shadow
+$shadows: (
+  inset: inset 0 0 0 2px rgba(0, 0, 0, .2),
+  card: 0 5px 10px rgba(0, 0, 0, .12),
+  bar: 3px 0 20px rgba(82, 82, 82, .3),
+  bar-dark: 3px 0 15px rgba(120, 120, 120, .3),
+  notice: 5px 5px 10px rgba(50, 50, 50, .3),
+);
+
+// ForeGorund Colors
+$colors: (
+  FG-1: #FAFAFA,
+  BG-1: #111111,
+  BG-1-DARK: #090909,
+
+  Cyan: #79FFE1,
+);

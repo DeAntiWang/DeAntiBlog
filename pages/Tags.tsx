@@ -1,65 +1,52 @@
-import Head from 'next/head';
 import { Collapse } from '@geist-ui/react';
-import fetch from '../common/fetch';
-import TagElement from '../components/TagElement/TagElement';
-import "../styles/Tags.scss";
+import Layout from 'components/Layout';
+import TagElement from 'components/TagElement';
+import fetch, { Status } from 'utils/fetch';
+import styles from 'styles/tags.module.scss';
+import type { Article } from 'types/Article';
 
-interface Prop {
-  list: any,
-  [propsName: string]: any
-}
+type Props = {
+  list: Record<string, Article[]>;
+};
 
-export default function Tag(props: Prop) {
-  const list = props.list;
-
-  return (
-    <div id={"tag-list-content"}>
-      <Head>
-        <title>{'Tags List - DeAnti Blog'}</title>
-      </Head>
-      <Collapse.Group id={"tag-list"}>
+const Tag = ({ list }: Props): JSX.Element => (
+  <Layout title='Tags List - DeAnti Blog'>
+    <div className={styles.tagListContent}>
+      <Collapse.Group className={styles.tagList}>
         {
-          Object.keys(list).map((key: string) => (
+          Object.keys(list || {}).map((key: string) => (
             <TagElement
               title={key}
               list={list[key]}
               key={`tag-${key}`}
             />
-          ))
+          )) ?? <div className={styles.empty}>- 暂无文章 -</div>
         }
       </Collapse.Group>
     </div>
-  )
-}
+  </Layout>
+);
 
-Tag.getInitialProps = async () => {
+export async function getServerSideProps() {
   const result = await fetch('/Article/findAll');
-  let data: any = {};
+  if (result.statusCode !== Status.Success) return { list: {} };
 
-  if(result.statusCode===200) {
-    let workArr = JSON.parse(JSON.stringify(result.data));
-    workArr.shift();  // shift About Me Article
-
-    workArr.forEach((val: any) => {
-      if(data[val.tag] === undefined) {
-        data[val.tag] = [];
-      }
-      data[val.tag].push(val);
-    })
-  }
+  const data = [...result.data].slice(1).reduce((res, val) => {
+    if (res[val.tag] === undefined) res[val.tag] = [];
+    res[val.tag].push(val);
+  }, {});
 
   Object.keys(data).forEach((idx: string) => {
-    data[idx].sort((a: any, b: any) => {
-      const aTime = new Date(a.time),
-            bTime = new Date(b.time);
-      if(aTime < bTime) {
-        return 1;
-      }else if(aTime > bTime) {
-        return -1;
-      }
+    data[idx].sort((a: Article, b: Article) => {
+      const aTime = new Date(a.time);
+      const bTime = new Date(b.time);
+      if (aTime < bTime) return 1;
+      if(aTime > bTime) return -1;
       return 0;
     })
   });
   
-  return { list: data };
+  return { props: { list: data } };
 }
+
+export default Tag;

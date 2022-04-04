@@ -1,0 +1,23 @@
+@import "mixins";
+@import "icons";
+
+.iconSearch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #000;
+  @include search;
+  @include darkmode() { background: #999; }
+}
+
+.searchBar {
+  width: 100%;
+  min-width: 600px;
+  max-width: 940px;
+  padding: 0 20px;
+  margin-right: 3px;
+}
+
+.selectBar {
+  margin-left: 3px;
+}

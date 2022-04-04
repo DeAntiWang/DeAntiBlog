@@ -1,0 +1,17 @@
+@import "mixins";
+@import "variables";
+
+.root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.rightContent {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+
+  @include mobile() { padding: 40px 13px 0 13px; }
+  @include mini-screen() { padding: 40px 13px 0 13px; }
+  @include desktop() { padding-left: $left-side-width; }
+}

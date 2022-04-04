@@ -1,11 +1,7 @@
-import Head from 'next/head';
+import Layout from 'components/Layout';
 
-export default function Index() {
-  return (
-    <>
-      <Head>
-        <title>{'Home - DeAnti Blog'}</title>
-      </Head>
-    </>
-  );
-}
+const IndexPage = () => (
+  <Layout title={'Home - DeAnti Blog'} isHomePage={true}/>
+);
+
+export default IndexPage;

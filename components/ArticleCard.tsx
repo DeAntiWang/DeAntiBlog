@@ -1,33 +1,25 @@
 import { Card, Tag } from '@geist-ui/react';
-import '../styles/ArticleCard.scss';
+import type { Article } from 'types/Article';
+import styles from 'styles/ArticleCard.module.scss';
 
-interface Prop {
-  // title time desc id tag
-  title: string,
-  time: string,
-  desc: string,
-  id: number,
-  tag: string,
-  [propName: string]: any
-}
+interface Props extends Pick<Article, 'id' | 'title' | 'tag' | 'time'> {
+  desc: string;
+};
 
-export default function ArticleCard(props: Prop) {
-  // const desc = props.desc + `<span class="-in-desc go-link"> ... Read more</span>`;
+const ArticleCard = ({ id, title, desc, tag, time }: Props): JSX.Element => (
+  <Card
+    className={styles.articleCard}
+    data-id={`article-${id}`}
+    hoverable
+    shadow
+  >
+    <a style={{color: 'unset'}}><h4 className={"go-link"} style={{marginBottom: "0"}}>{title}</h4></a>
+    <div style={{fontWeight: "lighter", fontSize: '13px'}}>
+      <span>{time}</span>
+      <Tag type="secondary" style={{marginLeft: "10px", fontWeight: "normal"}}>{tag}</Tag>
+    </div>
+    <div className={styles.desc} dangerouslySetInnerHTML={{__html: desc}}/>
+  </Card>
+);
 
-  return (
-    <Card
-      id={"Article"+props.id}
-      className={"article-card"}
-      style={{margin: '15px 0', background: 'rgba(255,255,255,0.3)'}}
-      hoverable
-      shadow
-    >
-      <a style={{color: 'unset'}}><h4 className={"go-link"} style={{marginBottom: "0"}}>{props.title}</h4></a>
-      <div style={{fontWeight: "lighter", fontSize: '13px'}}>
-        <span>{props.time}</span>
-        <Tag type="secondary" style={{marginLeft: "10px", fontWeight: "normal"}}>{props.tag}</Tag>
-      </div>
-      <div className={"desc"} dangerouslySetInnerHTML={{__html: props.desc}}/>
-    </Card>
-  );
-}
+export default ArticleCard;

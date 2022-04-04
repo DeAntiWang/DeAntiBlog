@@ -1,15 +1,23 @@
 import { Display } from '@geist-ui/react';
-// import Image from 'next/image';
+import Image from 'next/image';
 
-export default function DisplayImage(props: any) {
-  const leftProps = Object.assign({}, props, {
-    alt: undefined,
-    className: undefined
-  });
+type Props = {
+  src: string;
+  alt?: string;
+  className?: string;
+  [key: string]: string | number;
+}
+
+const DisplayImage = (props: Props) => {
+  const leftProps = { ...props };
+  delete leftProps.alt;
+  delete leftProps.className;
 
   return (
     <Display shadow caption={props.alt} className={props.className}>
-      <img {...leftProps} />
+      <Image {...leftProps} />
     </Display>
   );
-}
+};
+
+export default DisplayImage;

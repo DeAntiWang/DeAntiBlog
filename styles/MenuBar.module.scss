@@ -1,0 +1,166 @@
+@import "mixins";
+@import "variables";
+
+@mixin menubar($mode) {
+  $bar-width: $left-side-width;
+  @if $mode == 'fullscreen' { $bar-width: 100vw; }
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: $bar-width;
+
+  color: map-get($colors, FG-1);
+  background-color: map-get($colors, BG-1);
+
+  z-index: map-get($z-levels, bar);
+  @include animation([width]);
+
+  @include darkmode() {
+    background-color: map-get($colors, BG-1-DARK);
+  };
+  @include desktop() {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @if not($mode == 'fullscreen') {
+    box-shadow: map-get($shadows, bar);
+
+    @include darkmode() { box-shadow: map-get($shadows, bar-dark); }
+    @include mobile() { height: 40px; }
+    @include mini-screen() { height: 40px; }
+  }
+}
+
+@mixin content($mode) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @if $mode == 'fullscreen' { justify-content: center; }
+  height: 85%;
+
+  @if not($mode == 'fullscreen') {
+    @include mobile() {
+      flex-direction: row;
+      justify-content: space-between;
+  
+      width: 100%;
+      height: 100%;
+      padding-left: 15px;
+    }
+    @include mini-screen() {
+      flex-direction: row;
+      justify-content: space-between;
+  
+      width: 100%;
+      height: 100%;
+      padding-left: 15px;
+    }
+  }
+}
+
+@mixin title($mode) {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  @if $mode == 'fullscreen' { margin-top: 15px; }
+  @else {
+    @include mobile() { margin-top: 0; }
+    @include mini-screen() { margin-top: 0; }
+    @include desktop() { margin-top: 15px; }
+  }
+}
+
+@mixin avatar($mode) {
+  width: 80px !important;
+  height: 80px !important;
+  @if not($mode == 'fullscreen') {
+    @include mobile() { display: none !important; }
+    @include mini-screen() { display: none !important; }
+  }
+}
+
+@mixin desc($mode) {
+  margin-top: 10px;
+  text-align: center;
+  font-style: italic;
+  font-weight: lighter;
+  @if not($mode == 'fullscreen') {
+    @include mobile() { display: none; }
+    @include mini-screen() { display: none; }
+  }
+}
+
+@mixin nav-bar($mode) {
+  display: flex;
+  justify-content: space-around;
+  @if $mode == 'fullscreen' {
+    margin-top: 28px;
+    width: 400px;
+  } @else {
+    margin-top: 40px;
+    flex-direction: column;
+    @include mobile() {
+      flex-direction: row;
+      align-items: center;
+      width: 50%;
+      height: 40px;
+      margin-top: 0;
+    }
+    @include mini-screen() {
+      flex-direction: row;
+      align-items: center;
+      width: 40%;
+      height: 40px;
+      margin-top: 0;
+    }
+  }
+
+  @include mobile() { width: 80%; }
+  @include mini-screen() { width: 60%; }
+
+}
+
+@mixin nav-item($mode) {
+  color: map-get($colors, FG-1);
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    color: #FFF;
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: map-get($colors, FG-1);
+  }
+
+  @include desktop() { margin: 20px 0; }
+}
+
+// export
+.sideBar { @include menubar('side'); }
+.fullscreenBar { @include menubar('fullscreen'); }
+
+.content { @include content('side'); }
+.fullscreenContent { @include content('fullscreen'); }
+
+.title { @include title('side'); }
+.fullscreenTitle { @include title('fullscreen'); }
+
+.avatar { @include avatar('side'); }
+.fullscreenAvatar { @include avatar('fullscreen'); }
+
+.desc { @include desc('side'); }
+.fullscreenDesc { @include desc('fullscreen'); }
+
+.navBar { @include nav-bar('side'); }
+.fullscreenNavBar { @include nav-bar('fullscreen'); }
+
+.navItem { @include nav-item('side'); }
+.fullscreenNavItem { @include nav-item('side'); }

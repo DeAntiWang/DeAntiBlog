@@ -1,63 +1,44 @@
 {
-  "name": "deanti-blog",
-  "version": "0.1.0",
-  "description": "DeAnti Private Blog",
-  "author": "DeAnti-",
-  "license": "MIT",
+  "name": "deantiblog",
+  "version": "2.0.0",
+  "description": "deanti private blog with nextjs",
+  "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV=production && next start",
-    "build": "next build",
     "dev": "next dev",
-    "export": "next export",
-    "test": "npx webpack --config webpack.config.js"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DarkKris/DeAntiBlog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "deantiwang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DarkKris/DeAntiBlog/issues"
+  },
+  "homepage": "https://github.com/DarkKris/DeAntiBlog#readme",
   "dependencies": {
-    "@geist-ui/react": "^2.1.5",
-    "@types/markdown-to-jsx": "^6.11.3",
-    "@types/next": "^9.0.0",
-    "abcjs": "^5.12.0",
-    "core-js": "^3.12.1",
-    "crypto": "^1.0.1",
-    "express": "^4.17.1",
+    "@geist-ui/react": "^2.2.0",
     "form-data": "^4.0.0",
     "highlightjs": "^9.16.2",
-    "markdown-to-jsx": "^6.11.4",
-    "minimist": "^1.2.3",
-    "next": "^9.5.5",
-    "node-fetch": "^2.6.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "regenerator-runtime": "^0.13.7",
-    "xss": "^1.0.9"
+    "markdown-to-jsx": "^7.1.5",
+    "next": "^12.0.7",
+    "node-fetch": "^3.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "xss": "^1.0.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.2",
-    "@babel/plugin-transform-runtime": "^7.14.2",
-    "@babel/preset-env": "^7.14.2",
-    "@babel/preset-react": "^7.13.13",
-    "@babel/preset-typescript": "^7.13.0",
-    "@types/form-data": "^2.5.0",
-    "@types/highlightjs": "^9.12.1",
-    "@types/node": "^12.20.13",
-    "@types/node-fetch": "^2.5.10",
-    "@types/react": "^16.14.6",
-    "@types/react-dom": "^16.9.13",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "css-loader": "^3.6.0",
-    "file-loader": "^6.2.0",
-    "node-sass": "^4.14.1",
-    "postcss-loader": "^3.0.0",
-    "sass-loader": "^8.0.2",
-    "source-map-loader": "^0.2.4",
-    "style-loader": "^1.3.0",
-    "ts-loader": "^6.2.2",
-    "typescript": "^3.9.9",
-    "url-loader": "^4.1.1",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "sass": "^1.45.0",
+    "typescript": "^4.5.3"
   }
 }

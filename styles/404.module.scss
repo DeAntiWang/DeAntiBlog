@@ -1,0 +1,37 @@
+@import "mixins";
+
+.content404 {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.page404 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 33px 0 70px 0;
+  //background-color: #EAEAEA;
+  background: radial-gradient(47% 43%, rgba(163,163,163,0.5), white);
+
+  @include darkmode() {
+    background: unset;
+    color: #BDBDBD;
+  }
+}
+
+.title {
+  margin: 0 8px;
+  text-align: center;
+  letter-spacing: 18px;
+  font-size: 10em;
+}
+
+.desc {
+  margin: -15px 8px 0 8px;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 1px;
+}

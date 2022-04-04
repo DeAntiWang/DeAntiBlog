@@ -45,6 +45,8 @@ $ npm run start    # run the project that has been built
 
 ## TODO
 
+- Anchors
 - TOC
 - Update NPM libs & replace <img> with <next/Image> (notice: breaking update)
 - Table Style when DarkMode
+- Image Display when click

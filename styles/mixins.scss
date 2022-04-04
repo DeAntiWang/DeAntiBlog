@@ -1,0 +1,38 @@
+// 屏幕适配
+@mixin mobile() {
+  @media screen and (max-width: 500px) { @content; }
+}
+@mixin mini-screen() {
+  @media screen and (min-width: 501px) and (max-width: 900px) { @content; }
+}
+@mixin desktop() {
+  @media screen and (min-width: 901px) { @content; }
+}
+
+
+// 暗夜模式
+@mixin darkmode() {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin animation($attr) {
+  @each $arg in $attr {
+    transition: $arg ease-in-out .7s;
+  }
+}
+
+@mixin user-select-text {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+@mixin user-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

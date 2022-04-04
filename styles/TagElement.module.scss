@@ -1,0 +1,43 @@
+.tagElement {
+
+  border: 1px solid #EAEAEA;
+  border-bottom: none;
+
+  &:first-child {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid #EAEAEA;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+}
+
+// > div[role=button] {
+//     padding-left: 15px;
+//     padding-right: 15px;
+// }
+
+.tag-sub-list {
+  padding: 0 30px;
+  list-style: disc !important;
+}
+
+// i::before {
+//   content: none;
+// }
+
+.tagContent {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.tagTitle {
+  font-size: 19px;
+  font-weight: normal;
+}

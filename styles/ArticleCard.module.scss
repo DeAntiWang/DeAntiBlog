@@ -1,0 +1,23 @@
+@import "mixins";
+@import "variables";
+
+.articleCard {
+  height: 180px;
+  margin: 15px 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(20px);
+}
+
+.desc {
+  position: relative;
+  display: inline-block;
+  @include user-select-text;
+  margin-top: 0 !important;
+  line-height: 26px;
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  &::selection { background-color: map-get($colors, Cyan); }
+}

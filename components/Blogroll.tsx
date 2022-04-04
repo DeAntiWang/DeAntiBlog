@@ -1,16 +1,13 @@
 import { Button } from '@geist-ui/react';
 
-interface Prop {
+type Prop = {
   title: string,
   href: string
-}
+};
 
-export default function Blogroll(props: Prop) {
-  const onLink = () => {
-    window.open(props.href);
-  };
+const Blogroll = ({ title, href }: Prop) => {
+  const onLink = () => window.open(href);
+  return <Button onClick={onLink} type="secondary" ghost>{title}</Button>;
+};
 
-  return (
-    <Button onClick={onLink} type="secondary" ghost>{props.title}</Button>
-  )
-}
+export default Blogroll;
