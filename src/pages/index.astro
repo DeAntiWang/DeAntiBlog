@@ -15,7 +15,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<main>
 			<div class="infos">
 				<div class="title">
-					这里是日摇圈核狗程序员 <b>DeAnti 的 Blog</b>；
+					这里是日摇圈核狗程序员 <b><span class="brand">DeAnti</span> 的 Blog</b>；
           偶尔搞开发，偶尔弹贝斯，偶尔看live。
 				</div>
 				<div class="desc">
@@ -62,6 +62,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	}
 	.title {
     font-size: 48px;
+		b {
+			font-family: "Inter", "SourceHanSans CN";
+		}
 	}
   .desc {
     margin-top: 28px;
@@ -75,31 +78,30 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     flex-direction: row;
     margin-top: 20px;
     font-weight: bold;
-  }
-  nav li {
-    position: relative;
-    list-style: none;
-    padding: 0 20px;
-    cursor: pointer;
-    transition: color .3s ease-out;
-		&:first-child {
-			padding-left: 0;
-		}
-		&:not(:first-child):before {
-			content: '|';
-			position: absolute;
-			left: 0;
-			transform: translateX(-50%);
-			color: var(--FG-0);
-		}
-		&:hover {
-			color: var(--FG-3);
+		li {
+			position: relative;
+			list-style: none;
+			padding: 0 20px;
+			cursor: pointer;
+			transition: color .3s ease-out;
+			&:first-child {
+				padding-left: 0;
+			}
 			&:not(:first-child):before {
+				content: '|';
+				position: absolute;
+				left: 0;
+				transform: translateX(-50%);
 				color: var(--FG-0);
+			}
+			&:hover {
+				color: var(--FG-3);
+				&:not(:first-child):before {
+					color: var(--FG-0);
+				}
 			}
 		}
   }
-
 	.images {
 		flex: 4;
 	}
