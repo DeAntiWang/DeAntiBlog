@@ -12,40 +12,95 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<MainNav />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<div class="infos">
+				<div class="title">
+					这里是日摇圈核狗程序员 <b>DeAnti 的 Blog</b>；
+          偶尔搞开发，偶尔弹贝斯，偶尔看live。
+				</div>
+				<div class="desc">
+					Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
+					template serves as a lightweight, minimally-styled starting point for anyone looking to build
+					a personal website, blog, or portfolio with Astro.
+				</div>
+        <nav>
+          <li>Home</li>
+          <li>List</li>
+          <li>About</li>
+        </nav>
+			</div>
+			<div class="images">
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style lang="less">
+	html {
+		height: 100%;
+	}
+	body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
+	}
+	main {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		padding: 120px;
+	}
+	.infos {
+		flex: 3;
+		padding: 40px 40px 160px;
+    text-wrap: balance;
+    word-break: normal;
+	}
+	.title {
+    font-size: 48px;
+	}
+  .desc {
+    margin-top: 28px;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  nav {
+    font-family: "Fira Code";
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  nav li {
+    position: relative;
+    list-style: none;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: color .3s ease-out;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:not(:first-child):before {
+			content: '|';
+			position: absolute;
+			left: 0;
+			transform: translateX(-50%);
+			color: var(--FG-0);
+		}
+		&:hover {
+			color: var(--FG-3);
+			&:not(:first-child):before {
+				color: var(--FG-0);
+			}
+		}
+  }
+
+	.images {
+		flex: 4;
+	}
+</style>
