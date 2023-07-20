@@ -14,7 +14,7 @@ body {
 	font-family: "SourceHanSans CN", Verdana, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #fff;
+	background-color: var(--BG-0);
 	font-size: 16px;
 	line-height: 1.4;
 	color: var(--FG-0);
@@ -31,9 +31,6 @@ b {
 }
 a {
 	color: var(--LINK); // #3273dc;
-}
-nav a {
-	margin-right: 10px;
 }
 textarea {
 	width: 100%;
@@ -69,4 +66,8 @@ blockquote {
 	padding: 2px 0px 2px 20px;
 	margin: 0px;
 	font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+	img { filter: brightness(.8); }
 }
