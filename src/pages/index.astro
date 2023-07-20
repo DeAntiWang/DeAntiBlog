@@ -65,9 +65,22 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		b {
 			font-family: "Inter", "SourceHanSans CN";
 		}
-		.brand {
-		}
 	}
+	.brand {
+			position: relative;
+			background: linear-gradient(-30deg, rgb(39, 122, 218), rgb(74, 230, 121), rgb(201, 214, 13), rgb(226, 20, 233), rgb(16, 172, 219), rgb(39, 122, 218), rgb(74, 230, 121), rgb(201, 214, 13), rgb(226, 20, 233), rgb(16, 172, 219));
+  			background-size: 1000%;
+			background-clip: text;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: neonBrand 5s linear reverse infinite;
+			z-index: 1;
+		}
+
+		@keyframes neonBrand {
+			0% { background-position: 0%; }
+			100% { background-position: 70%; }
+		}
   .desc {
     margin-top: 28px;
     font-size: 17px;
