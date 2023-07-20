@@ -24,9 +24,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					a personal website, blog, or portfolio with Astro.
 				</div>
         <nav>
-          <li>Home</li>
-          <li>List</li>
-          <li>About</li>
+          <a href="/" class="active"eHome</a>
+          <a href="/list">List</a>
+          <a href="/about">About</a>
         </nav>
 			</div>
 			<div class="images">
@@ -57,13 +57,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	.infos {
 		flex: 3;
 		padding: 40px 40px 160px;
-    text-wrap: balance;
-    word-break: normal;
+    	text-wrap: balance;
+    	word-break: normal;
 	}
 	.title {
-    font-size: 48px;
+    	font-size: 48px;
 		b {
 			font-family: "Inter", "SourceHanSans CN";
+		}
+		.brand {
 		}
 	}
   .desc {
@@ -78,7 +80,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     flex-direction: row;
     margin-top: 20px;
     font-weight: bold;
-		li {
+		a {
 			position: relative;
 			list-style: none;
 			padding: 0 20px;
@@ -100,9 +102,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					color: var(--FG-0);
 				}
 			}
+			&.active {
+				color: var(--FG-1);
+			}
 		}
   }
-	.images {
-		flex: 4;
-	}
+  .images {
+	flex: 4;
+  }
 </style>
