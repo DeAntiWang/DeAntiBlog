@@ -9,12 +9,13 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 <html lang={MAIN_LANG_CODE}>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}></BaseHead>
+    <slot name="style"></slot>
   </head>
   <body>
-    <Header></Header>
+    <Header />
     <main>
       <slot />
     </main>
-    <Footer></Footer>
+    <Footer />
   </body>
 </html>
