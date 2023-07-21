@@ -1,5 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro;
+import Footer from '../components/Footer.astro;
 import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 ---
 
@@ -9,5 +11,10 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}></BaseHead>
   </head>
   <body>
+    <Header></Header>
+    <main>
+      <slot />
+    </main>
+    <Footer></Footer>
   </body>
 </html>
