@@ -1,15 +1,10 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+@import './shadow.less';			// shadow box-shadow
+@import './radius.less';			// border-radius
+@import './palette.less';			// color background-color
+@import './font-size.less';		// font-size font-weight line-height
+@import './fonts/index.less';	// font-family
 
-@import './fonts/index.less';
-@import './palette.less';
-
-* {
-	box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 body {
 	font-family: "SourceHanSans CN", Verdana, sans-serif;
 	margin: 0;
