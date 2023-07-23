@@ -1,0 +1,16 @@
+@siteWidthSmall: 650px;
+@siteWidthBase: 960px;
+@siteWidthMedium: 1280px;
+@siteWidthLarge: 1400px;
+
+:root {
+  --SITE-WIDTH-SMALL: @siteWidthSmall;
+  --SITE-WIDTH-BASE: @siteWidthBase;
+  --SITE-WIDTH-MEDIUM: @siteWidthMedium;
+  --SITE-WIDTH-LARGE: @siteWidthLarge;
+}
+
+@mobile: "only screen and (max-width: @{siteWidthSmall})";
+@tablet: "only screen and (min-width: @{siteWidthSmall}) and (max-width: @{siteWidthBase})";
+@desktop: "only screen and (min-width: @{siteWidthBase}) and (max-width: @{siteWidthMedium})";
+@largeDesktop: "only screen and (min-width: @{siteWidthMedium})";

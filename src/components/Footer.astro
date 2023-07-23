@@ -2,13 +2,18 @@
 const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} DeAntiWang. All rights reserved.
-</footer>
-<style>
+<footer>Copyright <span>&copy;</span> {today.getFullYear()} DeAntiWang. All rights reserved.</footer>
+<style lang="less">
+  @import '../styles/sizing.less';
 	footer {
-		padding: 25px;
+		font-family: 'Fira Code';
+		padding: 25px 0;
 		text-align: center;
-		font-size: 16px;
+		font-size: 14px;
+		margin: 0 auto;
+		max-width: var(--SITE-WIDTH-LARGE);
+		span {
+			font-family: Verdana, sans-serif;
+		}
 	}
 </style>

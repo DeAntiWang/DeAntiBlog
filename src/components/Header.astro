@@ -4,22 +4,42 @@ import { SITE_TITLE } from '../consts';
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/blog">Blog</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
-		<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
-		<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
-	</nav>
+	<div class="header-content">
+		<h2>
+			{SITE_TITLE}
+		</h2>
+		<nav>
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/tags">Tags</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+		</nav>
+	</div>
 </header>
-<style>
+<style lang="less">
+	@import '../styles/sizing.less';
 	header {
-		margin: 0em 0 2em;
+		box-shadow: var(--SHADOW-HIGH);
+		--webkit-drop-filter: blur(12px);
+		drop-filter: blur(12px);
+	}
+	.header-content {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin: 0 auto;
+		max-width: var(--SITE-WIDTH-LARGE);
+		@media @mobile { max-width: var(--SITE-WIDTH-SMALL); }
+		@media @tablet { max-width: var(--SITE-WIDTH-BASE); }
+		@media @desktop { max-width: var(--SITE-WIDTH-MEDIUM); }
+		@media @largeDesktop { max-width: var(--SITE-WIDTH-LARGE); }
 	}
 	h2 {
 		margin: 0.5em 0;
+	}
+	nav > *:not(:first-child) {
+		margin-left: 20px;
 	}
 </style>

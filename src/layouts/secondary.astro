@@ -9,8 +9,16 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 <html lang={MAIN_LANG_CODE}>
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION}></BaseHead>
-    <style>
-      
+    <style lang="less">
+      @import '../styles/sizing.less';
+      main {
+        margin: 0 auto;
+        max-width: var(--SITE-WIDTH-LARGE);
+        @media @mobile { max-width: var(--SITE-WIDTH-SMALL); }
+        @media @tablet { max-width: var(--SITE-WIDTH-BASE); }
+        @media @desktop { max-width: var(--SITE-WIDTH-MEDIUM); }
+        @media @largeDesktop { max-width: var(--SITE-WIDTH-LARGE); }
+      }
     </style>
     <slot name="style"></slot>
   </head>
