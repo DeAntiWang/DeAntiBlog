@@ -10,7 +10,7 @@
   --SITE-WIDTH-LARGE: @siteWidthLarge;
 }
 
-@mobile: "only screen and (max-width: @{siteWidthSmall})";
-@tablet: "only screen and (min-width: @{siteWidthSmall}) and (max-width: @{siteWidthBase})";
-@desktop: "only screen and (min-width: @{siteWidthBase}) and (max-width: @{siteWidthMedium})";
-@largeDesktop: "only screen and (min-width: @{siteWidthMedium})";
+@mobile: ~"only screen and (max-width: @{siteWidthSmall})";
+@tablet: ~"only screen and (min-width: @{siteWidthSmall}) and (max-width: @{siteWidthBase})";
+@desktop: ~"only screen and (min-width: @{siteWidthBase}) and (max-width: @{siteWidthMedium})";
+@largeDesktop: ~"only screen and (min-width: @{siteWidthMedium})";
