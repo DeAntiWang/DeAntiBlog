@@ -20,12 +20,15 @@ const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 		font-weight: bolder;
 		color: var(--FG-1);
 	}
+	a.active {
+		color: var(--FG-0);
+	}
 	a:after {
 		transition: width .3s ease-in-out;
 		position: absolute;
 		content: '';
 		height: 2px;
-		background-color: var(--FG-1);
+		background-color: currentColor;
 		width: 0;
 		left: 0;
 		right: 0;

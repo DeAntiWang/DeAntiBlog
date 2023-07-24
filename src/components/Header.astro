@@ -5,9 +5,9 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<div class="header-content">
-		<h2>
-			{SITE_TITLE}
-		</h2>
+		<a href="/">
+			<h2>{SITE_TITLE}</h2>
+		</a>
 		<nav>
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
@@ -36,10 +36,17 @@ import { SITE_TITLE } from '../consts';
 		@media @desktop { max-width: var(--SITE-WIDTH-MEDIUM); }
 		@media @largeDesktop { max-width: var(--SITE-WIDTH-LARGE); }
 	}
+	a {
+		text-decoration: none;
+	}
 	h2 {
 		margin: 0.5em 0;
+		font-family: "Inter", "SourceHanSans CN";
+	}
+	nav {
+		margin-right: 20px;
 	}
 	nav > *:not(:first-child) {
-		margin-left: 20px;
+		margin-left: 24px;
 	}
 </style>

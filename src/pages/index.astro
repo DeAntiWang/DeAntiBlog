@@ -1,59 +1,36 @@
 ---
+import Layout from '../layouts/paramount.astro';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 ---
 
-<!DOCTYPE html>
-<html lang={MAIN_LANG_CODE}>
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<main>
-			<div class="infos">
-				<div class="title">
-					这里是日摇圈核狗程序员 <b><span class="brand">DeAnti</span> 的 Blog</b>；
-          偶尔搞开发，偶尔弹贝斯，偶尔看live。
-				</div>
-				<div class="desc" lang="en">
-					Welcome to DeAnti's personal blog.
-					Here you will find development, music, and photography pieces written by a J-Rock Harcode guy.
-				</div>
-        <nav>
-          <a href="/" class="active">Home</a>
-          <a href="/blog">Blog</a>
-					<a href="/tags">Tags</a>
-          <a href="/about">About</a>
-        </nav>
-			</div>
-			<div class="images">
-				<img src=""/>
-			</div>
-		</main>
-		<Footer class="footer" />
-	</body>
-</html>
+<Layout
+	title={SITE_TITLE}
+	description={SITE_DESCRIPTION}
+>
+	<div class="infos">
+		<div class="title">
+			这里是日摇圈核狗程序员 <b><span class="brand">DeAnti</span> 的 Blog</b>；
+			偶尔搞开发，偶尔弹贝斯，偶尔看live。
+		</div>
+		<div class="desc" lang="en">
+			Welcome to DeAnti's personal blog.
+			Here you will find development, music, and photography pieces written by a J-Rock Harcode guy.
+		</div>
+		<nav>
+			<a href="/" class="active">Home</a>
+			<a href="/blog">Blog</a>
+			<a href="/tags">Tags</a>
+			<a href="/about">About</a>
+		</nav>
+	</div>
+	<div class="images">
+		<img src=""/>
+	</div>
+</Layout>
 
 <style lang="less">
-	html {
-		height: 100%;
-	}
-	body {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		height: 100%;
-	}
-	main {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		padding: 120px;
-	}
 	.infos {
 		flex: 3;
 		padding: 40px 40px 160px;
@@ -141,9 +118,14 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 		}
 	}
 </style>
-<style is:global>
-	footer {
-		position: absolute;
-		bottom: 0;
+<style lang="less" is:global>
+	main {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		padding: 120px;
 	}
 </style>
