@@ -13,39 +13,62 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			.title {
-				font-size: 2em;
-				margin: 0.25em 0 0;
-			}
-			hr {
-				border-top: 1px solid #ddd;
-				margin: 1rem 0;
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
-
 	<body>
 		<Header />
 		<main>
 			<article>
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+				<FormattedDate date={pubDate} updatedDate={updatedDate} />
 				<h1 class="title">{title}</h1>
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<hr />
+				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
 				<slot />
 			</article>
+			<nav>
+				<li>1123</li>
+				<li>312</li>
+			</nav>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style lang="less">
+  @import '../styles/sizing.less';
+	main {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		width: 100%;
+		padding: 20px 0;
+    margin: 0 auto;
+    max-width: var(--SITE-WIDTH-LARGE);
+    @media @mobile { max-width: var(--SITE-WIDTH-SMALL); }
+    @media @tablet { max-width: var(--SITE-WIDTH-BASE); }
+    @media @desktop { max-width: var(--SITE-WIDTH-MEDIUM); }
+    @media @largeDesktop { max-width: var(--SITE-WIDTH-LARGE); }
+  }
+	article {
+		flex: 1;
+		width: 100%;
+		max-width: var(--SITE-WIDTH-BASE);
+	}
+	nav {
+		position: sticky;
+		top: 20px;
+		flex-shrink: 0;
+		width: 260px;
+		padding: 0 20px;
+		margin-left: 40px;
+	}
+	.title {
+		font-size: 2em;
+		margin: 0.25em 0 0;
+	}
+	hr {
+		border-top: 1px solid #ddd;
+		margin: 1rem 0;
+	}
+	.last-updated-on {
+		font-style: italic;
+	}
+</style>

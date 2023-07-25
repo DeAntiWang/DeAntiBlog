@@ -1,17 +1,36 @@
 ---
 export interface Props {
 	date: Date;
+	updatedDate?: Date;
 }
 
-const { date } = Astro.props;
+const { date, updatedDate } = Astro.props;
+const monthNames = [
+	'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+const formatString = (time?: Date) => {
+	if (!time) return '';
+	const year = time.getFullYear();
+	const month = monthNames[time.getMonth()];
+	const day = time.getDate();
+	const hour = time.getHours();
+	const minute = time.getMinutes();
+	return `${day} ${month} ${year} / ${hour}:${minute}`;
+};
+
+const publishTime = formatString(date);
+const updatedTime = formatString(updatedDate);
 ---
 
 <time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+	{publishTime}{updatedTime ? ` - last updated on ${updatedTime}` : ''}
 </time>
+
+<style>
+	time {
+		font-family: 'Fira Code';
+		font-size: 14px;
+	}
+</style>

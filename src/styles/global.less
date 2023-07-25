@@ -27,6 +27,10 @@ b {
 }
 a {
 	color: var(--LINK); // #3273dc;
+	text-decoration: none;
+	&:visited {
+		color: unset;
+	}
 }
 textarea {
 	width: 100%;
@@ -48,7 +52,9 @@ img {
 code {
 	font-family: "Fira Code";
 	padding: 2px 5px;
-	background-color: #f2f2f2;
+	background-color: var(--CODE);
+	color: var(--FG-0);
+	border-radius: var(--RADIUS-SMALL);
 }
 pre {
 	padding: 1rem;

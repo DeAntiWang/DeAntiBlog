@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/secondary.astro';
-import Pagination from '../../components/Pagination.vue';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
@@ -22,7 +21,6 @@ const posts = (await getCollection('blog')).sort(
 			}
 		</ul>
 	</section>
-	<Pagination client:idle />
 </Layout>
 
 <style lang="less">

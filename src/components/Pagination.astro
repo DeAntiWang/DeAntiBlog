@@ -1,0 +1,162 @@
+---
+const {
+  activePage = 2,
+  pageCount = 10,
+  activeColor = 'var(--SUCCESS)',
+} = Astro.props;
+---
+
+<div class="pagination">
+  <div class="operation-btn prev"><span></span></div>
+  <div class="page-btn__wrap">
+    {
+      (pageCount > 8) ? (
+        <Fragment>
+          {(pageCount - activePage > 3 && activePage > 3) ? (
+            <Fragment>
+              <div class="page-btn" data-idx="1">1</div>
+              <div class="page-btn ellipsis">...</div>
+              {Array(5).fill(1).map((_, num) => (
+                <div class="page-btn" data-idx={pageCount - 4 + num + 1}>{ pageCount - 4 + num + 1 }</div>
+              ))}
+              <div class="page-btn ellipsis">...</div>
+              <div class="page-btn" data-idx={pageCount}>{pageCount}</div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {Array(4).fill(1).map((_, num) => (
+                <div class="page-btn" data-idx={num + 1}>{ num + 1 }</div>
+              ))}
+              <div class="page-btn ellipsis">...</div>
+              {Array(4).fill(1).map((_, num) => (
+                <div class="page-btn" data-idx={pageCount - 4 + num + 1}>{ pageCount - 4 + num + 1 }</div>
+              ))}
+            </Fragment>
+          )}
+        </Fragment>
+      ) : (
+        Array(pageCount).fill(1).map((_, num) => (
+          <div class="page-btn" data-idx={num + 1}>{ num + 1 }</div>
+        ))
+      )
+    }
+    <div class="page-btn active" style={`left: ${(activePage - 1) * (36 + 4)}px`}>{ activePage }</div>
+  </div>
+  <div class="operation-btn next"><span></span></div>
+</div>
+<script define:vars={{activePage}}>
+  let timeout;
+  const btns = document.querySelectorAll('.page-btn');
+  const activeBtn = document.querySelector('.page-btn.active');
+
+  const enterHandler = (idx, pageIdx) => {
+    activeBtn.style = `left: ${idx * (36 + 4)}px`;
+    activeBtn.innerText = pageIdx;
+  };
+  const leaveHandler = () => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      activeBtn.style = `left: ${(activePage - 1) * (36 + 4)}px`;
+      activeBtn.innerText = activePage;
+    }, 260);
+  };
+
+  btns.forEach((btn, idx) => {
+    const pageIdx = btn.dataset.idx;
+    if (!pageIdx) return;
+    btn.addEventListener('mouseover', enterHandler.bind(undefined, idx, pageIdx));
+    btn.addEventListener('mouseleave', leaveHandler);
+  });
+  activeBtn.addEventListener('mouseover', () => clearTimeout(timeout));
+  activeBtn.addEventListener('mouseleave', leaveHandler);
+</script>
+
+<style lang="less" define:vars={{ activeColor }}>
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: 'Fira Code';
+  }
+  .page-btn__wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .operation-btn, .page-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--RADIUS-LARGE);
+    width: 36px;
+    height: 36px;
+    background-color: var(--BG);
+    border: 1px solid var(--BG);
+    color: var(--FG-0);
+    font-size: var(--FONT-SM);
+    margin: 0 2px;
+    cursor: pointer;
+  }
+  .page-btn.ellipsis {
+    cursor: default;
+  }
+  .page-btn.active {
+    position: absolute;
+    background-color: var(--activeColor);
+    border-color: var(--activeColor);
+    transition: left .3s ease-in-out;
+    z-index: 2;
+    cursor: default;
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      border-radius: var(--RADIUS-LARGE);
+      box-shadow: 0 5px 20px var(--activeColor);
+      opacity: .2;
+      z-index: -1;
+    }
+  }
+  .operation-btn.disable {
+    cursor: not-allowed;
+    opacity: .5;
+    &:hover > span { opacity: .5; }
+  }
+  .operation-btn > span {
+    position: relative;
+    display: block;
+    width: 10px;
+    height: 10px;
+    opacity: .5;
+    transition: opacity .3s ease-in-out;
+    &::before, &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      top: 0;
+      background-color: var(--FG-0);
+    }
+    &::before {
+      width: 2px;
+      height: 100%;
+    }
+    &::after {
+      width: 100%;
+      height: 2px;
+    }
+  }
+  .operation-btn:hover > span { opacity: .9; }
+  .prev > span {
+    margin-left: 4px;
+    transform: rotate(-45deg) scale(.8);
+    &::before { left: 0; }
+  }
+  .next > span {
+    margin-right: 4px;
+    transform: rotate(45deg) scale(.8);
+    &::before { right: 0; }
+  }
+</style>
