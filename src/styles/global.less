@@ -2,49 +2,37 @@
 @import './sizing.less';			// mediaQuery margin padding gap width height
 @import './radius.less';			// border-radius
 @import './palette.less';			// color background-color
+@import './z-index.less';			// z-index
 @import './font-size.less';		// font-size font-weight line-height
 @import './fonts/index.less';	// font-family
 
 * { box-sizing: border-box; }
 body {
-	font-family: "SourceHanSans CN", Verdana, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: var(--BG-0);
-	font-size: 16px;
-	line-height: 1.4;
 	color: var(--FG-0);
+	font-size: var(--FONT-BASE);
+	font-family: "SourceHanSans CN", Verdana, sans-serif;
+	line-height: 1.4;
+	background-color: var(--BG-0);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-strong,
-b {
+h1, h2, h3,
+h4, h5, h6,
+strong, b {
 	color: var(--FG-0);
 }
 a {
 	color: var(--LINK); // #3273dc;
 	text-decoration: none;
-	&:visited {
-		color: unset;
-	}
+	&:visited { color: unset; }
 }
 textarea {
 	width: 100%;
-	font-size: 16px;
+	font-size: var(--FONT-BASE);
 }
-input {
-	font-size: 16px;
-}
-content {
-	line-height: 1.6;
-}
-table {
-	width: 100%;
-}
+input { font-size: var(--FONT-BASE); }
+content { line-height: var(--LINEHEIGHT-BASE); }
+table { width: 100%; }
 img {
 	max-width: 100%;
 	height: auto;
@@ -55,19 +43,36 @@ code {
 	background-color: var(--CODE);
 	color: var(--FG-0);
 	border-radius: var(--RADIUS-SMALL);
+	margin: 0 2px;
 }
 pre {
 	padding: 1rem;
+	border-radius: var(--RADIUS-MEDIUM);
 }
 pre > code {
 	all: unset;
+	counter-reset: line;
+	line-height: var(--LINEHEIGHT-TEXT);
+	.line::before {
+		display: inline-block;
+		counter-increment: line;
+		content: counter(line);
+		display: inline-block;
+		border-right: 1px solid #ddd;
+		padding: 0 .5em;
+		margin-right: 1em;
+		color: var(--FG-1);
+		width: 1.5em;
+		text-align: end;
+	}
 }
 blockquote {
-	border: 1px solid #999;
-	color: #222;
-	padding: 2px 0px 2px 20px;
+	border-left: 4px solid #999;
+	color: var(--FG-2);
+	padding: 2px 0 2px 1.4rem;
 	margin: 0px;
 	font-style: italic;
+	> p { margin: .4em 0; }
 }
 
 @media (prefers-color-scheme: dark) {

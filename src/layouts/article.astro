@@ -38,8 +38,9 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		display: flex;
 		flex-direction: row;
 		align-items: flex-start;
+		justify-content: center;
 		width: 100%;
-		padding: 20px 0;
+		padding: 20px 0 0;
     margin: 0 auto;
     max-width: var(--SITE-WIDTH-LARGE);
     @media @mobile { max-width: var(--SITE-WIDTH-SMALL); }
@@ -51,6 +52,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		flex: 1;
 		width: 100%;
 		max-width: var(--SITE-WIDTH-BASE);
+		line-height: var(--LINEHEIGHT-CONTENT);
 	}
 	nav {
 		position: sticky;
