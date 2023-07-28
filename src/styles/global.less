@@ -48,11 +48,11 @@ code {
 pre {
 	padding: 1rem;
 	border-radius: var(--RADIUS-MEDIUM);
+	line-height: var(--LINEHEIGHT-TEXT);
 }
 pre > code {
 	all: unset;
 	counter-reset: line;
-	line-height: var(--LINEHEIGHT-TEXT);
 	.line::before {
 		display: inline-block;
 		counter-increment: line;
@@ -61,7 +61,7 @@ pre > code {
 		border-right: 1px solid #ddd;
 		padding: 0 .5em;
 		margin-right: 1em;
-		color: var(--FG-1);
+		color: #ddd;
 		width: 1.5em;
 		text-align: end;
 	}

@@ -1,11 +1,127 @@
 ---
-const { title, desc, thumbPic } = Astro.props;
+interface Props {
+  slug: string;
+  title: string;
+  desc: string;
+  thumbPic: string;
+  tags?: Record<'title' | 'tag', string>[];
+}
+
+const { title, desc, slug, thumbPic, tags } = Astro.props;
 ---
 
-<div class="post-card">
-  <div class="content">
-    <div class="title"><h1>{title}</h1></div>
-    <div class="desc"><h3>{desc}</h3></div>
+<div class="post-card" onclick={`javascript:window.open('/blog/${slug}')`}>
+  <div class="info">
+    <div class="content">
+      <div class="title">{title}</div>
+      <div class="desc">{desc}</div>
+    </div>
+    {
+      tags?.length && (
+        <div class="tags-wrp">
+          { tags?.map(item => (<a href={`/tags/${item.tag}`} class="tag-item">{item.title}</a>)) }
+        </div>
+      )
+    }
   </div>
-  <div class="thumb-wrp"></div>
+  <div class="thumb-wrp">
+    <img src={thumbPic}>
+  </div>
 </div>
+
+<style lang="less">
+// @picWidth: 200px;
+// @picHeight: @picWidth * 3 / 4;
+
+@picHeight: calc((2 * 20px + 3 * 14px) * 1.6 + 8px);
+@picWidth: calc(@picHeight / 9 * 16);
+
+@transitionDuration: .2s;
+
+.post-card {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+.info {
+  flex: 1 1 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .content {
+    min-height: @picHeight;
+    font-family: 'Inter', 'SourceHanSans CN';
+  }
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: var(--FONT-XL);
+    font-weight: bold;
+    color: var(--FG-0);
+    line-height: var(--LINEHEIGHT-BASE);
+  }
+  .desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: var(--FONT-SM);
+    color: var(--FG-1);
+    line-height: var(--LINEHEIGHT-BASE);
+  }
+  .tags-wrp {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Fira Code', 'SourceHanSans CN';
+    .tag-item {
+      background-color: var(--BG);
+      margin-left: 6px;
+      padding: 6px 10px 2px;
+      color: var(--FG-2);
+      border-radius: var(--RADIUS-ROUND);
+      font-size: var(--FONT-XS);
+      line-height: var(--LINEHEIGHT-TEXT);
+      box-shadow: var(--SHADOW-LOW);
+      transition: opacity .1s ease-in-out,
+                  transform @transitionDuration ease-in-out,
+                  box-shadow @transitionDuration ease-in-out;
+      &:first-child { margin-left: 0; }
+      &:hover {
+        // opacity: .6;
+        transform: translateY(-4px);
+        box-shadow: var(--SHADOW-MEDIUM);
+      }
+    }
+  }
+}
+.thumb-wrp {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: @picWidth;
+  height: @picHeight;
+  border-radius: var(--RADIUS-MEDIUM);
+  margin-left: 40px;
+  overflow: hidden;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform @transitionDuration ease-in-out;
+  }
+}
+
+.post-card:hover {
+  .thumb-wrp img {
+    transform: scale(125%);
+  }
+}
+.tag-item:hover {
+  
+}
+</style>

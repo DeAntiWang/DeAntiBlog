@@ -1,42 +1,57 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/secondary.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
+import PostCard from '../../components/PostCard.astro';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
+
+const tags = [
+	{ title: 'Algorithnm', tag: 'Algorithm' },
+	{ title: 'CSAPP', tag: 'CSAPP' },
+	{ title: '算法', tag: 'CJK-Algorithm' },
+]
 ---
 
 <Layout>
-	<section>
-		<ul>
-			{
-				posts.map((post) => (
-					<li>
-						<FormattedDate date={post.data.pubDate} />
-						<a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-					</li>
-				))
-			}
-		</ul>
-	</section>
+	<ul>
+		{
+			posts.map((post) => (
+				<li>
+					<PostCard slug={post.slug} title={post.data.title} desc={post.data.description} thumbPic={post.data.heroImage} tags={tags} />
+				</li>
+			))
+		}
+	</ul>
 </Layout>
 
 <style lang="less">
+	@import '../../styles/sizing.less';
 	ul {
 		list-style-type: none;
 		padding: unset;
 	}
 	ul li {
-		display: flex;
-	}
-	ul li :global(time) {
-		flex: 0 0 130px;
-		font-style: italic;
-		color: #595959;
-	}
-	ul li a:visited {
-		color: #8e32dc;
+		position: relative;
+		padding-top: 20px;
+		margin-top: 20px;
+		max-width: var(--SITE-WIDTH-BASE);
+		@media @tablet { max-width: var(--SITE-WIDTH-BASE); }
+		&:before {
+			position: absolute;
+			content: '';
+			top: 0;
+			width: 100%;
+			height: 1px;
+			transform: scaleY(50%);
+			transform-origin: center center;
+			background-color: var(--FG-3);
+			opacity: .5;
+		}
+		&:first-child {
+			margin-top: 0;
+			&:before { display: none; }
+		}
 	}
 </style>

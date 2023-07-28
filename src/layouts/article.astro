@@ -18,9 +18,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<FormattedDate date={pubDate} updatedDate={updatedDate} />
-				<h1 class="title">{title}</h1>
-				{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+				<section class="article-head">
+					<section class="article-info">
+						<FormattedDate date={pubDate} updatedDate={updatedDate} />
+						<h1 class="title">{title}</h1>
+					</section>
+					{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+				</section>
 				<slot />
 			</article>
 			<nav>
@@ -53,10 +57,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		width: 100%;
 		max-width: var(--SITE-WIDTH-BASE);
 		line-height: var(--LINEHEIGHT-CONTENT);
+		// .article-info {
+		// 	position: sticky;
+		// 	top: 80px;
+		// 	background-color: var(--BG-0);
+		// }
 	}
 	nav {
 		position: sticky;
-		top: 20px;
+		top: 80px;
 		flex-shrink: 0;
 		width: 260px;
 		padding: 0 20px;
@@ -64,7 +73,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 	}
 	.title {
 		font-size: 2em;
-		margin: 0.25em 0 0;
+		margin: 0 0 0.5em 0;
 	}
 	hr {
 		border-top: 1px solid #ddd;
