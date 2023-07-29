@@ -7,15 +7,76 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	title={`About DeAnti - ${SITE_TITLE}`}
 	description={SITE_DESCRIPTION}
 >
-	<a href="/" class="brand">DeAnti</a>
+	<div class="huge-brand">deanti&nbsp;&nbsp;wang</div>
+	<content>
+		<div class="personal-info__wrp">
+			<div class="personal-info"></div>
+			<div class="personal-info__avatar"></div>
+		</div>
+		<div>
+			<ol class="career">
+				<li>
+					<label>2021.07 - Now</label>
+					Tencent WeChat Front-end Engineer
+				</li>
+				<li>
+					<label>2020.05 - 2020.11</label>
+					Tencent WeChat Front-end Inter
+				</li>
+			</ol>
+		</div>
+	</content>
 </Layout>
 
 <style is:global>
 	main {
-		padding: 60px 102px;
+		display: flex;
+		flex-direction: row;
+		margin-top: 8px;
 	}
 </style>
-<style>
+<style lang="less">
+	.huge-brand {
+		text-transform: uppercase;
+		/* height: 100vh; */
+		width: fit-content;
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		transform: rotate(180deg);
+		font-size: 98px;
+		font-weight: 800;
+		font-family: 'Inter';
+		margin: 0 20px 0 0;
+		white-space: nowrap;
+		line-height: 1;
+		/* letter-spacing: 4px; */
+	}
+	content {
+		padding-left: 20px;
+		counter-reset: number;
+		> div {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			counter-increment: number;
+			&:before {
+				flex-shrink: 0;
+				display: inline-block;
+				content: "0" counter(number) "-";
+				font-family: 'Fira Code';
+				font-size: var(--FONT-XXL);
+				color: var(--FG-2);
+				margin-right: 20px;
+			}
+		}
+	}
+	ol {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+
 	.brand {
 		font-family: "Inter";
 		font-size: 48px;
@@ -29,7 +90,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		animation: neonBrand 5s linear reverse infinite;
 		z-index: 1;
 	}
-
 	@keyframes neonBrand {
 		0% { background-position: 0%; }
 		100% { background-position: 66%; }
