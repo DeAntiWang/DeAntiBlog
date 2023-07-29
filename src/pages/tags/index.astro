@@ -1,8 +1,62 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/secondary.astro';
+
+const blog = await getCollection('blog');
+const tag = blog.map(item => item.data.tag || [])
+  .reduce((res, now) => {
+    now.forEach((title) => {
+      const index = res.findIndex(item => item.title === title)
+      if (index !== -1) res[index].num += 1;
+      else res = [...res, { title, num: 1 }];
+    });
+    return res;
+  }, [] as {title: string, num: number}[])
+  .sort((a, b) => b.num - a.num);
 ---
 
 <Layout>
   <div>
+      {
+        tag.map(item => (
+          <a href={`/tags/${encodeURIComponent(item.title)}`} data-num={item.num}>{item.title}</a>
+        ))
+      }
   </div>
 </Layout>
+
+<style lang="less">
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    position: relative;
+    display: block;
+    width: fit-content;
+    font-size: var(--FONT-MEDIUM);
+    border-radius: var(--RADIUS-ROUND);
+    padding: 4px 16px;
+    box-shadow: var(--SHADOW-HIGH);
+    margin-top: 20px;
+    color: var(--FG-0);
+    font-weight: 600;
+    &:before {
+      display: inline-block;
+      content: '#';
+      margin-right: 3px;
+      font-family: 'Inter';
+      font-weight: 700;
+      color: var(--FG-2);
+    }
+    &:after {
+      display: inline-block;
+      content: attr(data-num);
+      margin-left: 6px;
+      font-size: var(--FONT-SM);
+      color: var(--FG-3);
+      font-family: 'Fira Code';
+      font-weight: 600;
+    }
+  }
+</style>

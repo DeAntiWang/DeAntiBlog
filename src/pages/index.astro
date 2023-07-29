@@ -36,6 +36,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 		padding: 40px 40px 160px;
 		text-wrap: balance;
 		word-break: normal;
+		max-width: var(--SITE-WIDTH-SMALL);
 		cursor: default;
 	}
 	.title {
@@ -101,6 +102,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, MAIN_LANG_CODE } from '../consts';
 	}
 	.images {
 		flex: 4;
+		max-width: calc(var(--SITE-WIDTH-SMALL) * 4 / 3);
 		display: grid;
 		// grid-template: "a a b b" 1fr
 		// 							"a a b b" 1fr

@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/secondary.astro';
+import PostCard from '../../components/PostCard.astro';
+import { CollectionEntry, getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+  const tags = posts.map(item => item.data.tag || [])
+		.reduce((res, now) => {
+			now.forEach((title) => {
+				const index = res.findIndex(item => item.title === title)
+				if (index !== -1) res[index].num += 1;
+				else res = [...res, { title, num: 1 }];
+			});
+			return res;
+		}, [] as {title: string, num: number}[])
+		.sort((a, b) => b.num - a.num);
+	return tags.map((tag) => ({
+		params: { name: tag.title },
+		props: posts.filter(item => (item.data.tag || []).indexOf(tag.title) !== -1),
+	}));
+}
+
+type Props = CollectionEntry<'blog'>[];
+
+const prop = Astro.props;
+const posts = Object.values(prop);
+---
+
+<Layout>
+  <div>
+    {
+      posts.map(post => (
+				<PostCard slug={post.slug} title={post.data.title} desc={post.data.description} thumbPic={post.data.heroImage} tags={post.data.tag} />
+      ))
+    }
+  </div>
+</Layout>
