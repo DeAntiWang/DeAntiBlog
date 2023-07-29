@@ -10,6 +10,8 @@ import type { CollectionEntry } from 'astro:content';
 type Props = CollectionEntry<'blog'>['data'] & { nav: { title: string; num: number; }[] };
 
 const { title, description, pubDate, updatedDate, heroImage, tag, nav } = Astro.props;
+const minNav = nav.reduce((res, now) => res > now.num ? now.num : res, 10);
+const maxNav = nav.reduce((res, now) => res < now.num ? now.num : res, 0);
 ---
 
 <html lang="en">
@@ -32,7 +34,7 @@ const { title, description, pubDate, updatedDate, heroImage, tag, nav } = Astro.
 			<nav>
 				{
 					nav.map(item => (
-						<li class={`priority-${item.num}`}>{item.title}</li>
+						<li data-priority={item.num - minNav + 1}><a href={`#${item.title}`}>{item.title}</a></li>
 					))
 				}
 			</nav>
@@ -41,7 +43,7 @@ const { title, description, pubDate, updatedDate, heroImage, tag, nav } = Astro.
 	</body>
 </html>
 
-<style lang="less">
+<style lang="less" define:vars={{ maxNav }}>
   @import '../styles/sizing.less';
 	main {
 		display: flex;
@@ -75,6 +77,42 @@ const { title, description, pubDate, updatedDate, heroImage, tag, nav } = Astro.
 		width: 260px;
 		padding: 0 20px;
 		margin-left: 40px;
+		[data-priority="1"] { --priority: 1; }
+		[data-priority="2"] { --priority: 2; }
+		[data-priority="3"] { --priority: 3; }
+		[data-priority="4"] { --priority: 4; }
+		[data-priority="5"] { --priority: 5; }
+		[data-priority="6"] { --priority: 6; }
+		li {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			list-style: none;
+			font-size: var(--FONT-SM);
+			color: var(--FG-3);
+			transition: color .15s ease-in-out;
+			padding-left: calc(4px * (var(--priority) - 1));
+			a {
+				flex-shrink: 1;
+				color: inherit;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			&:hover { color: var(--FG-0); }
+			&:before {
+				flex-grow: 0;
+				flex-shrink: 0;
+				display: inline-block;
+				content: '';
+				margin-right: 4px;
+				height: 2px;
+				border-radius: var(--RADIUS-ROUND);
+				background-color: var(--FG-3);
+				width: calc(4px * (7 - var(--priority)));
+			}
+			&[data-priority="1"] { margin-top: 6px; }
+		}
 	}
 	.title {
 		font-size: 2em;

@@ -18,7 +18,7 @@ const { Content } = await post.render();
 
 const nav = post.body.split('\n')
 	.filter(x => /^#+\s/.test(x))
-	.map(item => ({ title: item.replace(/^#+/g, ''), num: item.indexOf(' ') }));
+	.map(item => ({ title: item.replace(/^#+\s/g, ''), num: item.indexOf(' ') }));
 ---
 
 <ArticlePost {...post.data} nav={nav}>
