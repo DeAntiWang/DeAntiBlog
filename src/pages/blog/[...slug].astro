@@ -15,8 +15,12 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+const nav = post.body.split('\n')
+	.filter(x => /^#+\s/.test(x))
+	.map(item => ({ title: item.replace(/^#+/g, ''), num: item.indexOf(' ') }));
 ---
 
-<ArticlePost {...post.data}>
+<ArticlePost {...post.data} nav={nav}>
 	<Content />
 </ArticlePost>

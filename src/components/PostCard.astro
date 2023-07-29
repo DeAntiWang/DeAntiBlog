@@ -42,8 +42,9 @@ const { title, desc, slug, thumbPic, tags } = Astro.props;
   display: flex;
   flex-direction: row;
   padding: 16px 16px 12px 20px;
+  background-color: var(--BG);
   border-radius: var(--RADIUS-MEDIUM);
-  box-shadow: var(--SHADOW-HIGH);
+  box-shadow: var(--SHADOW-MEDIUM);
   transition: transform @transitionDuration ease-in-out,
               box-shadow @transitionDuration ease-in-out;
   overflow: hidden;

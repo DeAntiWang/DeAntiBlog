@@ -8,6 +8,7 @@ export default defineConfig({
 	site: 'http://deanti.wang',
 	integrations: [vue(), mdx(), sitemap()],
 	experimental: {
-		assets: true
+		assets: true,
+		viewTransitions: true,
 	},
 });

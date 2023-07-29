@@ -129,6 +129,7 @@ const tags = posts.map(item => item.data.tag || [])
     font-size: var(--FONT-SM);
     border-radius: var(--RADIUS-ROUND);
     padding: 4px 12px;
+		background-color: var(--BG);
     box-shadow: var(--SHADOW-MEDIUM);
     color: var(--FG-0);
     font-weight: 600;
@@ -140,6 +141,7 @@ const tags = posts.map(item => item.data.tag || [])
       margin-right: 3px;
       font-family: 'Inter';
       font-weight: 700;
+			border-radius: var(--RADIUS-ROUND);
       color: var(--FG-2);
     }
     &:after {
@@ -152,7 +154,7 @@ const tags = posts.map(item => item.data.tag || [])
       font-weight: 600;
     }
 		&:hover {
-			transform: translateY(4px);
+			transform: translateY(2px);
 			box-shadow: unset;
 		}
   }
