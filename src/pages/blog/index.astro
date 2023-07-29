@@ -7,32 +7,61 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 
-const tags = [
-	{ title: 'Algorithnm', tag: 'Algorithm' },
-	{ title: 'CSAPP', tag: 'CSAPP' },
-	{ title: '算法', tag: 'CJK-Algorithm' },
-];
+const tags = posts.map(item => item.data.tag || [])
+  .reduce((res, now) => {
+    now.forEach((title) => {
+      const index = res.findIndex(item => item.title === title)
+      if (index !== -1) res[index].num += 1;
+      else res = [...res, { title, num: 1 }];
+    });
+    return res;
+  }, [] as {title: string, num: number}[])
+  .sort((a, b) => b.num - a.num);
 ---
 
 <Layout>
-	<ul>
-		{
-			posts.map((post) => (
-				<li>
-					<PostCard slug={post.slug} title={post.data.title} desc={post.data.description} thumbPic={post.data.heroImage} tags={post.data.tag} />
-				</li>
-			))
-		}
-	</ul>
+	<div class="body">
+		<ul class="post-list">
+			{
+				posts.map((post) => (
+					<li>
+						<PostCard slug={post.slug} title={post.data.title} desc={post.data.description} thumbPic={post.data.heroImage} tags={post.data.tag} />
+					</li>
+				))
+			}
+		</ul>
+		<div class="side-bar">
+			<div class="func-wrp tags-wrp">
+				<div class="title">Tags</div>
+				<div class="tags-list">
+					{
+						tags.map((item) => (
+							<a class="tag-item" href={`/tags/${encodeURIComponent(item.title)}`} data-num={item.num}>{item.title}</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>
 
 <style lang="less">
 	@import '../../styles/sizing.less';
-	ul {
+	.body {
+		display: flex;
+		flex-direction: row;
+		padding: 20px 0 16px;
+	}
+	ul.post-list {
+		flex-shrink: 0;
 		list-style-type: none;
 		padding: unset;
+		margin-right: 36px;
+		@media @mobile  { flex-shrink: 1; flex-grow: 1; margin-right: 0; }
+		@media @tablet  { flex-shrink: 1; flex-grow: 1; margin-right: 0; }
+		@media @desktop { flex-shrink: 1; flex-grow: 1; margin-right: 0; }
 	}
-	ul li {
+	ul.post-list li {
 		position: relative;
 		margin-top: 20px;
 		max-width: var(--SITE-WIDTH-BASE);
@@ -53,4 +82,78 @@ const tags = [
 			&:before { display: none; }
 		}
 	}
+	.side-bar {
+		position: relative;
+		flex-grow: 1;
+		flex-shrink: 1;
+		width: 100%;
+		min-width: 0;
+		padding-top: 12px;
+		padding-left: 36px;
+		&:before {
+			position: absolute;
+			content: '';
+			left: 0;
+			height: 100%;
+			max-height: 720px;
+			width: 1px;
+			background: linear-gradient(to bottom, transparent, var(--FG-3) 4%, var(--FG-3) 96%, transparent);
+			transform: scaleX(50%);
+			transform-origin: center center;
+		}
+		@media @mobile { display: none; }
+		@media @tablet { display: none; }
+		@media @desktop { display: none; }
+	}
+	.func-wrp {
+		margin-top: 16px;
+		.title {
+			margin-bottom: 16px;
+			font-size: var(--FONT-SM);
+			font-family: "Inter";
+			font-weight: 500;
+		}
+		&:first-child { margin-top: 0; }
+	}
+
+	.tags-list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 12px 10px;
+	}
+  a.tag-item {
+    position: relative;
+    display: block;
+    width: fit-content;
+    font-size: var(--FONT-SM);
+    border-radius: var(--RADIUS-ROUND);
+    padding: 4px 12px;
+    box-shadow: var(--SHADOW-MEDIUM);
+    color: var(--FG-0);
+    font-weight: 600;
+		transition: transform .2s ease-in-out,
+								box-shadow .2s ease-in-out;
+    &:before {
+      display: inline-block;
+      content: '#';
+      margin-right: 3px;
+      font-family: 'Inter';
+      font-weight: 700;
+      color: var(--FG-2);
+    }
+    &:after {
+      display: inline-block;
+      content: attr(data-num);
+      margin-left: 6px;
+      font-size: var(--FONT-SM);
+      color: var(--FG-3);
+      font-family: 'Fira Code';
+      font-weight: 600;
+    }
+		&:hover {
+			transform: translateY(4px);
+			box-shadow: unset;
+		}
+  }
 </style>
