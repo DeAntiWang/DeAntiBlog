@@ -27,8 +27,9 @@ const maxNav = nav.reduce((res, now) => res < now.num ? now.num : res, 0);
 						<FormattedDate date={pubDate} updatedDate={updatedDate} />
 						<h1 class="title">{title}</h1>
 					</section>
-					{heroImage && <img width={720} height={360} src={heroImage} alt="" />}
+					{heroImage && <div class="hero-image" style={`background-image: url(${heroImage})`}></div>}
 				</section>
+				<hr>
 				<slot />
 			</article>
 			<nav>
@@ -43,7 +44,7 @@ const maxNav = nav.reduce((res, now) => res < now.num ? now.num : res, 0);
 	</body>
 </html>
 
-<style lang="less" define:vars={{ maxNav }}>
+<style lang="less">
   @import '../styles/sizing.less';
 	main {
 		display: flex;
@@ -105,24 +106,39 @@ const maxNav = nav.reduce((res, now) => res < now.num ? now.num : res, 0);
 				flex-shrink: 0;
 				display: inline-block;
 				content: '';
-				margin-right: 4px;
+				margin-right: 6px;
 				height: 2px;
 				border-radius: var(--RADIUS-ROUND);
 				background-color: var(--FG-3);
 				width: calc(4px * (7 - var(--priority)));
+				// width: 4px;
 			}
 			&[data-priority="1"] { margin-top: 6px; }
 		}
+		@media @mobile { display: none; }
+    @media @tablet { width: 210px; }
+    @media @desktop { width: 240px; }
+    @media @largeDesktop { width: 260px; }
 	}
 	.title {
 		font-size: 2em;
 		margin: 0 0 0.5em 0;
 	}
+	.article-head {
+		display: flex;
+		flex-direction: column;
+	}
+	.hero-image {
+		width: 100%;
+		padding-bottom: calc(100% / 2.35);
+		overflow: hidden;
+		border-radius: var(--RADIUS-SMALL);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
 	hr {
 		border-top: 1px solid #ddd;
 		margin: 1rem 0;
-	}
-	.last-updated-on {
-		font-style: italic;
 	}
 </style>
